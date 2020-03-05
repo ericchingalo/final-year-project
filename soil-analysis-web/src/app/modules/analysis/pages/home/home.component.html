@@ -1,3 +1,4 @@
+<!-- tool bar -->
 <mat-toolbar>
   <mat-toolbar-row>
     <span>Home</span>
@@ -12,15 +13,18 @@
 
 <!-- contents -->
 <mat-sidenav-container class="home-container">
+  <!-- left sidenav -->
   <mat-sidenav opened mode="side">
     <div class="location-tree">
-      Location
+      Location Tree
     </div>
   </mat-sidenav>
+
+  <!-- right sidenav -->
   <mat-sidenav #drawer mode="side" position="end" class="settings-menu"
     >Settings Menu</mat-sidenav
   >
-  <span style="text-align:h1 center;">
-    <h3>Dashboards Here</h3>
-  </span>
+
+  <!-- main content -->
+  <h3>Dashboards Here</h3>
 </mat-sidenav-container>

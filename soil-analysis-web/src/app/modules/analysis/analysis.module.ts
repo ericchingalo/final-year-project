@@ -4,11 +4,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-import { HomeComponent } from './pages/home/home.component';
 import { AnalysisRoutingModule } from './analysis.routes';
+import { pages } from './pages';
+import { components } from './components';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [...pages, ...components],
   imports: [
     CommonModule,
     MatToolbarModule,
