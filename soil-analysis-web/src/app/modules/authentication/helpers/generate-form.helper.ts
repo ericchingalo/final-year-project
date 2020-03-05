@@ -29,7 +29,10 @@ export function generateForm(
         ),
       );
     } else {
-      form.addControl(input.formControlName, new FormControl(''));
+      form.addControl(
+        input.formControlName,
+        new FormControl('', Validators.required),
+      );
     }
   });
 

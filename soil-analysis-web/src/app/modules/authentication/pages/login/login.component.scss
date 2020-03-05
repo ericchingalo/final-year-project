@@ -16,11 +16,16 @@ mat-form-field,
   width: 400px;
 }
 
-.button {
+.button,
+.hint {
   margin: 0 auto;
   margin-left: 10%;
 }
 
+.hint {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
 .inputs-container {
   justify-content: space-between;
   display: flex;
