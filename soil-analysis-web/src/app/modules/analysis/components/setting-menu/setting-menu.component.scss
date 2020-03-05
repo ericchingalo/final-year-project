@@ -4,12 +4,12 @@ mat-icon {
   top: 5px;
 }
 
-a {
+a,
+a:hover,
+a:active {
+  color: #000;
+  text-decoration: none;
   display: block;
   border: none;
   padding: 5px;
-}
-
-a:active {
-  border: none;
 }

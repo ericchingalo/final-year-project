@@ -1,6 +1,6 @@
-<div class="login-container">
+<div class="form-container">
   <img id="logo" src="assets/logo.png" alt="logo" />
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit(loginForm.value)">
     <div class="inputs-container" *ngFor="let input of loginFormData.inputs">
       <div class="inputs" *ngIf="input.type === 'text'">
         <mat-form-field>
@@ -29,12 +29,7 @@
     <mat-hint class="hint"
       >Forgot you password? <a href="###">Click here</a></mat-hint
     >
-    <button
-      [disabled]="!loginForm.valid"
-      mat-raised-button
-      class="button"
-      (click)="onLoginSubmit()"
-    >
+    <button [disabled]="!loginForm.valid" mat-raised-button class="button">
       Login
     </button>
   </form>
