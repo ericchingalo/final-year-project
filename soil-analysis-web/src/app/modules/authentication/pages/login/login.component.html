@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="login-container">
+  <img id="logo" src="assets/logo.png" alt="logo" />
+  <form [formGroup]="loginForm">
+    <div class="inputs-container" *ngFor="let input of loginFormData.inputs">
+      <div class="inputs" *ngIf="input.type === 'text'">
+        <mat-form-field>
+          <mat-label>{{ input.label }}</mat-label>
+          <input
+            matInput
+            [formControlName]="input.formControlName"
+            id="name"
+            type="text"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="inputs" *ngIf="input.type === 'password'">
+        <mat-form-field>
+          <mat-label>{{ input.label }}</mat-label>
+          <input
+            matInput
+            [formControlName]="input.formControlName"
+            id="name"
+            type="password"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button class="button">Login</button>
+  </form>
+</div>
