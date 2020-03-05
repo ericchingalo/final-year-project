@@ -31,7 +31,7 @@
       <div class="inputs" *ngIf="input.type === 'select'">
         <mat-form-field>
           <mat-label>{{ input.label }}</mat-label>
-          <mat-select [formControlName]="input.formControlName" multiple>
+          <mat-select [formControlName]="input.formControlName">
             <mat-option *ngFor="let role of input.options" [value]="role">{{
               role
             }}</mat-option>
