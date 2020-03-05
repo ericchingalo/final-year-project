@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { generateForm } from '../../helpers/generate-form.helper';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { generateForm } from '../../helpers/generate-form.helper';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginFormData: any;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.loginFormData = this.getFormData();
@@ -28,5 +29,9 @@ export class LoginComponent implements OnInit {
         { label: 'Password', type: 'password', formControlName: 'password' },
       ],
     };
+  }
+
+  onLoginSubmit() {
+    this.router.navigate(['analysis/']);
   }
 }
