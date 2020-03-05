@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Home</span>
+    <span class="toolbar-spacer"></span>
+    <button id="toolbar-button" (click)="drawer.toggle()">
+      <mat-icon class="toolbar-icon" aria-hidden="false" aria-label="User"
+        >settings</mat-icon
+      >
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- contents -->
+<mat-sidenav-container class="home-container">
+  <mat-sidenav opened mode="side">
+    <div class="location-tree">
+      Location
+    </div>
+  </mat-sidenav>
+  <mat-sidenav #drawer mode="side" position="end" class="settings-menu"
+    >Settings Menu</mat-sidenav
+  >
+  <span style="text-align:h1 center;">
+    <h3>Dashboards Here</h3>
+  </span>
+</mat-sidenav-container>
