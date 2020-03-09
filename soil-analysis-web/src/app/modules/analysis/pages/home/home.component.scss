@@ -18,13 +18,17 @@ mat-toolbar {
   flex: 1 1 auto;
 }
 
+.sidenav-container {
+  min-height: 90vh;
+}
+
 .location-tree {
   text-align: left;
-  min-width: 300px;
+  min-width: 15vw;
 }
 
 .settings-menu {
-  min-width: 200px;
+  min-width: 20vw;
 }
 
 .home-container {

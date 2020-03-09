@@ -1,0 +1,46 @@
+<app-toolbar></app-toolbar>
+<div class="form-container">
+  <img id="logo" src="assets/logo.png" alt="logo" />
+  <h4 style="text-align: center;">Create User</h4>
+  <form [formGroup]="userForm" (ngSubmit)="onAddUser(userForm.value)">
+    <div class="inputs-container" *ngFor="let input of userFormData.inputs">
+      <div class="inputs" *ngIf="input.type === 'text'">
+        <mat-form-field>
+          <mat-label>{{ input.label }}</mat-label>
+          <input
+            matInput
+            [formControlName]="input.formControlName"
+            id="name"
+            type="text"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="inputs" *ngIf="input.type === 'email'">
+        <mat-form-field>
+          <mat-label>{{ input.label }}</mat-label>
+          <input
+            matInput
+            [formControlName]="input.formControlName"
+            id="name"
+            type="email"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="inputs" *ngIf="input.type === 'select'">
+        <mat-form-field>
+          <mat-label>{{ input.label }}</mat-label>
+          <mat-select [formControlName]="input.formControlName">
+            <mat-option *ngFor="let role of input.options" [value]="role">{{
+              role
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <button [disabled]="!userForm.valid" mat-raised-button class="button">
+      Change Password
+    </button>
+  </form>
+</div>

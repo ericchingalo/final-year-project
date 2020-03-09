@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  onLoginSubmit() {
+  onLoginSubmit(userInfo) {
+    console.log(userInfo);
     this.router.navigate(['analysis/']);
   }
 }
