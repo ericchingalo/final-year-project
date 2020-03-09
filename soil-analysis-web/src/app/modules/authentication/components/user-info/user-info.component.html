@@ -1,1 +1,33 @@
-<p>user-info works!</p>
+<h1 mat-dialog-title style="text-align: center;">User Info</h1>
+<div mat-dialog-content>
+  <div class="user-image">
+    <mat-icon>account_circle</mat-icon>
+  </div>
+  <div class="user-info">
+    <p>
+      Name:&nbsp;<span class="bold">{{ name | uppercase }}</span>
+    </p>
+    <p>
+      Email:&nbsp;<span class="bold">{{ email }}</span>
+    </p>
+    <div>
+      User roles:
+      <ul>
+        <li *ngFor="let role of roles">{{ role | titlecase }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div class="action-buttons">
+    <button
+      mat-raised-button
+      class="button"
+      style="width: auto; margin: 0;"
+      (click)="onCloseDialog()"
+      cdkFocusInitial
+    >
+      Close
+    </button>
+  </div>
+</div>
