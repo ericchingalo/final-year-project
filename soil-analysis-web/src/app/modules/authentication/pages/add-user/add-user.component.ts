@@ -41,6 +41,11 @@ export class AddUserComponent implements OnInit {
           label: 'User roles',
           options: ['admin', 'reseacher'],
         },
+        {
+          type: 'text',
+          formControlName: 'region',
+          label: 'Region',
+        },
       ],
     };
   }
