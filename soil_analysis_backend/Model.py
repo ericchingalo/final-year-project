@@ -47,7 +47,7 @@ class UserRole(db.Model):
     id = db.Column('role_id', db.Integer, primary_key=True)
     name = db.Column( 'role_name', db.String(200), unique=True, nullable=False)
     users = db.relationship('User', backref='role', lazy=True)
-    permissions = db.relationship('role_permission', secondary=rolePermission, lazy='subquery', backref = db.backref('userRoles', lazy=True))
+    permissions = db.relationship('role_permission', secondary=rolePermission, lazy='joined', backref = db.backref('userRoles', lazy=True))
 
     def __init__(self, name):
         self.name = name
@@ -131,8 +131,7 @@ class SoilTestDevice(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     user = db.relationship('User', backref= db.backref('soil_test_devices', lazy=True))
 
-    def __init__(self, id, user_id):
-        self.id = id
+    def __init__(self, user_id):
         self.user_id = user_id
 
 class SoilTestDeviceSchema(ma.Schema):
@@ -151,7 +150,7 @@ class SoilTestResult(db.Model):
     id = db.Column('result_id' ,db.Integer, primary_key=True)
     created = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     device_id = db.Column('device_id', db.Integer, db.ForeignKey('soil_test_devices.device_id'), nullable=False)
-    values = db.relationship('parameter_results', secondary=parameterResults, lazy='subquery', backref = db.backref('parameterResults', lazy=True))
+    values = db.relationship('parameter_results', secondary=parameterResults, lazy='joined', backref = db.backref('parameterResults', lazy=True))
     def __init__(self, device_id):
         self.device_id = device_id
 
