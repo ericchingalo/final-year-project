@@ -9,7 +9,7 @@ user_roles_schema = UserRoleSchema(many=True)
 class UserRoleListAPI(Resource):
     def get(self):
         userRole = UserRole.query.all()
-        returned_roles = user_roles_schema.dump(users)
+        returned_roles = user_roles_schema.dump(userRole)
         return jsonify({'status': 'success', 'data': returned_roles})
 
     def post(self):

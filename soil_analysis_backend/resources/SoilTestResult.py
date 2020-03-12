@@ -27,6 +27,6 @@ class SoilTestResultAPI(Resource):
     def get(self):
         results = SoilTestResult.query.all()
         returned_results = soil_test_results_schema.dump(results)
-        return jsonify({'status': 'success', 'data': returned_devices})
+        return jsonify({'status': 'success', 'data': returned_results})
 
     

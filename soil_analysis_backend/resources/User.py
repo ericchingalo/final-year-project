@@ -8,7 +8,7 @@ users_schema = UserSchema(many=True)
 
 class UserListAPI(Resource):
     def get(self):
-        users = User.query.all()
+        users = User.query.order_by(User.name).all()
         returned_users = users_schema.dump(users)
         return jsonify({'status': 'success', 'data': returned_users})
 

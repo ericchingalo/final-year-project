@@ -9,7 +9,7 @@ parameters_schema = ParameterSchema(many=True)
 class ParameterListAPI(Resource):
     def get(self):
         parameters = Parameter.query.all()
-        returned_parameters = parameter_schema.dump(parameters)
+        returned_parameters = parameters_schema.dump(parameters)
         return jsonify({'status': 'success', 'data': returned_parameters})
 
     def post(self):

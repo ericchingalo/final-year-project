@@ -9,7 +9,7 @@ user_permissions_schema = UserPermissionSchema(many=True)
 class UserPermissionAPI(Resource):
     def get(self):
         permissions = UserPermission.query.all()
-        returned_permissions = user_permissions_schema.dump(users)
+        returned_permissions = user_permissions_schema.dump(permissions)
         return jsonify({'status': 'success', 'data': returned_permissions})
     
     def post(self):

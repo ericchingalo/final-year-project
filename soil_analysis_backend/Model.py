@@ -16,6 +16,7 @@ the models:
 # Join table for user_permissions and user_roles 
 rolePermission = db.Table(
     'role_permissions',
+    db.Model.metadata,
     db.Column('permission', db.String(200), db.ForeignKey('user_permissions.permission'), primary_key=True),
     db.Column('role_id', db.Integer, db.ForeignKey('user_roles.role_id'), primary_key=True)
 )
@@ -47,7 +48,7 @@ class UserRole(db.Model):
     id = db.Column('role_id', db.Integer, primary_key=True)
     name = db.Column( 'role_name', db.String(200), unique=True, nullable=False)
     users = db.relationship('User', backref='role', lazy=True)
-    permissions = db.relationship('role_permission', secondary=rolePermission, lazy='joined', backref = db.backref('userRoles', lazy=True))
+    permissions = db.relationship('UserPermission', secondary=rolePermission, lazy='joined', backref = db.backref('userRoles', lazy=True))
 
     def __init__(self, name):
         self.name = name
@@ -95,6 +96,7 @@ class UserSchema(ma.Schema):
 # join tables for parameters and soilTestResults
 parameterResults = db.Table(
     'parameter_results',
+    db.Model.metadata,
     db.Column('parameter_name', db.String(50), db.ForeignKey('parameters.parameter_name'), primary_key=True),
     db.Column('result_id', db.Integer, db.ForeignKey('soil_test_results.result_id'), primary_key=True),
     db.Column('value', db.Integer, nullable=False)
@@ -127,9 +129,9 @@ class SoilTestDevice(db.Model):
     __tablename__ = 'soil_test_devices'
 
     id = db.Column( 'device_id',db.Integer, primary_key=True)
-    results = db.relationship(db.Integer, backref='device', lazy=True)
+    results = db.relationship('SoilTestResult', backref='device', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    user = db.relationship('User', backref= db.backref('soil_test_devices', lazy=True))
+    user = db.relationship('User', backref= db.backref('device', lazy=True))
 
     def __init__(self, user_id):
         self.user_id = user_id
@@ -150,7 +152,7 @@ class SoilTestResult(db.Model):
     id = db.Column('result_id' ,db.Integer, primary_key=True)
     created = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     device_id = db.Column('device_id', db.Integer, db.ForeignKey('soil_test_devices.device_id'), nullable=False)
-    values = db.relationship('parameter_results', secondary=parameterResults, lazy='joined', backref = db.backref('parameterResults', lazy=True))
+    values = db.relationship('Parameter', secondary=parameterResults, lazy='joined', backref = db.backref('parameterResults', lazy=True))
     def __init__(self, device_id):
         self.device_id = device_id
 

@@ -23,4 +23,4 @@ api.add_resource(ParameterAPI, '/parameter/<int:id>')
 api.add_resource(ParameterListAPI, '/parameter')
 api.add_resource(SoilTestDeviceListAPI, '/device')
 api.add_resource(SoilTestDeviceAPI, '/device/<int:id>')
-api.add_resource(SoilTestResultAPI), '/result'
+api.add_resource(SoilTestResultAPI, '/result')
