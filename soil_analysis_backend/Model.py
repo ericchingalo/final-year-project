@@ -28,9 +28,6 @@ class UserPermission(db.Model):
     __tablename__ = 'user_permissions'
 
     permission = db.Column(db.String(200), primary_key=True)
-
-    def __init__(self, permission):
-        self.permission = permission
     
 class UserPermissionSchema(ma.Schema):
     permission = fields.String(required=True)
@@ -48,10 +45,7 @@ class UserRole(db.Model):
     id = db.Column('role_id', db.Integer, primary_key=True)
     name = db.Column( 'role_name', db.String(200), unique=True, nullable=False)
     users = db.relationship('User', backref='role', lazy=True)
-    permissions = db.relationship('UserPermission', secondary=rolePermission, lazy='joined', backref = db.backref('userRoles', lazy=True))
-
-    def __init__(self, name):
-        self.name = name
+    permissions = db.relationship('UserPermission', secondary=rolePermission, lazy='dynamic', backref = db.backref('userRoles', lazy=True))
 
 class UserRoleSchema(ma.Schema):
     id = fields.Integer()
@@ -75,13 +69,6 @@ class User(db.Model):
     region = db.Column(db.String(50))
     role_id = db.Column(db.Integer, db.ForeignKey('user_roles.role_id'), nullable=False)
 
-    def __init__(self, name, email, password, region, role_id):
-        self.name = name
-        self.email = email
-        self.password = password
-        self.region = region
-        self.role_id = role_id
-
 class UserSchema(ma.Schema):
     id = fields.Integer()
     name = fields.String(required=True)
@@ -92,15 +79,16 @@ class UserSchema(ma.Schema):
     class Meta:
         fields = ('user_id', 'user_name', 'email', 'password', 'region', 'role_id')
 
+'''
+join tables for parameters and soilTestResults
+'''
 
-# join tables for parameters and soilTestResults
-parameterResults = db.Table(
-    'parameter_results',
-    db.Model.metadata,
-    db.Column('parameter_name', db.String(50), db.ForeignKey('parameters.parameter_name'), primary_key=True),
-    db.Column('result_id', db.Integer, db.ForeignKey('soil_test_results.result_id'), primary_key=True),
-    db.Column('value', db.Integer, nullable=False)
-)
+class ParameterResults(db.Model):
+    parameter_name = db.Column(db.String(50), db.ForeignKey('parameters.parameter_name'), primary_key=True)
+    result_id = db.Column(db.Integer, db.ForeignKey('soil_test_results.result_id'), primary_key=True)
+    value = db.Column('value', db.Integer, nullable=False)
+    parameter = db.relationship("Parameter", back_populates="value")
+    result = db.relationship("SoilTestResult", back_populates="value")
 
 '''
 for parameters
@@ -110,9 +98,8 @@ class Parameter(db.Model):
 
     name = db.Column('parameter_name', db.String(50), primary_key=True)
     last_updated = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
+    value = db.relationship('ParameterResults', back_populates="parameter")
 
-    def __init__(self, name):
-        self.name = name
 
 class ParameterSchema(ma.Schema):
     name = fields.String(required=True)
@@ -133,8 +120,6 @@ class SoilTestDevice(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     user = db.relationship('User', backref= db.backref('device', lazy=True))
 
-    def __init__(self, user_id):
-        self.user_id = user_id
 
 class SoilTestDeviceSchema(ma.Schema):
     id = fields.Integer(required=True)
@@ -152,9 +137,8 @@ class SoilTestResult(db.Model):
     id = db.Column('result_id' ,db.Integer, primary_key=True)
     created = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     device_id = db.Column('device_id', db.Integer, db.ForeignKey('soil_test_devices.device_id'), nullable=False)
-    values = db.relationship('Parameter', secondary=parameterResults, lazy='joined', backref = db.backref('parameterResults', lazy=True))
-    def __init__(self, device_id):
-        self.device_id = device_id
+    value = db.relationship('ParameterResults', back_populates="result")
+
 
 class SoilTestResultSchema(ma.Schema):
     id = fields.Integer(required=True)
