@@ -65,7 +65,7 @@ class User(db.Model):
     email = db.Column(db.String(100))
     # TODO encrypt the password
     password = db.Column(db.String(50), nullable=False)
-    # TODO Add location
+    # TODO Add location table
     region = db.Column(db.String(50))
     role_id = db.Column(db.Integer, db.ForeignKey('user_roles.role_id'), nullable=False)
 
