@@ -34,7 +34,7 @@ class UserListAPI(Resource):
             email=json_data['email'],
             password=json_data['password'],
             region=json_data['region'],
-            role_id=json_data['role_id']
+            role=role
             )
 
         db.session.add(new_user)
@@ -83,7 +83,11 @@ class UserAPI(Resource):
         if data['password']:
             user.password = data['password']
         if data['role_id']:
-            user.role_id = data['role_id']
+            # check if role exists
+            role = UserRole.query.filter_by(role_id=data['role_id']).first()
+            if not role:
+                return  {'message': 'Assigned role does not exist'}, 400
+            user.role = role
         if data['region']:
             user.region = data['region']
 
@@ -91,4 +95,4 @@ class UserAPI(Resource):
         db.session.commit()
         result = user_schema.jsonify(user)
         
-        return { "status": 'success', 'data': result }, 204
+        return { "status": 'success', 'data': result }, 200

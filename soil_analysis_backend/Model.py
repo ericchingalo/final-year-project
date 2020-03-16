@@ -28,9 +28,11 @@ class UserPermission(db.Model):
     __tablename__ = 'user_permissions'
 
     permission = db.Column(db.String(200), primary_key=True)
+    roles_permission = db.relationship('UserRole', secondary=rolePermission, lazy='dynamic', backref = db.backref('permissions', lazy=True))
     
 class UserPermissionSchema(ma.Schema):
     permission = fields.String(required=True)
+    
 
     class Meta:
         fields = ('permission',)
@@ -45,8 +47,7 @@ class UserRole(db.Model):
     id = db.Column('role_id', db.Integer, primary_key=True)
     name = db.Column( 'role_name', db.String(200), unique=True, nullable=False)
     users = db.relationship('User', backref='role', lazy=True)
-    permissions = db.relationship('UserPermission', secondary=rolePermission, lazy='dynamic', backref = db.backref('userRoles', lazy=True))
-
+    
 class UserRoleSchema(ma.Schema):
     id = fields.Integer()
     name = fields.String(required=True)
@@ -68,6 +69,7 @@ class User(db.Model):
     # TODO Add location table
     region = db.Column(db.String(50))
     role_id = db.Column(db.Integer, db.ForeignKey('user_roles.role_id'), nullable=False)
+    device = db.relationship('SoilTestDevice', backref= 'user')
 
 class UserSchema(ma.Schema):
     id = fields.Integer()
@@ -118,7 +120,7 @@ class SoilTestDevice(db.Model):
     id = db.Column( 'device_id',db.Integer, primary_key=True)
     results = db.relationship('SoilTestResult', backref='device', lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
-    user = db.relationship('User', backref= db.backref('device', lazy=True))
+    
 
 
 class SoilTestDeviceSchema(ma.Schema):

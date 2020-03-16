@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from flask_restful import Resource
 
-from Model import db, UserRole, UserRoleSchema
+from Model import db, UserRole, UserRoleSchema, UserPermission
 
 user_role_schema = UserRoleSchema()
 user_roles_schema = UserRoleSchema(many=True)
@@ -32,6 +32,12 @@ class UserRoleListAPI(Resource):
 
         db.session.add(user_role)
         db.session.commit()
+
+        # adding the permissions to the role
+        for requested_permission in data['permissions']:
+            userPermission = UserPermission.query.filter_by(permission=requested_permission).first()
+            user_role.permissions.append(userPermission)
+            db.session.commit()
 
         result = user_role_schema.jsonify(user_role)
 
