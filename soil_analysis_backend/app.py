@@ -7,7 +7,7 @@ from resources.UserPermission import UserPermissionAPI
 from resources.UserRole import UserRoleAPI, UserRoleListAPI
 from resources.Parameter import ParameterListAPI, ParameterAPI
 from resources.SoilTestDevice import SoilTestDeviceAPI, SoilTestDeviceListAPI
-from resources.SoilTestResult import SoilTestResultAPI
+from resources.SoilTestResult import SoilTestResultAPI, SoilTestResultListAPI
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
@@ -23,4 +23,5 @@ api.add_resource(ParameterAPI, '/parameter/<int:id>')
 api.add_resource(ParameterListAPI, '/parameter')
 api.add_resource(SoilTestDeviceListAPI, '/device')
 api.add_resource(SoilTestDeviceAPI, '/device/<int:id>')
-api.add_resource(SoilTestResultAPI, '/result')
+api.add_resource(SoilTestResultListAPI, '/result')
+api.add_resource(SoilTestResultAPI, '/result/<int:id>')
