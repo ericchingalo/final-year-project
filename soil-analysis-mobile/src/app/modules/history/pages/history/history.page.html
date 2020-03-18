@@ -13,5 +13,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="History page"></app-explore-container>
+  <app-result-card
+    *ngFor="let result of results"
+    [result]="result"
+  ></app-result-card>
 </ion-content>

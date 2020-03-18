@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Result ID: {{result.id}}
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onDismiss($event)">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <p>
+    <ion-text>Tester Name: {{result.user}}</ion-text> <br />
+    <ion-text>Device ID: {{result.device}}</ion-text> <br />
+    <ion-text>Date: {{result.created | time}}</ion-text> <br />
+  </p> -->
+  <div>
+    <h5>Result info</h5>
+    <ion-list>
+      <ion-item>
+        <ion-text>Tester Name: {{result.user}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>Device ID: {{result.device}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>Date: {{result.created | time}}</ion-text>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div>
+    <h5>Results</h5>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="Parameter">
+        <th mat-header-cell *matHeaderCellDef>Parameter</th>
+        <td mat-cell *matCellDef="let element">{{element.parameter}}</td>
+      </ng-container>
+      <ng-container matColumnDef="Value">
+        <th mat-header-cell *matHeaderCellDef>Value</th>
+        <td mat-cell *matCellDef="let element">{{element.value}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div>
+    <h5>Interpretations</h5>
+    <ion-text
+      >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum esse
+      sapiente eius odio hic deleniti quia dicta ipsam? Harum neque doloribus at
+      ea earum vero vitae? Minus mollitia voluptas debitis.</ion-text
+    >
+  </div>
+</ion-content>
