@@ -12,6 +12,52 @@
       <ion-title size="large">Analysis</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Analysis page"></app-explore-container>
+  <form
+    [formGroup]="analysisForm"
+    (ngSubmit)="onAnalysisFormSubmit(analysisForm.value)"
+  >
+    <ion-item *ngFor="let input of analysisFormData.inputs">
+      <ion-label position="stacked">{{ input.label }}</ion-label>
+      <ion-datetime
+        *ngIf="input.type == 'date'"
+        [formControlName]="input.formControlName"
+      ></ion-datetime>
+      <ion-select
+        multiple="true"
+        *ngIf="input.type == 'select' && input.multiple == 'true'"
+        [formControlName]="input.formControlName"
+      >
+        <ion-select-option
+          *ngFor="let option of input.options"
+          value="{{ option }}"
+          >{{ option }}</ion-select-option
+        >
+      </ion-select>
+      <ion-select
+        multiple="false"
+        *ngIf="
+        input.type == 'select' &&
+        (input.multiple == 'false' || input.multiple == undefined)
+      "
+        [formControlName]="input.formControlName"
+      >
+        <ion-select-option
+          *ngFor="let option of input.options"
+          value="{{ option }}"
+          >{{ option }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </form>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Bar Chart - Population </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div
+        id="barChart"
+        style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"
+      ></div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

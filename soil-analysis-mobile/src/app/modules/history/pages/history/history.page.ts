@@ -14,4 +14,8 @@ export class HistoryPage implements OnInit {
   ngOnInit() {
     this.results = this.historyService.results;
   }
+
+  refreshHistory() {
+    console.log('refreshed');
+  }
 }
