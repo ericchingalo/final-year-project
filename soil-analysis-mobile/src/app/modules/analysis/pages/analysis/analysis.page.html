@@ -48,8 +48,14 @@
         >
       </ion-select>
     </ion-item>
-    <ion-buttons slot="secondary">
-      <ion-button type="submit" [disabled]="!analysisForm.valid">
+    <ion-buttons class="button" slot="secondary">
+      <ion-button
+        type="submit"
+        size="small"
+        fill="outline"
+        color="medium"
+        [disabled]="!analysisForm.valid"
+      >
         Run analysis
       </ion-button>
     </ion-buttons>
