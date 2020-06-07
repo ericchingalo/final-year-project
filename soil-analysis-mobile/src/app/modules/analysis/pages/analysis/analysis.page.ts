@@ -11,11 +11,9 @@ import { generateForm } from '../../../../shared/helpers/form-generator';
 export class AnalysisPage implements OnInit {
   analysisFormData: any;
   analysisForm: FormGroup;
-  showChart: boolean;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.showChart = false;
     this.analysisFormData = this.getFormData();
     this.analysisForm = generateForm(
       this.analysisForm,
@@ -54,7 +52,6 @@ export class AnalysisPage implements OnInit {
   }
 
   onAnalysisFormSubmit(formValues: any) {
-    this.showChart = true;
     this.barChartPopulation();
   }
 
