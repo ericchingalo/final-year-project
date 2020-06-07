@@ -17,7 +17,7 @@
     (ngSubmit)="onAnalysisFormSubmit(analysisForm.value)"
   >
     <ion-item *ngFor="let input of analysisFormData.inputs">
-      <ion-label position="stacked">{{ input.label }}</ion-label>
+      <ion-label position="floating">{{ input.label }}</ion-label>
       <ion-datetime
         *ngIf="input.type == 'date'"
         [formControlName]="input.formControlName"
@@ -49,14 +49,19 @@
       </ion-select>
     </ion-item>
   </form>
-  <ion-card>
+  <ion-card *ngIf="showChart">
     <ion-card-header>
       <ion-card-title>Bar Chart - Population </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <div
         id="barChart"
-        style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"
+        style="
+          min-width: 310px;
+          max-width: 800px;
+          height: 400px;
+          margin: 0 auto;
+        "
       ></div>
     </ion-card-content>
   </ion-card>
