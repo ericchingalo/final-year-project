@@ -59,7 +59,7 @@ export class AnalysisPage implements OnInit {
   }
 
   barChartPopulation() {
-    HighCharts.chart('barChart', {
+    HighCharts.chart('chart', {
       chart: {
         type: 'line',
       },

@@ -48,21 +48,11 @@
         >
       </ion-select>
     </ion-item>
+    <ion-buttons slot="secondary">
+      <ion-button type="submit" [disabled]="!analysisForm.valid">
+        Run analysis
+      </ion-button>
+    </ion-buttons>
   </form>
-  <ion-card *ngIf="showChart">
-    <ion-card-header>
-      <ion-card-title>Bar Chart - Population </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <div
-        id="barChart"
-        style="
-          min-width: 310px;
-          max-width: 800px;
-          height: 400px;
-          margin: 0 auto;
-        "
-      ></div>
-    </ion-card-content>
-  </ion-card>
+  <div id="chart"></div>
 </ion-content>
