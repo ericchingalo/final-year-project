@@ -57,10 +57,14 @@ export class AnalysisPage implements OnInit {
 
   onAnalysisFormSubmit(formValues: any) {
     console.log(formValues);
-    this.plotChart();
+    this.plotChart(formValues.charts);
   }
 
-  plotChart() {
-    this.analysisGraphService.plotBarChart('chart', null);
+  plotChart(chart: string) {
+    if (chart === 'bar') {
+      this.analysisGraphService.plotBarChart('chart', null);
+    } else {
+      this.analysisGraphService.plotLineChart('chart', null);
+    }
   }
 }
