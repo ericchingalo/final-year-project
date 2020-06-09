@@ -10,12 +10,12 @@ const routes: Routes = [
   {
     path: 'launch',
     loadChildren: () =>
-      import('./modules/launch/launch.module').then(m => m.LaunchModule),
+      import('./modules/launch/launch.module').then((m) => m.LaunchModule),
   },
   {
     path: 'tabs',
     loadChildren: () =>
-      import('./tabs/tabs.module').then(m => m.TabsPageModule),
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
   },
 ];
 @NgModule({
