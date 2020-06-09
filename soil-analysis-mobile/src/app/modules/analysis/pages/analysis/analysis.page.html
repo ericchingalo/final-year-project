@@ -24,7 +24,7 @@
       ></ion-datetime>
       <ion-select
         multiple="true"
-        *ngIf="input.type == 'select' && input.multiple == 'true'"
+        *ngIf="input.type == 'select' && input.multiple "
         [formControlName]="input.formControlName"
       >
         <ion-select-option
@@ -37,7 +37,7 @@
         multiple="false"
         *ngIf="
         input.type == 'select' &&
-        (input.multiple == 'false' || input.multiple == undefined)
+        (input.multiple == 'false' || !input.multiple)
       "
         [formControlName]="input.formControlName"
       >
