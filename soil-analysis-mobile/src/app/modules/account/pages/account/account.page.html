@@ -12,6 +12,23 @@
       <ion-title size="large">Account</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-avatar>
+        <img class="account-svg" src="assets/user.svg" />
+      </ion-avatar>
+      <ion-list>
+        <ion-item><ion-text>Name: Eric</ion-text></ion-item>
+        <ion-item><ion-text>Role: Tester</ion-text></ion-item>
+        <ion-item><ion-text>DeviceID: 12</ion-text></ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-  <p style="text-align: center;">Account Page</p>
+  <ion-buttons padding>
+    <ion-button size="small" fill="solid" color="medium"
+      >Edit Account</ion-button
+    >
+    <ion-button size="small" fill="solid" color="danger">Logout</ion-button>
+  </ion-buttons>
 </ion-content>
