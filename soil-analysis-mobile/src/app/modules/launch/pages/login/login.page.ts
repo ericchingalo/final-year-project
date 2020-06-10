@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
 
   async presentLoading() {
     this.loginLoader = await this.loadingController.create({
-      message: 'logging in...',
+      message: 'Logging in...',
     });
     this.loginLoader.present();
   }
