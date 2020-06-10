@@ -9,29 +9,104 @@ export function generateForm(
   form: FormGroup,
   formData: any,
   fromBuilder: FormBuilder,
+  values?: any,
 ): any {
+  // form = fromBuilder.group({});
+  // formData.inputs.forEach(input => {
+  //   if (input.type === 'text') {
+  //     form.addControl(
+  //       input.formControlName,
+  //       new FormControl(
+  //         '',
+  //         Validators.compose([Validators.required, Validators.email]),
+  //       ),
+  //     );
+  //   } else if (input.type === 'password') {
+  //     form.addControl(
+  //       input.formControlName,
+  //       new FormControl(
+  //         '',
+  //         Validators.compose([Validators.required, Validators.minLength(6)]),
+  //       ),
+  //     );
+  //   } else {
+  //     form.addControl(
+  //       input.formControlName,
+  //       new FormControl('', Validators.required),
+  //     );
+  //   }
+  // });
   form = fromBuilder.group({});
-  formData.inputs.forEach(input => {
-    if (input.type === 'text') {
+  formData.inputs.forEach((input) => {
+    if (input.type === 'password') {
       form.addControl(
         input.formControlName,
         new FormControl(
-          '',
+          values
+            ? values[input.formControlName]
+              ? values[input.formControlName]
+              : ''
+            : '',
+          Validators.compose([Validators.required, Validators.minLength(6)]),
+        ),
+      );
+    } else if (input.type === 'email') {
+      form.addControl(
+        input.formControlName,
+        new FormControl(
+          values
+            ? values[input.formControlName]
+              ? values[input.formControlName]
+              : ''
+            : '',
           Validators.compose([Validators.required, Validators.email]),
         ),
       );
-    } else if (input.type === 'password') {
+    } else if (input.type === 'date' && input.required) {
       form.addControl(
         input.formControlName,
         new FormControl(
-          '',
-          Validators.compose([Validators.required, Validators.minLength(6)]),
+          values
+            ? values[input.formControlName]
+              ? values[input.formControlName]
+              : new Date()
+            : new Date(),
+          Validators.required,
+        ),
+      );
+    } else if (input.type === 'date') {
+      form.addControl(
+        input.formControlName,
+        new FormControl(
+          values
+            ? values[input.formControlName]
+              ? values[input.formControlName]
+              : new Date()
+            : new Date(),
+        ),
+      );
+    } else if (input.required) {
+      form.addControl(
+        input.formControlName,
+        new FormControl(
+          values
+            ? values[input.formControlName]
+              ? values[input.formControlName]
+              : ''
+            : '',
+          Validators.required,
         ),
       );
     } else {
       form.addControl(
         input.formControlName,
-        new FormControl('', Validators.required),
+        new FormControl(
+          values
+            ? values[input.formControlName]
+              ? values[input.formControlName]
+              : ''
+            : '',
+        ),
       );
     }
   });
