@@ -12,8 +12,8 @@ export class LoaderPage implements OnInit {
 
   ngOnInit() {
     this.appLogo = 'assets/logo.png';
-    // setTimeout(() => {
-    //   this.router.navigate(['tabs']);
-    // }, 3000);
+    setTimeout(() => {
+      this.router.navigate(['launch/auth']);
+    }, 3000);
   }
 }
