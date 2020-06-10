@@ -26,7 +26,7 @@ export class AccountPage implements OnInit {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',
-      message: '<strong>Are you sure you want to logout</strong>!!!',
+      message: '<strong>Are you sure you want to logout</strong>!',
       buttons: [
         {
           text: 'Cancel',
