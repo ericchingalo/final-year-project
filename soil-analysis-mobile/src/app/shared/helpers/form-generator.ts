@@ -22,7 +22,7 @@ export function generateForm(
               ? values[input.formControlName]
               : ''
             : '',
-          Validators.compose([Validators.required, Validators.minLength(6)]),
+          Validators.compose([Validators.required]),
         ),
       );
     } else if (input.type === 'email') {
