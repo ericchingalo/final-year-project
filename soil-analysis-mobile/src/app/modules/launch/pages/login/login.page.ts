@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { generateForm } from '../../../../shared/helpers/form-generator';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +13,11 @@ export class LoginPage implements OnInit {
   loginFormData: any;
   loginForm: FormGroup;
   appLogo: string;
+  loginLoader: any;
   constructor(
     private router: Router,
     private readonly formBuilder: FormBuilder,
+    private loadingController: LoadingController,
   ) {}
 
   ngOnInit() {
@@ -29,10 +32,19 @@ export class LoginPage implements OnInit {
 
   onLogin() {
     console.log(this.loginForm.value);
+    this.presentLoading();
     setTimeout(() => {
       this.loginForm.reset();
       this.router.navigate(['tabs']);
+      this.loginLoader.dismiss();
     }, 3000);
+  }
+
+  async presentLoading() {
+    this.loginLoader = await this.loadingController.create({
+      message: 'logging in...',
+    });
+    this.loginLoader.present();
   }
 
   getLoginFormData() {
