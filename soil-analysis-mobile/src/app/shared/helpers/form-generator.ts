@@ -11,31 +11,6 @@ export function generateForm(
   fromBuilder: FormBuilder,
   values?: any,
 ): any {
-  // form = fromBuilder.group({});
-  // formData.inputs.forEach(input => {
-  //   if (input.type === 'text') {
-  //     form.addControl(
-  //       input.formControlName,
-  //       new FormControl(
-  //         '',
-  //         Validators.compose([Validators.required, Validators.email]),
-  //       ),
-  //     );
-  //   } else if (input.type === 'password') {
-  //     form.addControl(
-  //       input.formControlName,
-  //       new FormControl(
-  //         '',
-  //         Validators.compose([Validators.required, Validators.minLength(6)]),
-  //       ),
-  //     );
-  //   } else {
-  //     form.addControl(
-  //       input.formControlName,
-  //       new FormControl('', Validators.required),
-  //     );
-  //   }
-  // });
   form = fromBuilder.group({});
   formData.inputs.forEach((input) => {
     if (input.type === 'password') {
