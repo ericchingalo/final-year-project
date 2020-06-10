@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loader',
@@ -6,11 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loader.page.scss'],
 })
 export class LoaderPage implements OnInit {
-  constructor() {
-    console.log('Hello there');
-  }
+  appLogo: string;
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    console.log('Hello there');
+    this.appLogo = 'assets/logo.png';
+    // setTimeout(() => {
+    //   this.router.navigate(['tabs']);
+    // }, 3000);
   }
 }
