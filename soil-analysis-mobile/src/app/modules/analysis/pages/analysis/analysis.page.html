@@ -12,6 +12,53 @@
       <ion-title size="large">Analysis</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Analysis page"></app-explore-container>
+  <form
+    [formGroup]="analysisForm"
+    (ngSubmit)="onAnalysisFormSubmit(analysisForm.value)"
+  >
+    <ion-item *ngFor="let input of analysisFormData.inputs">
+      <ion-label position="floating">{{ input.label }}</ion-label>
+      <ion-datetime
+        *ngIf="input.type == 'date'"
+        [formControlName]="input.formControlName"
+      ></ion-datetime>
+      <ion-select
+        multiple="true"
+        *ngIf="input.type == 'select' && input.multiple "
+        [formControlName]="input.formControlName"
+      >
+        <ion-select-option
+          *ngFor="let option of input.options"
+          value="{{ option }}"
+          >{{ option }}</ion-select-option
+        >
+      </ion-select>
+      <ion-select
+        multiple="false"
+        *ngIf="
+        input.type == 'select' &&
+        (input.multiple == 'false' || !input.multiple)
+      "
+        [formControlName]="input.formControlName"
+      >
+        <ion-select-option
+          *ngFor="let option of input.options"
+          value="{{ option }}"
+          >{{ option }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+    <ion-buttons class="button" slot="secondary">
+      <ion-button
+        type="submit"
+        size="small"
+        fill="outline"
+        color="medium"
+        [disabled]="!analysisForm.valid"
+      >
+        Run analysis
+      </ion-button>
+    </ion-buttons>
+  </form>
+  <div id="chart"></div>
 </ion-content>

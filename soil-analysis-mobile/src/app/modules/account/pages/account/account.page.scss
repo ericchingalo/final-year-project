@@ -1,3 +1,19 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+ion-avatar {
+  margin: 1vh auto;
+  margin-bottom: 0;
+  height: 20vh;
+  width: 30vw;
+}
+
+.account-svg {
+  height: 15vh;
+  width: auto;
+}
+
+ion-buttons {
+  padding-left: 2.5vw;
+}
