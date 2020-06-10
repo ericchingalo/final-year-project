@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-account.page.scss'],
 })
 export class EditAccountPage implements OnInit {
+  defaultHref: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.defaultHref = '/tabs/account';
   }
-
 }
