@@ -39,14 +39,13 @@ export class HistoryService {
     return periods;
   }
   getSeriesData(data, sanitizedSeries) {
-    let resultsSeries = [];
-    _.forEach(data.parameters, (param: string) => {
-      resultsSeries.push({
+    let resultsSeries = [
+      {
         type: undefined,
-        name: param,
+        name: data.parameters,
         data: [],
-      });
-    });
+      },
+    ];
 
     _.forEach(sanitizedSeries, (seriesData) => {
       _.forEach(seriesData.results, (result) => {

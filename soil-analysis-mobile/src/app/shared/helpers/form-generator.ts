@@ -49,17 +49,6 @@ export function generateForm(
           Validators.required,
         ),
       );
-    } else if (input.type === 'date') {
-      form.addControl(
-        input.formControlName,
-        new FormControl(
-          values
-            ? values[input.formControlName]
-              ? values[input.formControlName]
-              : new Date()
-            : new Date(),
-        ),
-      );
     } else if (input.required) {
       form.addControl(
         input.formControlName,
