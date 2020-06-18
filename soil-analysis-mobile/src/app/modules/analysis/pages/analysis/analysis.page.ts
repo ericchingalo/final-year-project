@@ -36,22 +36,26 @@ export class AnalysisPage implements OnInit {
           type: 'select',
           formControlName: 'charts',
           label: 'Chart type',
+          required: true,
           options: ['bar', 'line'],
         },
         {
           type: 'select',
           formControlName: 'parameters',
           label: 'Parameters',
+          required: true,
           multiple: true,
           options: ['pH', 'moisture', 'temperature'],
         },
         {
           type: 'date',
+          required: true,
           formControlName: 'startDate',
           label: 'Start Date',
         },
         {
           type: 'date',
+          required: true,
           formControlName: 'endDate',
           label: 'End Date',
         },
@@ -67,6 +71,7 @@ export class AnalysisPage implements OnInit {
   }
 
   plotChart(chart: string, graphData: any) {
+    console.log(graphData);
     if (chart === 'bar') {
       this.analysisGraphService.plotBarChart('chart', graphData);
     } else {
