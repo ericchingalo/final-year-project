@@ -12,7 +12,7 @@ export class HistoryPage implements OnInit {
   constructor(private readonly historyService: HistoryService) {}
 
   ngOnInit() {
-    this.results = this.historyService.results;
+    this.results = this.historyService.getSoilResult();
   }
 
   refreshHistory() {
