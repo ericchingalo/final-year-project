@@ -3,28 +3,28 @@ import { Result } from 'src/app/modules/history/models/results.model';
 export const results: Result[] = [
   {
     id: 100,
-    created: 'Tue Mar 17 2020 15:26:33 GMT+0300',
+    created: 'Fri Mar 13 2020 15:26:33 GMT+0300',
     device: 12,
     user: 'Eric Chingalo',
     results: [
       {
         parameter: 'pH',
-        value: 6.7,
+        value: 6.6,
       },
       {
         parameter: 'moisture',
-        value: 78.7,
+        value: 75.5,
       },
       {
         parameter: 'temperature',
-        value: 35.6,
+        value: 35.5,
       },
     ],
   },
 
   {
     id: 101,
-    created: 'Tue Mar 17 2020 7:49:53 GMT+0300',
+    created: 'Sun Mar 15 2020 7:49:53 GMT+0300',
     device: 12,
     user: 'Eric Chingalo',
     results: [
@@ -45,7 +45,7 @@ export const results: Result[] = [
 
   {
     id: 102,
-    created: 'Tue Mar 17 2020 13:37:33 GMT+0300',
+    created: 'Mon Mar 16 2020 13:37:33 GMT+0300',
     device: 12,
     user: 'Eric Chingalo',
     results: [
