@@ -40,8 +40,8 @@ export class AnalysisPage implements OnInit {
         },
         {
           type: 'select',
-          formControlName: 'parameter',
-          label: 'Parameter',
+          formControlName: 'parameters',
+          label: 'Parameters',
           multiple: true,
           options: ['pH', 'moisture', 'temperature'],
         },

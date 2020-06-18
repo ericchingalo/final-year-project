@@ -4,6 +4,7 @@ import * as moment from 'moment';
 
 import { Result } from '../../modules/history/models/results.model';
 import { results } from '../constants/soil-test-data.constant';
+import { sanitizeDates } from '../helpers/sanitize-dates.helper';
 
 @Injectable({
   providedIn: 'root',
@@ -23,16 +24,37 @@ export class HistoryService {
     endDate: string;
     parameters: string[];
   }): { series: any[]; periods: any } {
+    let resultsSeries = [];
+    _.forEach(data.parameters, (param: string) => {
+      resultsSeries.push({
+        type: undefined,
+        name: param,
+        data: [],
+      });
+    });
     const sanitizedSeries = _.filter(this.soilTestResult, (result: Result) => {
-      const sanitizedCreated = moment(result.created).format('YYYY-MM-DD');
+      const sanitizedCreated = sanitizeDates(result.created);
       return (
         this.compareDates(data.startDate, sanitizedCreated, true) &&
         this.compareDates(data.endDate, sanitizedCreated)
       );
     });
 
-    console.log(sanitizedSeries);
-    return sanitizedSeries;
+    _.forEach(sanitizedSeries, (seriesData) => {
+      _.forEach(seriesData.results, (result) => {
+        resultsSeries = _.map(resultsSeries, (series) => {
+          return {
+            ...series,
+            data:
+              series.name === result.parameter
+                ? [...series.data, result.value]
+                : series.data,
+          };
+        });
+      });
+    });
+
+    return { series: resultsSeries, periods: null };
   }
 
   compareDates(
