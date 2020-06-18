@@ -13,7 +13,7 @@ api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 
 # Routes
-api.add_resource(Hello, '/hello')
+api.add_resource(Hello, '/')
 api.add_resource(UserListAPI, '/user')
 api.add_resource(UserAPI, '/user/<int:id>')
 api.add_resource(UserPermissionAPI, '/permission')

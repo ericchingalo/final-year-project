@@ -84,6 +84,9 @@ export class AnalysisGraphService {
           data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
         },
       ],
+      exporting: {
+        enabled: true,
+      },
     });
   }
 
@@ -170,6 +173,9 @@ export class AnalysisGraphService {
           data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
         },
       ],
+      exporting: {
+        enabled: true,
+      },
     });
   }
 }
