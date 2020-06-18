@@ -26,20 +26,7 @@ export class HistoryService {
     const sanitizedSeries = this.filterSeriesByDates(data);
     const series = this.getSeriesData(data, sanitizedSeries);
     const periods = this.getPeriods(sanitizedSeries);
-
-    console.log({ series, periods });
     return { series, periods };
-  }
-
-  compareDates(
-    constantDate: string,
-    comparedDate: string,
-    startDate: boolean = false,
-  ): boolean {
-    const date1 = new Date(constantDate);
-    const date2 = new Date(comparedDate);
-
-    return startDate ? date1 <= date2 : date1 >= date2;
   }
 
   getPeriods(sanitizedSeries) {
@@ -76,6 +63,17 @@ export class HistoryService {
     });
 
     return resultsSeries;
+  }
+
+  compareDates(
+    constantDate: string,
+    comparedDate: string,
+    startDate: boolean = false,
+  ): boolean {
+    const date1 = new Date(constantDate);
+    const date2 = new Date(comparedDate);
+
+    return startDate ? date1 <= date2 : date1 >= date2;
   }
 
   filterSeriesByDates(data) {

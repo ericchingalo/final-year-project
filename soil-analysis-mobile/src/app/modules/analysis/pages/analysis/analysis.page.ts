@@ -60,16 +60,17 @@ export class AnalysisPage implements OnInit {
   }
 
   onAnalysisFormSubmit(formValues: any) {
-    console.log(formValues);
-    this.historyService.getGraphParameters(_.omit(formValues, 'charts'));
-    this.plotChart(formValues.charts);
+    const graphData = this.historyService.getGraphParameters(
+      _.omit(formValues, 'charts'),
+    );
+    this.plotChart(formValues.charts, graphData);
   }
 
-  plotChart(chart: string) {
+  plotChart(chart: string, graphData: any) {
     if (chart === 'bar') {
-      this.analysisGraphService.plotBarChart('chart', null);
+      this.analysisGraphService.plotBarChart('chart', graphData);
     } else {
-      this.analysisGraphService.plotLineChart('chart', null);
+      this.analysisGraphService.plotLineChart('chart', graphData);
     }
   }
 }

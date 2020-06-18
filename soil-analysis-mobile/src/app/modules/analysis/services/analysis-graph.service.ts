@@ -15,17 +15,10 @@ export class AnalysisGraphService {
         text: 'Covid-19 new cases in Tanzania',
       },
       subtitle: {
-        text: 'Source: https://covid19api.com',
+        text: 'Source: Soil Analysis application',
       },
       xAxis: {
-        //   categories: getCountryDataPeriods(data),
-        //   tickmarkPlacement: 'on',
-        //   title: {
-        //     text: 'Dates',
-        //   },
-        accessibility: {
-          rangeDescription: 'Range: 2009 to 2017',
-        },
+        categories: data.periods,
       },
       yAxis: {
         min: 0,
@@ -62,28 +55,7 @@ export class AnalysisGraphService {
           },
         ],
       },
-      series: [
-        //   {
-        //     type: undefined,
-        //     name: 'covid-19 new cases',
-        //     data: getNewCasesData(data),
-        //   },
-        {
-          type: undefined,
-          name: 'Installation',
-          data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175],
-        },
-        {
-          type: undefined,
-          name: 'Manufacturing',
-          data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434],
-        },
-        {
-          type: undefined,
-          name: 'Sales & Distribution',
-          data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
-        },
-      ],
+      series: data.series,
       exporting: {
         enabled: true,
       },
@@ -100,7 +72,7 @@ export class AnalysisGraphService {
         text: 'Covid-19 confirmed cases in Tanzania ',
       },
       subtitle: {
-        text: 'Source: https://covid19api.com',
+        text: 'Source: Soil Analysis application',
       },
       legend: {
         layout: 'vertical',
@@ -108,14 +80,7 @@ export class AnalysisGraphService {
         verticalAlign: 'middle',
       },
       xAxis: {
-        //   categories: getCountryDataPeriods(data),
-        //   tickmarkPlacement: 'on',
-        //   title: {
-        //     text: 'Dates',
-        //   },
-        accessibility: {
-          rangeDescription: 'Range: 2009 to 2017',
-        },
+        categories: data.periods,
       },
       yAxis: {
         min: 0,
@@ -151,28 +116,7 @@ export class AnalysisGraphService {
         ],
       },
 
-      series: [
-        //   {
-        //     type: undefined,
-        //     name: 'covid-19 confirmed cases',
-        //     data: getConfirmedData(data),
-        //   },
-        {
-          type: undefined,
-          name: 'Installation',
-          data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175],
-        },
-        {
-          type: undefined,
-          name: 'Manufacturing',
-          data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434],
-        },
-        {
-          type: undefined,
-          name: 'Sales & Distribution',
-          data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387],
-        },
-      ],
+      series: data.series,
       exporting: {
         enabled: true,
       },
