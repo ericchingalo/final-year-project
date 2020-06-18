@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'lodash';
-import * as moment from 'moment';
 
 import { Result } from '../../modules/history/models/results.model';
 import { results } from '../constants/soil-test-data.constant';
@@ -24,6 +23,35 @@ export class HistoryService {
     endDate: string;
     parameters: string[];
   }): { series: any[]; periods: any } {
+    const sanitizedSeries = this.filterSeriesByDates(data);
+    const series = this.getSeriesData(data, sanitizedSeries);
+    const periods = this.getPeriods(sanitizedSeries);
+
+    console.log({ series, periods });
+    return { series, periods };
+  }
+
+  compareDates(
+    constantDate: string,
+    comparedDate: string,
+    startDate: boolean = false,
+  ): boolean {
+    const date1 = new Date(constantDate);
+    const date2 = new Date(comparedDate);
+
+    return startDate ? date1 <= date2 : date1 >= date2;
+  }
+
+  getPeriods(sanitizedSeries) {
+    const periods: string[] = [];
+
+    _.forEach(sanitizedSeries, (series) => {
+      periods.push(sanitizeDates(series.created));
+    });
+
+    return periods;
+  }
+  getSeriesData(data, sanitizedSeries) {
     let resultsSeries = [];
     _.forEach(data.parameters, (param: string) => {
       resultsSeries.push({
@@ -31,13 +59,6 @@ export class HistoryService {
         name: param,
         data: [],
       });
-    });
-    const sanitizedSeries = _.filter(this.soilTestResult, (result: Result) => {
-      const sanitizedCreated = sanitizeDates(result.created);
-      return (
-        this.compareDates(data.startDate, sanitizedCreated, true) &&
-        this.compareDates(data.endDate, sanitizedCreated)
-      );
     });
 
     _.forEach(sanitizedSeries, (seriesData) => {
@@ -54,17 +75,16 @@ export class HistoryService {
       });
     });
 
-    return { series: resultsSeries, periods: null };
+    return resultsSeries;
   }
 
-  compareDates(
-    constantDate: string,
-    comparedDate: string,
-    startDate: boolean = false,
-  ): boolean {
-    const date1 = new Date(constantDate);
-    const date2 = new Date(comparedDate);
-
-    return startDate ? date1 <= date2 : date1 >= date2;
+  filterSeriesByDates(data) {
+    return _.filter(this.soilTestResult, (result: Result) => {
+      const sanitizedCreated = sanitizeDates(result.created);
+      return (
+        this.compareDates(data.startDate, sanitizedCreated, true) &&
+        this.compareDates(data.endDate, sanitizedCreated)
+      );
+    });
   }
 }
