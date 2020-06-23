@@ -1,94 +1,87 @@
 import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
+
 import { Result } from '../../modules/history/models/results.model';
+import { results } from '../constants/soil-test-data.constant';
+import { sanitizeDates } from '../helpers/sanitize-dates.helper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HistoryService {
-  results: Result[] = [
-    {
-      id: 230,
-      created: 'Tue Mar 17 2020 15:26:33 GMT+0300',
-      device: 12,
-      user: 'Eric Chingalo',
-      results: [
-        {
-          parameter: 'pH',
-          value: 6.7,
-        },
-        {
-          parameter: 'moisture',
-          value: 78.7,
-        },
-        {
-          parameter: 'temperature',
-          value: 35.6,
-        },
-      ],
-    },
-
-    {
-      id: 423,
-      created: 'Tue Mar 17 2020 7:49:53 GMT+0300',
-      device: 12,
-      user: 'Eric Chingalo',
-      results: [
-        {
-          parameter: 'pH',
-          value: 13.7,
-        },
-        {
-          parameter: 'moisture',
-          value: 98.7,
-        },
-        {
-          parameter: 'temperature',
-          value: 20.6,
-        },
-      ],
-    },
-
-    {
-      id: 430,
-      created: 'Tue Mar 17 2020 13:37:33 GMT+0300',
-      device: 12,
-      user: 'Eric Chingalo',
-      results: [
-        {
-          parameter: 'pH',
-          value: 3.2,
-        },
-        {
-          parameter: 'moisture',
-          value: 50.7,
-        },
-        {
-          parameter: 'temperature',
-          value: 38.3,
-        },
-      ],
-    },
-
-    {
-      id: 20,
-      created: 'Tue Mar 17 2020 10:06:50 GMT+0300',
-      device: 12,
-      user: 'Eric Chingalo',
-      results: [
-        {
-          parameter: 'pH',
-          value: 7.5,
-        },
-        {
-          parameter: 'moisture',
-          value: 67.5,
-        },
-        {
-          parameter: 'temperature',
-          value: 30.0,
-        },
-      ],
-    },
-  ];
+  private soilTestResult: Result[] = results;
   constructor() {}
+
+  getSoilResult(): Result[] {
+    const sorted = _.sortBy(this.soilTestResult, (result: Result) => result.id);
+    console.log(sorted);
+    return _.reverse(sorted);
+  }
+
+  getGraphParameters(data: {
+    startDate: string;
+    endDate: string;
+    parameters: string[];
+  }): { series: any[]; periods: any } {
+    const sanitizedSeries = this.filterSeriesByDates(data);
+    const series = this.getSeriesData(data, sanitizedSeries);
+    const periods = this.getPeriods(sanitizedSeries);
+    return { series, periods };
+  }
+
+  getPeriods(sanitizedSeries) {
+    const periods: string[] = [];
+
+    _.forEach(sanitizedSeries, (series) => {
+      periods.push(sanitizeDates(series.created));
+    });
+
+    return periods;
+  }
+  getSeriesData(data, sanitizedSeries) {
+    let resultsSeries = [
+      {
+        type: undefined,
+        name: data.parameters,
+        data: [],
+      },
+    ];
+
+    _.forEach(sanitizedSeries, (seriesData) => {
+      _.forEach(seriesData.results, (result) => {
+        resultsSeries = _.map(resultsSeries, (series) => {
+          return {
+            ...series,
+            data:
+              series.name === result.parameter
+                ? [...series.data, result.value]
+                : series.data,
+          };
+        });
+      });
+    });
+
+    return resultsSeries;
+  }
+
+  compareDates(
+    constantDate: string,
+    comparedDate: string,
+    startDate: boolean = false,
+  ): boolean {
+    const date1 = new Date(constantDate);
+    const date2 = new Date(comparedDate);
+
+    return startDate ? date1 <= date2 : date1 >= date2;
+  }
+
+  filterSeriesByDates(data) {
+    return _.filter(this.soilTestResult, (result: Result) => {
+      const sanitizedCreated = sanitizeDates(result.created);
+      return (
+        this.compareDates(data.startDate, sanitizedCreated, true) &&
+        this.compareDates(data.endDate, sanitizedCreated)
+      );
+    });
+  }
 }

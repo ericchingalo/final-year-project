@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import * as HighCharts from 'highcharts';
+import * as _ from 'lodash';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 import { generateForm } from '../../../../shared/helpers/form-generator';
 import { AnalysisGraphService } from '../../services/analysis-graph.service';
+import { HistoryService } from '../../../../shared/services/history.service';
 
 @Component({
   selector: 'app-analysis',
@@ -15,6 +17,7 @@ export class AnalysisPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private readonly analysisGraphService: AnalysisGraphService,
+    private readonly historyService: HistoryService,
   ) {}
 
   ngOnInit() {
@@ -33,22 +36,25 @@ export class AnalysisPage implements OnInit {
           type: 'select',
           formControlName: 'charts',
           label: 'Chart type',
+          required: true,
           options: ['bar', 'line'],
         },
         {
           type: 'select',
-          formControlName: 'parameter',
+          formControlName: 'parameters',
           label: 'Parameter',
-          multiple: true,
+          required: true,
           options: ['pH', 'moisture', 'temperature'],
         },
         {
           type: 'date',
+          required: true,
           formControlName: 'startDate',
           label: 'Start Date',
         },
         {
           type: 'date',
+          required: true,
           formControlName: 'endDate',
           label: 'End Date',
         },
@@ -57,15 +63,34 @@ export class AnalysisPage implements OnInit {
   }
 
   onAnalysisFormSubmit(formValues: any) {
-    console.log(formValues);
-    this.plotChart(formValues.charts);
+    const graphData = this.historyService.getGraphParameters(
+      _.omit(formValues, 'charts'),
+    );
+
+    const sanitizedGraphData = {
+      ...graphData,
+      tooltipSuffix:
+        formValues.parameters === 'moisture'
+          ? ' %'
+          : formValues.parameters === 'temperature'
+          ? ' Celcius'
+          : '',
+      ytitle: formValues.parameters,
+      title: `${
+        formValues.parameters === 'pH'
+          ? formValues.parameters
+          : _.upperFirst(formValues.parameters)
+      } recorded from ${formValues.startDate} to ${formValues.endDate}`,
+    };
+    this.plotChart(formValues.charts, sanitizedGraphData);
   }
 
-  plotChart(chart: string) {
+  plotChart(chart: string, graphData: any) {
+    console.log(graphData);
     if (chart === 'bar') {
-      this.analysisGraphService.plotBarChart('chart', null);
+      this.analysisGraphService.plotBarChart('chart', graphData);
     } else {
-      this.analysisGraphService.plotLineChart('chart', null);
+      this.analysisGraphService.plotLineChart('chart', graphData);
     }
   }
 }
