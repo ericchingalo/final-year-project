@@ -66,7 +66,23 @@ export class AnalysisPage implements OnInit {
     const graphData = this.historyService.getGraphParameters(
       _.omit(formValues, 'charts'),
     );
-    this.plotChart(formValues.charts, graphData);
+
+    const sanitizedGraphData = {
+      ...graphData,
+      tooltipSuffix:
+        formValues.parameters === 'moisture'
+          ? ' %'
+          : formValues.parameters === 'temperature'
+          ? ' Celcius'
+          : '',
+      ytitle: formValues.parameters,
+      title: `${
+        formValues.parameters === 'pH'
+          ? formValues.parameters
+          : _.upperFirst(formValues.parameters)
+      } recorded from ${formValues.startDate} to ${formValues.endDate}`,
+    };
+    this.plotChart(formValues.charts, sanitizedGraphData);
   }
 
   plotChart(chart: string, graphData: any) {

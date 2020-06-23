@@ -12,7 +12,7 @@ export class AnalysisGraphService {
         zoomType: 'xy',
       },
       title: {
-        text: 'Covid-19 new cases in Tanzania',
+        text: data.title,
       },
       subtitle: {
         text: 'Source: Soil Analysis application',
@@ -23,12 +23,12 @@ export class AnalysisGraphService {
       yAxis: {
         min: 0,
         title: {
-          text: 'Number of people',
+          text: data.ytitle,
           align: 'high',
         },
       },
       tooltip: {
-        valueSuffix: ' people',
+        valueSuffix: data.tooltipSuffix ? data.tooltipSuffix : '',
       },
       plotOptions: {
         area: {
@@ -69,7 +69,7 @@ export class AnalysisGraphService {
         zoomType: 'xy',
       },
       title: {
-        text: 'Covid-19 confirmed cases in Tanzania ',
+        text: data.title,
       },
       subtitle: {
         text: 'Source: Soil Analysis application',
@@ -85,12 +85,12 @@ export class AnalysisGraphService {
       yAxis: {
         min: 0,
         title: {
-          text: 'Number of people',
+          text: data.ytitle,
           align: 'high',
         },
       },
       tooltip: {
-        valueSuffix: ' people',
+        valueSuffix: data.tooltipSuffix ? data.tooltipSuffix : '',
       },
       plotOptions: {
         series: {
