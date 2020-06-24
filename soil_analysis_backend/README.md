@@ -3,8 +3,8 @@
 ## migrations:
 
 ```
-$ python manage.py db init
-$ python manage.py db migrate
-$ python manage.py db upgrade
-$ python manage.py db --help
+$ python3 migrate.py db init
+$ python3 migrate.py db migrate
+$ python3 migrate.py db upgrade
+$ python3 migrate.py db --help
 ```
