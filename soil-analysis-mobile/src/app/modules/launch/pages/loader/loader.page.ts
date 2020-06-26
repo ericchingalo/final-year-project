@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-loader',
@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 })
 export class LoaderPage implements OnInit {
   appLogo: string;
-  constructor(private router: Router) {}
+  constructor(private navCtrl: NavController) {}
 
   ngOnInit() {
     this.appLogo = 'assets/logo.png';
     setTimeout(() => {
-      this.router.navigate(['launch/auth']);
+      this.navCtrl.navigateRoot('launch/auth');
     }, 3000);
   }
 }

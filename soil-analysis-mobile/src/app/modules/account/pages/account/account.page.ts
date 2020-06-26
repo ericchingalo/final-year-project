@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-account',
@@ -10,6 +10,7 @@ import { AlertController } from '@ionic/angular';
 export class AccountPage implements OnInit {
   constructor(
     private router: Router,
+    private navCtrl: NavController,
     private alertController: AlertController,
   ) {}
 
@@ -36,7 +37,7 @@ export class AccountPage implements OnInit {
         {
           text: 'Logout',
           handler: () => {
-            this.router.navigate(['/launch/auth']);
+            this.navCtrl.navigateRoot('/launch/auth');
           },
         },
       ],

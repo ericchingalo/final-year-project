@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { generateForm } from '../../../../shared/helpers/form-generator';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
   loginLoader: any;
   constructor(
     private router: Router,
+    private readonly navCtrl: NavController,
     private readonly formBuilder: FormBuilder,
     private loadingController: LoadingController,
   ) {}
@@ -33,7 +34,7 @@ export class LoginPage implements OnInit {
   onLogin() {
     this.presentLoading();
     setTimeout(() => {
-      this.router.navigate(['tabs']);
+      this.navCtrl.navigateRoot('tabs/history');
       this.loginForm.reset();
       this.loginLoader.dismiss();
     }, 3000);
