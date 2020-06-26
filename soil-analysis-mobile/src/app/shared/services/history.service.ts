@@ -14,7 +14,6 @@ export class HistoryService {
 
   getSoilResult(): Result[] {
     const sorted = _.sortBy(this.soilTestResult, (result: Result) => result.id);
-    console.log(sorted);
     return _.reverse(sorted);
   }
 

@@ -15,7 +15,5 @@ export class HistoryPage implements OnInit {
     this.results = this.historyService.getSoilResult();
   }
 
-  refreshHistory() {
-    console.log('refreshed');
-  }
+  refreshHistory() {}
 }

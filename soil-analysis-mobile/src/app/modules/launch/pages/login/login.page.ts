@@ -31,11 +31,10 @@ export class LoginPage implements OnInit {
   }
 
   onLogin() {
-    console.log(this.loginForm.value);
     this.presentLoading();
     setTimeout(() => {
-      this.loginForm.reset();
       this.router.navigate(['tabs']);
+      this.loginForm.reset();
       this.loginLoader.dismiss();
     }, 3000);
   }

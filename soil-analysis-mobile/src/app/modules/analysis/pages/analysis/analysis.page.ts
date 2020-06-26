@@ -86,7 +86,6 @@ export class AnalysisPage implements OnInit {
   }
 
   plotChart(chart: string, graphData: any) {
-    console.log(graphData);
     if (chart === 'bar') {
       this.analysisGraphService.plotBarChart('chart', graphData);
     } else {
