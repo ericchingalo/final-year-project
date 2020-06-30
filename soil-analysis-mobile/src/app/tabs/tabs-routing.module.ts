@@ -14,7 +14,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../modules/history/history.module').then(
-                m => m.HistoryPageModule,
+                (m) => m.HistoryPageModule,
               ),
           },
         ],
@@ -26,7 +26,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../modules/analysis/analysis.module').then(
-                m => m.AnalysisPageModule,
+                (m) => m.AnalysisPageModule,
               ),
           },
         ],
@@ -38,7 +38,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../modules/account/account.module').then(
-                m => m.AccountPageModule,
+                (m) => m.AccountPageModule,
               ),
           },
         ],
@@ -52,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/history',
+    redirectTo: 'history',
     pathMatch: 'full',
   },
 ];

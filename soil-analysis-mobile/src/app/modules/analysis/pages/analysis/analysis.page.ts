@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import * as _ from 'lodash';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import * as _ from 'lodash';
+import * as moment from 'moment';
 
 import { generateForm } from '../../../../shared/helpers/form-generator';
 import { AnalysisGraphService } from '../../services/analysis-graph.service';
@@ -80,13 +81,14 @@ export class AnalysisPage implements OnInit {
         formValues.parameters === 'pH'
           ? formValues.parameters
           : _.upperFirst(formValues.parameters)
-      } recorded from ${formValues.startDate} to ${formValues.endDate}`,
+      } recorded from ${moment(formValues.startDate).format(
+        'YYYY-MM-DD',
+      )} to ${moment(formValues.endDate).format('YYYY-MM-DD')}`,
     };
     this.plotChart(formValues.charts, sanitizedGraphData);
   }
 
   plotChart(chart: string, graphData: any) {
-    console.log(graphData);
     if (chart === 'bar') {
       this.analysisGraphService.plotBarChart('chart', graphData);
     } else {
