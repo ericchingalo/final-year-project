@@ -23,6 +23,7 @@
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
     "@nestjs/platform-express": "^6.7.2",
+    "@nestjs/typeorm": "^7.1.0",
     "lodash": "^4.17.15",
     "moment": "^2.27.0",
     "pg": "^8.2.1",
