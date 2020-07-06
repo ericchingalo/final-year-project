@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import { Identifiable } from '../../../shared/entities/identifiable.entitty';
+import { Identifiable } from '../../../../shared/entities/identifiable.entitty';
 
 @Entity('permission')
 export class Permission extends Identifiable {

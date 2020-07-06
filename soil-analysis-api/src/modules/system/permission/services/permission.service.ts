@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BaseService } from '../../../shared/services/base.service';
+import { BaseService } from '../../../../shared/services/base.service';
 import { Permission } from '../entities/persmission.entity';
 import { PermissionDTO } from '../dtos/permission.dto';
 import { InjectRepository } from '@nestjs/typeorm';
