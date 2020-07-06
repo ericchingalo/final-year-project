@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 
-export class PermissionDTO {
+export class UserPermissionDTO {
   @IsString()
   permission: string;
 }

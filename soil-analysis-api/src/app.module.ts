@@ -5,9 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ParameterModule } from './modules/parameter/parameter.module';
 import { UserModule } from './modules/system/user/user.module';
-import { PermissionModule } from './modules/system/permission/permission.module';
+import { UserPermissionModule } from './modules/system/permission/user-permission.module';
 import { DeviceModule } from './modules/device/device.module';
-import { RoleModule } from './modules/system/role/role.module';
+import { UserRoleModule } from './modules/system/user-role/user-role.module';
 import { ResultModule } from './modules/result/result.module';
 
 @Module({
@@ -15,9 +15,9 @@ import { ResultModule } from './modules/result/result.module';
     TypeOrmModule.forRoot(),
     ParameterModule,
     UserModule,
-    PermissionModule,
+    UserPermissionModule,
     DeviceModule,
-    RoleModule,
+    UserRoleModule,
     ResultModule,
   ],
   controllers: [AppController],
