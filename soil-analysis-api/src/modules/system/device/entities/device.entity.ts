@@ -7,9 +7,9 @@ import {
   OneToMany,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
-import { Identifiable } from '../../../shared/entities/identifiable.entitty';
-import { User } from '../../system/user/entities/user.entity';
-import { Result } from 'src/modules/result/enntities/result.entity';
+import { Identifiable } from '../../../../shared/entities/identifiable.entitty';
+import { User } from '../../user/entities/user.entity';
+import { Result } from 'src/modules/system/result/enntities/result.entity';
 
 @Entity('device')
 export class Device extends Identifiable {

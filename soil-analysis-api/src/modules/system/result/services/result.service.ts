@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Result } from '../enntities/result.entity';
 import { Repository } from 'typeorm';
-import { BaseService } from '../../../shared/services/base.service';
+import { BaseService } from '../../../../shared/services/base.service';
 import { ResultDTO } from '../dtos/result.dto';
 
 @Injectable()
