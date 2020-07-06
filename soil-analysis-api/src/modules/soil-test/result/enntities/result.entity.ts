@@ -1,6 +1,6 @@
 import { Entity, CreateDateColumn, BeforeInsert, ManyToOne } from 'typeorm';
 import { SoilAnalysisBaseEntity } from '../../../../shared/entities/soil-analysis.entitty';
-import { Device } from 'src/modules/system/device/entities/device.entity';
+import { Device } from 'src/modules/soil-test/device/entities/device.entity';
 
 @Entity('soil_test_result')
 export class Result extends SoilAnalysisBaseEntity {
