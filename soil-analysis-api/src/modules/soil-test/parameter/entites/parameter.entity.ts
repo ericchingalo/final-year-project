@@ -4,8 +4,10 @@ import {
   BeforeInsert,
   BeforeUpdate,
   Column,
+  OneToMany,
 } from 'typeorm';
 import { SoilAnalysisBaseEntity } from '../../../../shared/entities/soil-analysis.entitty';
+import { ParameterResult } from '../../result/entities/parameter-result.entity';
 
 @Entity('soil_parameter')
 export class Parameter extends SoilAnalysisBaseEntity {
@@ -18,6 +20,12 @@ export class Parameter extends SoilAnalysisBaseEntity {
     default: () => 'LOCALTIMESTAMP',
   })
   lastupdated: Date;
+
+  @OneToMany(
+    type => ParameterResult,
+    result => result.parameter,
+  )
+  result: ParameterResult[];
 
   @BeforeInsert()
   insertDate() {
