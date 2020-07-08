@@ -1,6 +1,8 @@
 import { Repository, DeleteResult } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 import { HttpException, HttpStatus } from '@nestjs/common';
+
+// TODO handle updateDTO
 export class BaseService<T, U> {
   constructor(private readonly repository: Repository<T>) {}
 
