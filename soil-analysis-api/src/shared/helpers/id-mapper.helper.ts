@@ -1,8 +1,6 @@
 import * as _ from 'lodash';
 
-export function permissionMapper(
-  permissions: string[],
-): Array<{ permission: string }> {
+export function idMapper(permissions: string[]): Array<{ permission: string }> {
   const sanitizedPermissions: any[] = _.map(
     permissions,
     (permission: string) => {
