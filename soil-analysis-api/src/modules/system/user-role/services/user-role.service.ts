@@ -26,7 +26,8 @@ export class UserRoleService extends BaseService<UserRole, UserRoleDTO> {
     const role = this.userRoleRepository.create();
     role.name = data.name;
     role.permissions = permissions;
-    return this.userRoleRepository.save(role);
+
+    return await this.userRoleRepository.save(role);
   }
 
   async findAll(): Promise<any> {

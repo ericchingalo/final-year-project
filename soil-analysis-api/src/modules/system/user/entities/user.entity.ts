@@ -3,7 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import { Identifiable } from '../../../../shared/entities/identifiable.entitty';
 import { UserRole } from '../../user-role/entities/user-role.entity';
 
-@Entity('user')
+@Entity('users')
 export class User extends Identifiable {
   @Column('text', { name: 'username', unique: true, nullable: false })
   username: string;
