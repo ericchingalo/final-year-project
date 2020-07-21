@@ -17,33 +17,33 @@ export class BaseController<T, C, U> {
   constructor(private readonly baseService: BaseService<T, C>) {}
 
   @Get()
-  @UseGuards(AuthGuard)
+  @UseGuards(new AuthGuard())
   async findAll() {
     return await this.baseService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
+  @UseGuards(new AuthGuard())
   async findOne(@Param('id') id: string) {
     return await this.baseService.findOneById(id);
   }
 
   @Post()
-  @UseGuards(AuthGuard)
+  @UseGuards(new AuthGuard())
   @UsePipes(new CustomValidationPipe())
   async post(@Body() data: C) {
     return await this.baseService.create(data);
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard)
+  @UseGuards(new AuthGuard())
   @UsePipes(new CustomValidationPipe())
   async put(@Param('id') id: string, @Body() data: U) {
     return await this.baseService.update(id, data);
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard)
+  @UseGuards(new AuthGuard())
   async delete(@Param('id') id: string) {
     return await this.baseService.delete(id);
   }
