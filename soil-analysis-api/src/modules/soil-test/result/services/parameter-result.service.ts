@@ -21,8 +21,6 @@ export class ParameterResultService {
       parameter: await this.parameterService.findOneByName(result.parameter),
       result: resultObject,
     });
-
-    console.log(JSON.stringify(parameterResult));
     return parameterResult;
   }
 }
