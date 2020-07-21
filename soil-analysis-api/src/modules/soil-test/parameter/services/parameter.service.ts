@@ -12,4 +12,8 @@ export class ParameterService extends BaseService<Parameter, ParameterDTO> {
     super(repository);
     this.parameterRepository = repository;
   }
+
+  async findOneByName(name: string): Promise<any> {
+    return await this.parameterRepository.findOne({ where: { name } });
+  }
 }

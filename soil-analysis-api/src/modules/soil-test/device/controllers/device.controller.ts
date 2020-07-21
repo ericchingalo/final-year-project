@@ -9,4 +9,6 @@ export class DeviceController extends BaseController<Device, DeviceDTO> {
   constructor(private deviceService: DeviceService) {
     super(deviceService);
   }
+
+  // TODO fetch results by device
 }

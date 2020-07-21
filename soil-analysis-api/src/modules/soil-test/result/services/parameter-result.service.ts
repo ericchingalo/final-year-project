@@ -3,18 +3,26 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ParameterResult } from '../entities/parameter-result.entity';
 import { Repository } from 'typeorm';
 import { ParameterResultDTO } from '../dtos/parameter-result.dto';
-import { BaseService } from '../../../../shared/services/base.service';
+import { ParameterService } from '../../parameter/services/parameter.service';
 
 @Injectable()
-export class ParameterResultService extends BaseService<
-  ParameterResult,
-  ParameterResultDTO
-> {
+export class ParameterResultService {
   public parameterResultRepository: Repository<ParameterResult>;
   constructor(
     @InjectRepository(ParameterResult) repository: Repository<ParameterResult>,
+    private readonly parameterService: ParameterService,
   ) {
-    super(repository);
     this.parameterResultRepository = repository;
+  }
+
+  async save(result: ParameterResultDTO, resultObject: any): Promise<any> {
+    const parameterResult = await this.parameterResultRepository.save({
+      value: result.value,
+      parameter: await this.parameterService.findOneByName(result.parameter),
+      result: resultObject,
+    });
+
+    console.log(JSON.stringify(parameterResult));
+    return parameterResult;
   }
 }

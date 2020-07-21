@@ -19,6 +19,6 @@ export class ParameterResult {
   )
   parameter: Parameter;
 
-  @Column('int', { name: 'value', nullable: false })
+  @Column('float', { name: 'value', nullable: false })
   value: number;
 }

@@ -1,6 +1,9 @@
-import { IsInt } from 'class-validator';
+import { IsString, IsNumber } from 'class-validator';
 
 export class ParameterResultDTO {
-  @IsInt()
+  @IsNumber()
   value: number;
+
+  @IsString()
+  parameter: string;
 }
