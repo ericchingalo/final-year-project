@@ -10,7 +10,6 @@ export class DeviceController extends BaseController<Device, DeviceDTO> {
     super(deviceService);
   }
 
-  // TODO fetch results by device
   @Get(':id/results')
   // @UseGuards(SessionGuard)
   async findDeviceResults(@Param('id') id: string) {
