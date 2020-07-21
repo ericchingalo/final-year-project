@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { DeviceService } from '../services/device.service';
 import { Device } from '../entities/device.entity';
 import { BaseController } from 'src/shared/controllers/base.controller';
@@ -11,4 +11,9 @@ export class DeviceController extends BaseController<Device, DeviceDTO> {
   }
 
   // TODO fetch results by device
+  @Get(':id/results')
+  // @UseGuards(SessionGuard)
+  async findDeviceResults(@Param('id') id: string) {
+    return await this.deviceService.findDeviceResults(id);
+  }
 }

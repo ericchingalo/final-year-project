@@ -35,4 +35,15 @@ export class DeviceService extends BaseService<Device, DeviceDTO> {
   async findAll(): Promise<any> {
     return await this.deviceRepository.find({ relations: ['user'] });
   }
+
+  async findDeviceResults(id: string): Promise<any> {
+    return await this.deviceRepository.findOne({
+      where: { id },
+      relations: [
+        'results',
+        'results.parameter',
+        'results.parameter.parameter',
+      ],
+    });
+  }
 }
