@@ -17,9 +17,25 @@ export class User extends Identifiable {
   @Column('text', { name: 'region', nullable: true })
   region: string;
 
+  @Column({
+    type: 'varchar',
+    nullable: true,
+    length: 255,
+  })
+  token: string;
+
   @ManyToMany(type => UserRole)
   @JoinTable({ name: 'roles' })
   roles: UserRole[];
+
+  public static getBase64(username: string, password: string) {
+    return Buffer.from(username + ':' + password).toString('base64');
+  }
+
+  @BeforeInsert()
+  async createToken() {
+    this.token = await User.getBase64(this.username, this.password);
+  }
 
   @BeforeInsert()
   async hashPassword() {
