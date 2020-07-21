@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as _ from 'lodash';
@@ -21,6 +21,15 @@ export class UserService extends BaseService<User, UserDTO> {
   }
 
   async create(data: UserDTO) {
+    if (
+      await this.userRepository.findOne({ where: { username: data.username } })
+    ) {
+      throw new HttpException(
+        'Username Already exists',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const user = await this.userRepository.save({
       password: data.password,
       username: data.username,
