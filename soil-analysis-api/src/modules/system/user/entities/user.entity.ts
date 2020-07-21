@@ -42,6 +42,11 @@ export class User extends Identifiable {
       if (user) {
         delete user.token;
         return user;
+      } else {
+        throw new HttpException(
+          'Incorrect username/password',
+          HttpStatus.BAD_REQUEST,
+        );
       }
     } catch (e) {
       throw new HttpException(

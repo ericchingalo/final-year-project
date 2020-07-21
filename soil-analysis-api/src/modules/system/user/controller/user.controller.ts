@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Req } from '@nestjs/common';
 import { BaseController } from 'src/shared/controllers/base.controller';
 import { UserDTO } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
@@ -16,8 +16,21 @@ export class UserController extends BaseController<User, UserDTO, UserDTO> {
   }
 
   @Post('login')
-  async login(@Body() user: UserLoginDTO): Promise<any> {
-    console.log(user);
-    return await this.authService.login(user.username, user.password);
+  async login(@Body() user: UserLoginDTO, @Req() request): Promise<any> {
+    const userObject = await this.authService.login(
+      user.username,
+      user.password,
+    );
+    if (userObject) {
+      request.session.user = userObject;
+      return userObject;
+    } else {
+      return {
+        httpStatus: 'Unauthorized',
+        httpStatusCode: 401,
+        status: 'ERROR',
+        message: 'Password or Username is incorrect.',
+      };
+    }
   }
 }

@@ -5,6 +5,7 @@ import { User } from '../entities/user.entity';
 export class AuthService {
   async login(username: string, password: string): Promise<User> {
     const token = generateBasicAuthanticationString(username, password);
+    console.log(token);
     const user = User.authenticateUserByToken(token);
 
     return user;
