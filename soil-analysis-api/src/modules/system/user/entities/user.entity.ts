@@ -58,6 +58,6 @@ export class User extends Identifiable {
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 50);
+    this.password = await bcrypt.hash(this.password, 10);
   }
 }

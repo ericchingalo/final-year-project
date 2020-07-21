@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { BaseController } from 'src/shared/controllers/base.controller';
 import { UserDTO } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
@@ -15,7 +15,9 @@ export class UserController extends BaseController<User, UserDTO, UserDTO> {
     super(userService);
   }
 
-  async login(user: UserLoginDTO): Promise<any> {
+  @Post('login')
+  async login(@Body() user: UserLoginDTO): Promise<any> {
+    console.log(user);
     return await this.authService.login(user.username, user.password);
   }
 }
