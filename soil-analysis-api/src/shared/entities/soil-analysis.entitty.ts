@@ -1,6 +1,6 @@
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
-export class SoilAnalysisBaseEntity {
+export class SoilAnalysisBaseEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 }

@@ -1,3 +1,4 @@
+import { SoilAnalysisBaseEntity } from './soil-analysis.entitty';
 import {
   CreateDateColumn,
   UpdateDateColumn,
@@ -5,7 +6,7 @@ import {
   BeforeUpdate,
 } from 'typeorm';
 
-export class Identifiable {
+export class Identifiable extends SoilAnalysisBaseEntity {
   @CreateDateColumn({
     type: 'timestamp',
     name: 'created',
