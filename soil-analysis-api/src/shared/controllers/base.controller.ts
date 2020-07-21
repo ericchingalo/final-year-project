@@ -13,8 +13,8 @@ import { BaseService } from '../services/base.service';
 import { CustomValidationPipe } from '../pipes/validation.pipe';
 // import { SessionGuard } from '../../modules/users/guards/session.guard';
 
-export class BaseController<T, U> {
-  constructor(private readonly baseService: BaseService<T, U>) {}
+export class BaseController<T, C, U> {
+  constructor(private readonly baseService: BaseService<T, C>) {}
 
   @Get()
   // @UseGuards(SessionGuard)
@@ -31,7 +31,7 @@ export class BaseController<T, U> {
   @Post()
   // @UseGuards(SessionGuard)
   @UsePipes(new CustomValidationPipe())
-  async post(@Body() data: U) {
+  async post(@Body() data: C) {
     return await this.baseService.create(data);
   }
 

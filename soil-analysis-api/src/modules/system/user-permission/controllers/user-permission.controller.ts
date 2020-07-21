@@ -7,6 +7,7 @@ import { UserPermissionDTO } from '../dtos/user-permission.dto';
 @Controller('permissions')
 export class UserPermissionController extends BaseController<
   UserPermission,
+  UserPermissionDTO,
   UserPermissionDTO
 > {
   constructor(private userPermissionService: UserPermissionService) {

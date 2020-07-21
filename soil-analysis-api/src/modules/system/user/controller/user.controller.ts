@@ -5,7 +5,7 @@ import { User } from '../entities/user.entity';
 import { UserService } from '../services/user.service';
 
 @Controller('users')
-export class UserController extends BaseController<User, UserDTO> {
+export class UserController extends BaseController<User, UserDTO, UserDTO> {
   constructor(private userService: UserService) {
     super(userService);
   }

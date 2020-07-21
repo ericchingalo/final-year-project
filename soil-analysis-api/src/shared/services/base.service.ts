@@ -2,8 +2,7 @@ import { Repository, DeleteResult } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
-// TODO handle updateDTO
-export class BaseService<T, U> {
+export class BaseService<T, C> {
   constructor(private readonly repository: Repository<T>) {}
 
   async findAll(): Promise<T[]> {
@@ -21,7 +20,7 @@ export class BaseService<T, U> {
     return data;
   }
 
-  async create(data: U) {
+  async create(data: C) {
     const dataResult = await this.repository.create(data);
 
     await this.repository.save(dataResult);

@@ -7,6 +7,7 @@ import { BaseController } from '../../../../shared/controllers/base.controller';
 @Controller('parameters')
 export class ParameterController extends BaseController<
   Parameter,
+  ParameterDTO,
   ParameterDTO
 > {
   constructor(private parameterService: ParameterService) {
