@@ -1,4 +1,11 @@
-import { Controller, Post, Body, Req } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Req,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { BaseController } from 'src/shared/controllers/base.controller';
 import { UserDTO } from '../dtos/user.dto';
 import { User } from '../entities/user.entity';
@@ -25,12 +32,10 @@ export class UserController extends BaseController<User, UserDTO, UserDTO> {
       request.session.user = userObject;
       return userObject;
     } else {
-      return {
-        httpStatus: 'Unauthorized',
-        httpStatusCode: 401,
-        status: 'ERROR',
-        message: 'Password or Username is incorrect.',
-      };
+      throw new HttpException(
+        'Password or Username is incorrect.',
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }
