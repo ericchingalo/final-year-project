@@ -12,9 +12,14 @@ import { User } from '../entities/user.entity';
 import { UserService } from '../services/user.service';
 import { UserLoginDTO } from '../dtos/user-login.dto';
 import { AuthService } from '../services/auth.service';
+import { UpdateUserDTO } from '../dtos/update-user.dto';
 
 @Controller('users')
-export class UserController extends BaseController<User, UserDTO, UserDTO> {
+export class UserController extends BaseController<
+  User,
+  UserDTO,
+  UpdateUserDTO
+> {
   constructor(
     private userService: UserService,
     private authService: AuthService,
