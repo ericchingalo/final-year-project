@@ -30,15 +30,18 @@ export class BaseController<T, C, U> {
 
   @Post()
   @UseGuards(new AuthGuard())
-  @UsePipes(new CustomValidationPipe())
-  async post(@Body() data: C) {
+  // @UsePipes(new CustomValidationPipe())
+  async post(@Body(new CustomValidationPipe()) data: C) {
     return await this.baseService.create(data);
   }
 
   @Put(':id')
   @UseGuards(new AuthGuard())
-  @UsePipes(new CustomValidationPipe())
-  async put(@Param('id') id: string, @Body() data: U) {
+  // @UsePipes(new CustomValidationPipe())
+  async put(
+    @Param('id') id: string,
+    @Body(new CustomValidationPipe()) data: U,
+  ) {
     return await this.baseService.update(id, data);
   }
 
