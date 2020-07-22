@@ -22,6 +22,7 @@ export class User extends Identifiable {
     type: 'varchar',
     nullable: true,
     length: 255,
+    select: false,
   })
   token: string;
 
