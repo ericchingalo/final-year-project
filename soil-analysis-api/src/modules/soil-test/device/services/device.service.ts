@@ -46,4 +46,14 @@ export class DeviceService extends BaseService<Device, DeviceDTO> {
       ],
     });
   }
+
+  async updateUser(id: string, data: DeviceDTO): Promise<any> {
+    const user = await this.userService.findOneById(data.user);
+    await this.deviceRepository.update(id, { user });
+
+    return this.deviceRepository.findOne({
+      where: { id },
+      relations: ['user'],
+    });
+  }
 }
