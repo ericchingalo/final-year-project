@@ -8,6 +8,7 @@ import { User } from '../entities/user.entity';
 import { UserDTO } from '../dtos/user.dto';
 import { UserRoleService } from '../../user-role/services/user-role.service';
 import { idMapper } from '../../../../shared/helpers/id-mapper.helper';
+import { generateBasicAuthanticationString } from '../helpers/basic-auth-token.helper';
 
 @Injectable()
 export class UserService extends BaseService<User, UserDTO> {
@@ -35,11 +36,12 @@ export class UserService extends BaseService<User, UserDTO> {
       username: data.username,
       region: data.region,
       email: data.email,
+      token: generateBasicAuthanticationString(data.username, data.password),
       roles: await this.userRoleService.userRoleRepository.find({
         where: idMapper(data.roles),
       }),
     });
-    return user;
+    return _.omit(user, 'password');
   }
 
   async findOneById(id: string): Promise<any> {
