@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { reducers, metaReducers } from './store/reducers';
 import { AppEffects } from './store/effects/app.effects';
 import { components } from './components';
+import { MaterialModule } from './core/material/material.module';
 
 @NgModule({
   declarations: [AppComponent, ...components],
@@ -16,6 +17,7 @@ import { components } from './components';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
