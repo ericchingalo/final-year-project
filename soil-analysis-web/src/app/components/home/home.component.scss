@@ -8,3 +8,39 @@ mat-toolbar {
 .mat-menu-icon {
   cursor: pointer;
 }
+
+.sidenav-container {
+  min-height: 90vh;
+}
+
+.side-menu {
+  min-width: 15vw;
+}
+
+.user-container {
+  margin-top: 0.5vh;
+  text-align: center;
+}
+
+.user-icon {
+  height: 50px;
+  width: auto;
+  border: 2px solid #1d5288;
+  border-radius: 50%;
+}
+
+.nav-link {
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.nav-link a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.active,
+.nav-link a:hover {
+  color: #1d5288;
+  border-bottom: 1px solid #1d5288;
+}
