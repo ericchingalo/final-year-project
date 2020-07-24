@@ -24,7 +24,6 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     const data = this.userService.getDummyUsers();
-    console.log(data);
     this.dataSource = new MatTableDataSource(this.userService.getDummyUsers());
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
