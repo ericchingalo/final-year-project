@@ -1,8 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Device } from '../../models/device.model';
-import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import {
+  MatSort,
+  MatPaginator,
+  MatTableDataSource,
+  MatDialog,
+} from '@angular/material';
 import { DeviceService } from '../../services/device.service';
 import { CustomFormData } from '../../models/form-data.model';
+import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-device-list',
@@ -16,7 +22,10 @@ export class DeviceListComponent implements OnInit {
   deviceFormData: CustomFormData;
   dataSource: MatTableDataSource<Device>;
   displayedColumns: string[] = ['id', 'user', 'created', 'lastupdated'];
-  constructor(private readonly deviceService: DeviceService) {}
+  constructor(
+    private readonly deviceService: DeviceService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     const data: Device[] = this.deviceService.getDummyDevices();
@@ -41,5 +50,22 @@ export class DeviceListComponent implements OnInit {
         },
       ],
     };
+  }
+
+  onCreateDevice(e): void {
+    if (e) {
+      e.stopPropagation();
+    }
+
+    const dialogRef = this.dialog.open(FormComponent, {
+      width: '400px',
+      height: '150px',
+      data: this.deviceFormData,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 }
