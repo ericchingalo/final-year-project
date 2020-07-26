@@ -43,7 +43,7 @@ export class DeviceListComponent implements OnInit {
     return {
       inputs: [
         {
-          label: 'User Name',
+          label: 'Assigned User',
           formControlName: 'user',
           type: 'text',
           required: true,
@@ -59,8 +59,11 @@ export class DeviceListComponent implements OnInit {
 
     const dialogRef = this.dialog.open(FormComponent, {
       width: '400px',
-      height: '150px',
-      data: this.deviceFormData,
+      height: '200px',
+      data: {
+        formData: this.deviceFormData,
+        title: 'Device Registration',
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

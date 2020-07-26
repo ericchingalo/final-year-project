@@ -1,6 +1,10 @@
 <div class="dialog">
+  <h5 style="text-align: center;">{{ data.title | titlecase }}</h5>
   <form [formGroup]="formGroup">
-    <mat-form-field class="full-width" *ngFor="let input of fromData.inputs">
+    <mat-form-field
+      class="full-width"
+      *ngFor="let input of data.formData.inputs"
+    >
       <mat-label>{{ input.label }}</mat-label>
 
       <input

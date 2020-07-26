@@ -98,7 +98,10 @@ export class UserListComponent implements OnInit {
     const dialogRef = this.dialog.open(FormComponent, {
       width: '400px',
       height: '410px',
-      data: this.userFormData,
+      data: {
+        formData: this.userFormData,
+        title: 'User Registration',
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
