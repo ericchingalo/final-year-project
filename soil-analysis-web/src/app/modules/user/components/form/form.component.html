@@ -1,0 +1,43 @@
+<div class="dialog">
+  <form [formGroup]="formGroup">
+    <mat-form-field class="full-width" *ngFor="let input of fromData.inputs">
+      <mat-label>{{ input.label }}</mat-label>
+
+      <input
+        *ngIf="input.type === 'text'"
+        matInput
+        type="text"
+        [formControlName]="input.formControlName"
+      />
+
+      <input
+        *ngIf="input.type === 'email'"
+        matInput
+        [formControlName]="input.formControlName"
+        placeholder="Ex. email@example.com"
+      />
+
+      <div class="input">
+        <mat-select [formControlName]="input.formControlName">
+          <mat-option
+            *ngFor="let option of input.options"
+            value="{{ option.value }}"
+            >{{ option.label }}</mat-option
+          >
+        </mat-select>
+      </div>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onDismissForm()">Cancel</button>
+      <button
+        mat-button
+        [disabled]="!formGroup.valid"
+        [mat-dialog-close]="formGroup.value"
+        cdkFocusInitial
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</div>
