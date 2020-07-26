@@ -17,15 +17,16 @@
         placeholder="Ex. email@example.com"
       />
 
-      <div class="input">
-        <mat-select [formControlName]="input.formControlName">
-          <mat-option
-            *ngFor="let option of input.options"
-            value="{{ option.value }}"
-            >{{ option.label }}</mat-option
-          >
-        </mat-select>
-      </div>
+      <mat-select
+        [formControlName]="input.formControlName"
+        *ngIf="input.type === 'select'"
+      >
+        <mat-option
+          *ngFor="let option of input.options"
+          value="{{ option.value }}"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
     </mat-form-field>
 
     <div mat-dialog-actions>
