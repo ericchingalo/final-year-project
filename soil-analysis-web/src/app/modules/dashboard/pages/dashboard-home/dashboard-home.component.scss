@@ -1,0 +1,33 @@
+.dashboard-container {
+  margin: 0 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  min-height: 90vh;
+}
+
+.row {
+  margin: 1vh 0 1vh 0;
+}
+
+.col-12 {
+  padding: 0 0.5vw 0 0.5vw;
+}
+
+.main-graph {
+  min-height: 40vh;
+}
+
+.summary-graph,
+.table-chart-container {
+  min-height: 25vh;
+}
+
+.col-12 {
+  // border: 1px solid black;
+  height: auto;
+  width: auto;
+}
+
+.table-chart-container {
+  height: auto;
+}
