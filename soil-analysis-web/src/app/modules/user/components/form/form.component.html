@@ -20,6 +20,7 @@
       <mat-select
         [formControlName]="input.formControlName"
         *ngIf="input.type === 'select'"
+        multiple
       >
         <mat-option
           *ngFor="let option of input.options"
