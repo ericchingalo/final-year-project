@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Result } from '../../models/results.model';
+import { ResultsService } from '../../services/results.service';
 
 @Component({
   selector: 'app-dashboard-home',
   templateUrl: './dashboard-home.component.html',
-  styleUrls: ['./dashboard-home.component.scss']
+  styleUrls: ['./dashboard-home.component.scss'],
 })
 export class DashboardHomeComponent implements OnInit {
-
-  constructor() { }
+  results: Result[];
+  constructor(private readonly resultsService: ResultsService) {}
 
   ngOnInit() {
+    this.results = this.resultsService.getResults();
   }
-
 }
