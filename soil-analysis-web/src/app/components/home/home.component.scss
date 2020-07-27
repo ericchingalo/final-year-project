@@ -5,12 +5,21 @@ mat-toolbar {
   margin-bottom: 1vh;
 }
 
+.sticky {
+  position: fixed;
+  // margin-bottom: 3vh;
+  height: 10vh;
+  top: 0;
+  z-index: 5;
+}
+
 .mat-menu-icon {
   cursor: pointer;
 }
 
 .sidenav-container {
   min-height: 90vh;
+  top: 11vh;
 }
 
 .side-menu {
