@@ -17,13 +17,15 @@ mat-toolbar {
   cursor: pointer;
 }
 
-.sidenav-container {
+.sidenav-container,
+.side-menu {
   min-height: 90vh;
   top: 11vh;
 }
 
 .side-menu {
   min-width: 15vw;
+  position: fixed;
 }
 
 .user-container {
