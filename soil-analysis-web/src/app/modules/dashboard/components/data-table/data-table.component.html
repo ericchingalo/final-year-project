@@ -20,17 +20,23 @@
 
     <ng-container matColumnDef="pH">
       <th mat-header-cell *matHeaderCellDef>pH</th>
-      <td mat-cell *matCellDef="let element">N/A</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.results | parameter: 'pH' }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="moisture">
       <th mat-header-cell *matHeaderCellDef>Moisture</th>
-      <td mat-cell *matCellDef="let element">N/A</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.results | parameter: 'moisture' }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="temperature">
       <th mat-header-cell *matHeaderCellDef>Temperature</th>
-      <td mat-cell *matCellDef="let element">N/A</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.results | parameter: 'temperature' }}
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
