@@ -24,7 +24,7 @@
       <div class="nav-link">
         <a [routerLink]="['users']" routerLinkActive="active"> User | Device</a>
       </div>
-      <div class="nav-link">
+      <div class="nav-link" (click)="onLogout($event)">
         Logout
       </div>
     </div>

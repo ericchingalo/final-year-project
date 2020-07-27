@@ -10,6 +10,8 @@ import { reducers, metaReducers } from './store/reducers';
 import { AppEffects } from './store/effects/app.effects';
 import { components } from './components';
 import { MaterialModule } from './core/material/material.module';
+import { LogoutComponent } from './components/logout/logout.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @NgModule({
   declarations: [AppComponent, ...components],
@@ -27,7 +29,11 @@ import { MaterialModule } from './core/material/material.module';
     }),
     EffectsModule.forRoot([AppEffects]),
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
+  ],
   bootstrap: [AppComponent],
+  entryComponents: [LogoutComponent],
 })
 export class AppModule {}

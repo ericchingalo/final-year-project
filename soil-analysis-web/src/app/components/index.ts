@@ -1,2 +1,4 @@
 import { HomeComponent } from './home/home.component';
-export const components = [HomeComponent];
+import { LogoutComponent } from './logout/logout.component';
+
+export const components = [HomeComponent, LogoutComponent];
