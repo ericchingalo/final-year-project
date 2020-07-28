@@ -34,14 +34,15 @@ export class RegionPieChartComponent implements OnInit {
         type: 'pie',
       },
       title: {
-        text: 'Recorded Data per Region',
+        text: 'Recorded Data Per Region',
       },
       plotOptions: {
         pie: {
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
-            enabled: false,
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
           },
           showInLegend: true,
         },
