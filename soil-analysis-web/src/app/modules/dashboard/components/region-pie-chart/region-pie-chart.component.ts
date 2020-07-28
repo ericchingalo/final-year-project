@@ -25,7 +25,7 @@ export class RegionPieChartComponent implements OnInit {
     this.chartOptions = this.getChartOptions();
   }
 
-  getChartOptions() {
+  getChartOptions(): Highcharts.Options {
     return {
       chart: {
         plotBackgroundColor: null,
