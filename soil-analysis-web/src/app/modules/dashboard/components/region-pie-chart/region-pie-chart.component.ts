@@ -34,7 +34,7 @@ export class RegionPieChartComponent implements OnInit {
         type: 'pie',
       },
       title: {
-        text: 'Collected Data from Regions',
+        text: 'Collected Data per Region',
       },
       plotOptions: {
         pie: {
@@ -47,19 +47,6 @@ export class RegionPieChartComponent implements OnInit {
         },
       },
       exporting: {
-        buttons: {
-          contextButton: {
-            menuItems: [
-              'viewFullscreen',
-              'separator',
-              'downloadPNG',
-              'downloadSVG',
-              'downloadPDF',
-              'separator',
-              'downloadXLS',
-            ],
-          },
-        },
         enabled: true,
       },
       credits: {
