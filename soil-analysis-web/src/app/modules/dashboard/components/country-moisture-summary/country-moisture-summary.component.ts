@@ -23,10 +23,10 @@ export class CountryMoistureSummaryComponent implements OnInit {
     this.moistureResults = countryDataSummarySanitizer(
       aggregateDataToCountry(this.results, 'moisture')
     );
-    this.chartOptions = this.generateAreaGraph();
+    this.chartOptions = this.generateColumnGraph();
   }
 
-  generateAreaGraph(): Highcharts.Options {
+  generateColumnGraph(): Highcharts.Options {
     return {
       chart: {
         plotBackgroundColor: null,
