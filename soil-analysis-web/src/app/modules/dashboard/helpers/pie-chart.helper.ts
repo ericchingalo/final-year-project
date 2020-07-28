@@ -28,3 +28,10 @@ export function getDistinctRegions(results: Result[]): string[] {
 
   return regionList;
 }
+
+export function sanitizeRegionCountDataSeries(data: RegionDataCount[]) {
+  return _.map(data, (region: RegionDataCount) => ({
+    name: region.region,
+    y: region.dataCount,
+  }));
+}

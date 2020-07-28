@@ -11,6 +11,7 @@
 
 .col-12 {
   padding: 0 0.5vw 0 0.5vw;
+  margin-top: 2vh;
 }
 
 .main-graph {
@@ -30,4 +31,12 @@
 
 .table-chart-container {
   height: auto;
+}
+
+#chart {
+  // min-width: 310px;
+  // max-width: 800px;
+  height: 400px;
+  width: auto;
+  margin: 0 auto;
 }
