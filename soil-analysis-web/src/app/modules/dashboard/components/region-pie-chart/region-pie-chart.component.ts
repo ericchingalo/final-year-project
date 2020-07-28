@@ -34,7 +34,7 @@ export class RegionPieChartComponent implements OnInit {
         type: 'pie',
       },
       title: {
-        text: 'Collected Data per Region',
+        text: 'Recorded Data per Region',
       },
       plotOptions: {
         pie: {
