@@ -15,5 +15,12 @@ export class DashboardHomeComponent implements OnInit {
 
   ngOnInit() {
     this.results = this.resultsService.getResults();
+    this.resizeWindow();
+  }
+
+  resizeWindow() {
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 300);
   }
 }
