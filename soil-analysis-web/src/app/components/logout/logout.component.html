@@ -1,8 +1,8 @@
 <div class="dialog">
   <p>Are you sure you want to Logout?</p>
   <div class="dialog-buttons" mat-dialog-actions>
-    <button mat-button (click)="onCancel($event)">Cancel</button>
-    <button mat-button (click)="onLogout($event)">
+    <button mat-raised-button (click)="onCancel($event)">Cancel</button>
+    <button mat-raised-button color="warn" (click)="onLogout($event)">
       Logout
     </button>
   </div>
