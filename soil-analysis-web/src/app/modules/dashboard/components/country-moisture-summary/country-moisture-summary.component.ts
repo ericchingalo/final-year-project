@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Result } from '../../models/results.model';
 import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
+
 import { CountrySummaryData } from '../../models/country-summary-data.model';
 import { countryDataSummarySanitizer } from '../../helpers/country-summary-data-sanitizer.helper';
 import { aggregateDataToCountry } from '../../helpers/data-aggregator.helper';
@@ -24,6 +26,7 @@ export class CountryMoistureSummaryComponent implements OnInit {
       aggregateDataToCountry(this.results, 'moisture')
     );
     this.chartOptions = this.generateColumnGraph();
+    HC_exporting(Highcharts);
   }
 
   generateColumnGraph(): Highcharts.Options {
@@ -36,6 +39,9 @@ export class CountryMoistureSummaryComponent implements OnInit {
       },
       title: {
         text: 'Average Soil Moisture in Tanzania for the Past 6 Months',
+        style: {
+          fontSize: '14px',
+        },
       },
 
       yAxis: {

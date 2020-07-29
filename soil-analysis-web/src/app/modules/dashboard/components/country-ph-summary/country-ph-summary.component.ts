@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Result } from '../../models/results.model';
 import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
+
 import { CountrySummaryData } from '../../models/country-summary-data.model';
 import { aggregateDataToCountry } from '../../helpers/data-aggregator.helper';
 import { countryDataSummarySanitizer } from '../../helpers/country-summary-data-sanitizer.helper';
@@ -24,6 +26,7 @@ export class CountryPHSummaryComponent implements OnInit {
       aggregateDataToCountry(this.results, 'pH')
     );
     this.chartOptions = this.generateAreaGraph();
+    HC_exporting(Highcharts);
   }
 
   generateAreaGraph(): Highcharts.Options {
@@ -36,6 +39,9 @@ export class CountryPHSummaryComponent implements OnInit {
       },
       title: {
         text: 'Average pH In Tanzania For The Past 6 Months',
+        style: {
+          fontSize: '14px',
+        },
       },
 
       yAxis: {

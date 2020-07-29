@@ -6,6 +6,7 @@ import {
   sanitizeRegionCountDataSeries,
 } from '../../helpers/pie-chart.helper';
 import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
 
 @Component({
   selector: 'app-region-pie-chart',
@@ -23,6 +24,7 @@ export class RegionPieChartComponent implements OnInit {
   ngOnInit() {
     this.regionDataCount = getRegionCount(this.results);
     this.chartOptions = this.getChartOptions();
+    HC_exporting(Highcharts);
   }
 
   getChartOptions(): Highcharts.Options {
@@ -35,6 +37,9 @@ export class RegionPieChartComponent implements OnInit {
       },
       title: {
         text: 'Recorded Data Per Region',
+        style: {
+          fontSize: '14px',
+        },
       },
       plotOptions: {
         pie: {
