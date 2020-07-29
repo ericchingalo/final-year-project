@@ -7,7 +7,7 @@ import {
   MatDialog,
 } from '@angular/material';
 import { UserService } from '../../services/user.service';
-import { CustomFormData } from '../../models/form-data.model';
+import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { FormComponent } from '../form/form.component';
 
 @Component({

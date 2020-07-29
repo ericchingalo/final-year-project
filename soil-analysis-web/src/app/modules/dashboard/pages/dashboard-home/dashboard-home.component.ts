@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Result } from '../../models/results.model';
 import { ResultsService } from '../../services/results.service';
 import { RegionDataCount } from '../../models/region-data-count.model';
+import { FilterMetadata } from '../../models/filter-metadata.model';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -22,5 +24,9 @@ export class DashboardHomeComponent implements OnInit {
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     }, 300);
+  }
+
+  onFilterData(data: FilterMetadata) {
+    console.log(data);
   }
 }

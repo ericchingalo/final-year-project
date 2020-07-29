@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CustomFormData } from '../../models/form-data.model';
+import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { generateForm } from '../../../../core/helpers/form-generator.helper';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
