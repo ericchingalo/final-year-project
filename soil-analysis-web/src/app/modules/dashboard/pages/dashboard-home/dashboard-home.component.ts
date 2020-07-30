@@ -13,11 +13,13 @@ import { FilterMetadata } from '../../models/filter-metadata.model';
 export class DashboardHomeComponent implements OnInit {
   results: Result[];
   regionDataCount: RegionDataCount[];
+  showCustomGraph: boolean;
   constructor(private readonly resultsService: ResultsService) {}
 
   ngOnInit() {
     this.results = this.resultsService.getResults();
     this.resizeWindow();
+    this.showCustomGraph = false;
   }
 
   resizeWindow() {
@@ -27,6 +29,7 @@ export class DashboardHomeComponent implements OnInit {
   }
 
   onFilterData(data: FilterMetadata) {
+    this.showCustomGraph = true;
     console.log(data);
   }
 }

@@ -3,7 +3,10 @@
     <div class="col-12 col-md-8">
       <mat-card style="height: 100%;">
         <mat-card-content>
-          <div style="text-align: center; padding-top: 20%;">
+          <div
+            style="text-align: center; padding-top: 20%;"
+            *ngIf="!showCustomGraph"
+          >
             <p>No data to be displayed is selected!</p>
             (<small>Use filters on the right to select data</small>)
           </div>
