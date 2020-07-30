@@ -8,10 +8,9 @@ import { pages } from './pages';
 import { components } from './components';
 import { pipes } from './pipes';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FilterFormComponent } from './components/filter-form/filter-form.component';
 
 @NgModule({
-  declarations: [...pages, ...components, ...pipes, FilterFormComponent],
+  declarations: [...pages, ...components, ...pipes],
   imports: [
     CommonModule,
     DashboardRoutingModule,
