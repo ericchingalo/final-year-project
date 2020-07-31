@@ -1,5 +1,7 @@
 <div class="form-container">
-  <img id="logo" src="assets/logo.png" alt="logo" />
+  <div class="logo-container">
+    <img id="logo" src="assets/logo.png" alt="logo" />
+  </div>
   <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit(loginForm.value)">
     <div class="inputs-container" *ngFor="let input of loginFormData.inputs">
       <div class="inputs" *ngIf="input.type === 'text'">
