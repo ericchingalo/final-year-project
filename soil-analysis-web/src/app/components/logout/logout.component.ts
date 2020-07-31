@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -7,7 +8,10 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./logout.component.scss'],
 })
 export class LogoutComponent implements OnInit {
-  constructor(public dialogRef: MatDialogRef<LogoutComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<LogoutComponent>,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -28,6 +32,7 @@ export class LogoutComponent implements OnInit {
   }
 
   logoutUser() {
+    this.router.navigate(['/login']);
     console.log('User Logout');
   }
 }
