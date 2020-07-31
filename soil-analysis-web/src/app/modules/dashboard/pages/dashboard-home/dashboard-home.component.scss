@@ -1,0 +1,61 @@
+.dashboard-container {
+  margin: 0 1vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  min-height: 90vh;
+}
+
+.row {
+  margin: 1vh 0 1vh 0;
+}
+
+.col-12 {
+  padding: 0 0.25vw 0 0.25vw;
+  margin-top: 2vh;
+}
+
+.main-graph {
+  height: auto;
+  min-height: 70vh;
+}
+
+.summary-graph,
+.table-chart-container {
+  min-height: 25vh;
+}
+
+.col-12 {
+  // border: 1px solid black;
+  height: auto;
+  width: auto;
+}
+
+.table-header-container {
+  margin-bottom: 3vh;
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 14px;
+  font-weight: 450;
+}
+.table-header {
+  text-align: center;
+  // background: #fff;
+}
+
+.table-chart-container {
+  height: auto;
+}
+
+#chart {
+  // min-width: 310px;
+  // max-width: 800px;
+  height: 400px;
+  width: auto;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  display: block;
+}

@@ -1,0 +1,62 @@
+mat-toolbar {
+  -webkit-box-shadow: 0px 4px 7px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 7px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 7px -1px rgba(0, 0, 0, 0.75);
+  margin-bottom: 1vh;
+}
+
+.sticky {
+  position: fixed;
+  // margin-bottom: 3vh;
+  height: 10vh;
+  top: 0;
+  z-index: 5;
+}
+
+.mat-menu-icon {
+  cursor: pointer;
+}
+
+.sidenav-container,
+.side-menu {
+  min-height: 90vh;
+  top: 11vh;
+}
+
+.side-menu {
+  min-width: 15vw;
+  position: fixed;
+}
+
+.user-container {
+  margin-top: 0.5vh;
+  text-align: center;
+}
+
+.user-icon {
+  height: 50px;
+  width: auto;
+  border: 2px solid #1d5288;
+  border-radius: 50%;
+}
+
+.nav-link {
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.active,
+.nav-link a:hover {
+  color: #1d5288;
+  border-bottom: 1px solid #1d5288;
+}
+
+.home-container {
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
