@@ -1,0 +1,22 @@
+.form-container {
+  width: 30vw;
+  margin: 10vh auto;
+}
+
+#logo {
+  height: 150px;
+  width: auto;
+}
+
+mat-form-field,
+mat-raised-button {
+  width: 100% !important;
+}
+
+.button-container {
+  margin-bottom: 1vh;
+}
+
+.button {
+  width: 100% !important;
+}
