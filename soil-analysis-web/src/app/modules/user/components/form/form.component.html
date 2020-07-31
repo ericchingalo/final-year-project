@@ -1,0 +1,52 @@
+<div class="dialog">
+  <h5 style="text-align: center;">{{ data.title | titlecase }}</h5>
+  <form [formGroup]="formGroup">
+    <mat-form-field
+      class="full-width"
+      *ngFor="let input of data.formData.inputs"
+    >
+      <mat-label>{{ input.label }}</mat-label>
+
+      <input
+        *ngIf="input.type === 'text'"
+        matInput
+        type="text"
+        [formControlName]="input.formControlName"
+      />
+
+      <input
+        *ngIf="input.type === 'email'"
+        matInput
+        [formControlName]="input.formControlName"
+        placeholder="Ex. email@example.com"
+      />
+
+      <mat-select
+        [formControlName]="input.formControlName"
+        *ngIf="input.type === 'select'"
+        multiple
+      >
+        <mat-option
+          *ngFor="let option of input.options"
+          value="{{ option.value }}"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-raised-button color="warn" (click)="onDismissForm()">
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!formGroup.valid"
+        [mat-dialog-close]="formGroup.value"
+        cdkFocusInitial
+      >
+        Create
+      </button>
+    </div>
+  </form>
+</div>

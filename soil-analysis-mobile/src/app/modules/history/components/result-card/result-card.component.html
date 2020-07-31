@@ -1,0 +1,20 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Results ID: {{ result.id }} </ion-card-title>
+    <ion-card-subtitle>{{ result.created | time }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <!-- <ion-list> -->
+    <ion-text>Tester: {{ result.user | titlecase }}</ion-text>
+    <!-- </ion-list> -->
+    <ion-button
+      style="float: right;"
+      size="small"
+      fill="outline"
+      color="medium"
+      (click)="navigateToDetails($event)"
+      >View Details</ion-button
+    >
+  </ion-card-content>
+</ion-card>

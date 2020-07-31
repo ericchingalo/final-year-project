@@ -1,0 +1,7 @@
+{
+  "name": "soil-analysis-mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

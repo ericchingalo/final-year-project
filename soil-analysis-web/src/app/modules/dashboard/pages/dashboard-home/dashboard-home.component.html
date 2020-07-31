@@ -1,0 +1,57 @@
+<div class="dashboard-container">
+  <div class="row main-graph">
+    <div class="col-12 col-md-8">
+      <mat-card style="height: 100%;">
+        <mat-card-content>
+          <div
+            style="text-align: center; padding-top: 20%;"
+            *ngIf="!showCustomGraph"
+          >
+            <p>No data to be displayed is selected!</p>
+            (<small>Use filters on the right to select data</small>)
+          </div>
+
+          <app-custom-chart
+            *ngIf="showCustomGraph"
+            [results]="results"
+            [chartConfig]="customGraphConfig"
+          ></app-custom-chart>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-12 col-md-4">
+      <app-filter-form
+        [results]="results"
+        (filterData)="onFilterData($event)"
+      ></app-filter-form>
+    </div>
+  </div>
+
+  <div class="row summary-graph">
+    <div class="col-12 col-md-4">
+      <app-country-moisture-summary
+        [results]="results"
+      ></app-country-moisture-summary>
+    </div>
+    <div class="col-12 col-md-4">
+      <app-country-ph-summary [results]="results"></app-country-ph-summary>
+    </div>
+    <div class="col-12 col-md-4">
+      <app-country-temperature-summary
+        [results]="results"
+      ></app-country-temperature-summary>
+    </div>
+  </div>
+
+  <div class="row table-chart-container">
+    <div class="col-12 col-md-6">
+      <div class="table-header-container">
+        <h6 class="table-header">Soil Analysis Data Recorded</h6>
+      </div>
+      <app-data-table [dataSource]="results"></app-data-table>
+    </div>
+    <div class="col-12 col-md-6">
+      <app-region-pie-chart [results]="results"></app-region-pie-chart>
+    </div>
+  </div>
+</div>

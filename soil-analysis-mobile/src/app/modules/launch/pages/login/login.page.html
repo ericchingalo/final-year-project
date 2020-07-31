@@ -1,0 +1,40 @@
+<ion-content>
+  <div class="logo">
+    <ion-thumbnail class="logo">
+      <img [src]="appLogo" />
+    </ion-thumbnail>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <ion-item *ngFor="let input of loginFormData.inputs">
+      <ion-label position="floating">{{ input.label }}</ion-label>
+      <ion-input
+        *ngIf="input.type === 'text'"
+        [formControlName]="input.formControlName"
+        type="text"
+      ></ion-input>
+
+      <ion-input
+        *ngIf="input.type === 'number'"
+        [formControlName]="input.formControlName"
+        type="number"
+      ></ion-input>
+
+      <ion-input
+        *ngIf="input.type === 'password'"
+        [formControlName]="input.formControlName"
+        type="password"
+      ></ion-input>
+    </ion-item>
+    <ion-button
+      type="submit"
+      size="large"
+      expand="full"
+      fill="solid"
+      color="primary"
+      [disabled]="!loginForm.valid"
+    >
+      Login
+    </ion-button>
+  </form>
+</ion-content>
