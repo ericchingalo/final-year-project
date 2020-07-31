@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
+
 import { Result } from '../models/results.model';
 import { results } from '../constants/results.constant';
 
@@ -12,6 +14,10 @@ export class ResultsService {
   }
 
   getResults(): Result[] {
-    return this.results;
+    const sorted = _.sortBy(
+      this.results,
+      (result: Result) => new Date(result.created)
+    );
+    return _.reverse(sorted);
   }
 }

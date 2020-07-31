@@ -10,6 +10,12 @@
             <p>No data to be displayed is selected!</p>
             (<small>Use filters on the right to select data</small>)
           </div>
+
+          <app-custom-chart
+            *ngIf="showCustomGraph"
+            [results]="results"
+            [chartConfig]="customGraphConfig"
+          ></app-custom-chart>
         </mat-card-content>
       </mat-card>
     </div>

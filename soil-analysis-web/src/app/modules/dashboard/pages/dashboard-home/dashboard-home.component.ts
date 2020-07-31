@@ -14,6 +14,7 @@ export class DashboardHomeComponent implements OnInit {
   results: Result[];
   regionDataCount: RegionDataCount[];
   showCustomGraph: boolean;
+  customGraphConfig: FilterMetadata;
   constructor(private readonly resultsService: ResultsService) {}
 
   ngOnInit() {
@@ -30,6 +31,6 @@ export class DashboardHomeComponent implements OnInit {
 
   onFilterData(data: FilterMetadata) {
     this.showCustomGraph = true;
-    console.log(data);
+    this.customGraphConfig = data;
   }
 }
