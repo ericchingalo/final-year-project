@@ -15,7 +15,8 @@
 }
 
 .main-graph {
-  height: 70vh;
+  height: auto;
+  min-height: 70vh;
 }
 
 .summary-graph,
@@ -31,8 +32,13 @@
 
 .table-header-container {
   margin-bottom: 3vh;
+  font-size: 14px;
 }
 
+h6 {
+  font-size: 14px;
+  font-weight: 450;
+}
 .table-header {
   text-align: center;
   // background: #fff;
