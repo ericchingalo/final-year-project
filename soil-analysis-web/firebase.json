@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/soil-analysis-web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
