@@ -8,6 +8,12 @@ import {
 } from '../models/custom-graph-parameter.model';
 import { ParameterResult } from '../models/parameter-result.model';
 
+/**
+ *
+ * @param constantDate fixed date
+ * @param comparedDate date to be compared
+ * @param startDate is the compared date start date
+ */
 export function compareDates(
   constantDate: string | Date,
   comparedDate: string | Date,
@@ -19,6 +25,11 @@ export function compareDates(
   return startDate ? date1 <= date2 : date1 >= date2;
 }
 
+/**
+ *
+ * @param results results
+ * @param data filtering metadata
+ */
 export function filterSeriesByDates(
   results: Result[],
   data: FilterMetadata
@@ -32,6 +43,10 @@ export function filterSeriesByDates(
   });
 }
 
+/**
+ *
+ * @param sanitizedSeries sanitized results
+ */
 export function getPeriods(sanitizedSeries: Result[]) {
   const periods: string[] = [];
 
@@ -42,6 +57,13 @@ export function getPeriods(sanitizedSeries: Result[]) {
   return periods;
 }
 
+/**
+ *
+ * @param sanitizedSeries sanitized results
+ * @param regionData region data for the series attribute
+ * @param periods periods for plotting graph
+ * @param parameter selected parameter
+ */
 export function getRegionSeriesData(
   sanitizedSeries: Result[],
   regionData: RegionData,
@@ -72,6 +94,12 @@ export function getRegionSeriesData(
   return sanitizedRegionData;
 }
 
+/**
+ *
+ * @param data filtering metadata
+ * @param periods periods for plotting the graph
+ * @param sanitizedSeries data results
+ */
 export function getSeriesDataByRegion(
   data: FilterMetadata,
   periods: string[],
@@ -103,6 +131,10 @@ export function getSeriesDataByRegion(
   return sanitizedRegionSeries;
 }
 
+/**
+ *
+ * @param data filtering metadata
+ */
 export function getCustomGraphTitle(data: FilterMetadata): string {
   return `${
     data.parameter === 'pH' ? data.parameter : _.upperFirst(data.parameter)
@@ -111,6 +143,11 @@ export function getCustomGraphTitle(data: FilterMetadata): string {
   )}`;
 }
 
+/**
+ *
+ * @param data filtering metadata
+ * @param results soil test results
+ */
 export function getGraphCustomParameters(
   data: FilterMetadata,
   results: Result[]
