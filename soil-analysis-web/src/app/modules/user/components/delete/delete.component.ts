@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-delete',
@@ -8,7 +9,10 @@ import { MatDialogRef } from '@angular/material';
 })
 export class DeleteComponent implements OnInit {
   public data: boolean;
-  constructor(public dialogRef: MatDialogRef<DeleteComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<DeleteComponent>,
+    private snackBarService: SnackbarService
+  ) {}
 
   ngOnInit() {
     this.data = true;
@@ -27,5 +31,6 @@ export class DeleteComponent implements OnInit {
     }
 
     this.dialogRef.close();
+    this.snackBarService.openSnackBar('Deleting', 'OK');
   }
 }
