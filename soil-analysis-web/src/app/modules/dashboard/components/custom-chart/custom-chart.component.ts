@@ -1,4 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
+
 import { Result } from '../../models/results.model';
 import { FilterMetadata } from '../../models/filter-metadata.model';
 import { CustomGraphParameters } from '../../models/custom-graph-parameter.model';
@@ -14,6 +17,8 @@ export class CustomChartComponent implements OnInit, OnChanges {
   @Input() results: Result[];
   @Input() chartConfig: FilterMetadata;
 
+  HighCharts: typeof Highcharts = Highcharts;
+  chartOptions: Highcharts.Options;
   customGraphParameters: CustomGraphParameters;
   constructor() {}
 
@@ -21,6 +26,8 @@ export class CustomChartComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.setGraphCustomParameters();
+    this.chartOptions = this.plotChart();
+    HC_exporting(Highcharts);
   }
 
   setGraphCustomParameters() {
@@ -28,5 +35,71 @@ export class CustomChartComponent implements OnInit, OnChanges {
       this.chartConfig,
       results
     );
+  }
+
+  plotChart(): Highcharts.Options {
+    return {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type:
+          this.chartConfig.parameter === 'pH'
+            ? 'areaspline'
+            : this.chartConfig.parameter === 'moisture'
+            ? 'column'
+            : 'line',
+      },
+      title: {
+        text: this.customGraphParameters.title,
+        style: {
+          fontSize: '14px',
+        },
+      },
+
+      yAxis: {
+        title: {
+          text: this.chartConfig.parameter,
+        },
+        min: 0,
+      },
+      xAxis: {
+        categories: this.customGraphParameters.periods,
+        tickmarkPlacement: 'on',
+        title: {
+          text: 'Months',
+        },
+        startOnTick: true,
+      },
+      tooltip: {
+        valueSuffix:
+          this.chartConfig.parameter === 'pH'
+            ? ''
+            : this.chartConfig.parameter === 'moisture'
+            ? ' %'
+            : ' C',
+      },
+      exporting: {
+        enabled: true,
+      },
+      credits: {
+        enabled: false,
+      },
+      series: this.customGraphParameters.series,
+      plotOptions: {
+        areaspline: {
+          fillOpacity: 0.5,
+        },
+        series: {
+          label: {
+            connectorAllowed: true,
+          },
+        },
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0,
+        },
+      },
+    };
   }
 }
