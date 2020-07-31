@@ -10,7 +10,7 @@ export class DeviceService {
   getDummyDevices(): Device[] {
     return [
       {
-        id: 'dabjdsdasd-132bu2316',
+        id: 'dabjdsdasd-132b',
         user: 'Megamind',
         created: '2020-07-23T23:42:02.002Z',
         lastupdated: '2020-07-23T23:42:02.002Z',
