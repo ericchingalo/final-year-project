@@ -21,7 +21,13 @@ export class DeviceListComponent implements OnInit {
 
   deviceFormData: CustomFormData;
   dataSource: MatTableDataSource<Device>;
-  displayedColumns: string[] = ['id', 'user', 'created', 'lastupdated'];
+  displayedColumns: string[] = [
+    'id',
+    'user',
+    'created',
+    'lastupdated',
+    'actions',
+  ];
   constructor(
     private readonly deviceService: DeviceService,
     public dialog: MatDialog

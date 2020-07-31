@@ -27,6 +27,7 @@ export class UserListComponent implements OnInit {
     'region',
     'created',
     'lastupdated',
+    'actions',
   ];
   constructor(
     private readonly userService: UserService,
