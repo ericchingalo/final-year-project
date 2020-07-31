@@ -7,6 +7,7 @@ import { components } from './components';
 import { FormComponent } from './components/form/form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { DeleteComponent } from './components/delete/delete.component';
 
 @NgModule({
   declarations: [...pages, ...components],
@@ -16,7 +17,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
     MaterialModule,
     ReactiveFormsModule,
   ],
-  entryComponents: [FormComponent],
+  entryComponents: [FormComponent, DeleteComponent],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },

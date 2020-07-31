@@ -9,6 +9,7 @@ import {
 import { DeviceService } from '../../services/device.service';
 import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { FormComponent } from '../form/form.component';
+import { DeleteComponent } from '../delete/delete.component';
 
 @Component({
   selector: 'app-device-list',
@@ -78,5 +79,29 @@ export class DeviceListComponent implements OnInit {
         console.log(result);
       }
     });
+  }
+
+  onDelete(e) {
+    if (e) {
+      e.stopPropagation();
+    }
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      width: '400px',
+      height: '200px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+
+  onEdit(e) {
+    if (e) {
+      e.stopPropagation();
+    }
+
+    // open edit dialog
   }
 }
