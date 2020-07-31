@@ -16,17 +16,29 @@
     </div>
 
     <div class="navigations">
-      <div class="nav-link">
-        <a [routerLink]="['dashboards']" routerLinkActive="active">
-          Dashboard</a
-        >
-      </div>
-      <div class="nav-link">
-        <a [routerLink]="['users']" routerLinkActive="active"> User | Device</a>
-      </div>
-      <div class="nav-link" (click)="onLogout($event)">
-        Logout
-      </div>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['dashboards']"
+            routerLinkActive="active"
+          >
+            Dashboard</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['users']"
+            routerLinkActive="active"
+          >
+            User | Device</a
+          >
+        </li>
+        <li class="nav-item" (click)="onLogout($event)">
+          <a class="nav-link">Logout</a>
+        </li>
+      </ul>
     </div>
   </mat-sidenav>
 
