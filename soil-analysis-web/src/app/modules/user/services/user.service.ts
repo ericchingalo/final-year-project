@@ -10,6 +10,7 @@ export class UserService {
   getDummyUsers(): User[] {
     return [
       {
+        id: '0zxmrOlRwY8',
         username: 'Chingalo',
         region: 'Songea',
         role: 'admin',
@@ -18,6 +19,7 @@ export class UserService {
       },
 
       {
+        id: 'hiUF8C6JrDv',
         username: 'Megamind',
         region: 'Dar',
         role: 'tester',
@@ -26,6 +28,7 @@ export class UserService {
       },
 
       {
+        id: 'oJpSt4TOpcj',
         username: 'Tibz',
         region: 'Bukoba',
         role: 'tester',
@@ -34,6 +37,7 @@ export class UserService {
       },
 
       {
+        id: 'xF1BCL2amEE',
         username: 'Miguel',
         region: 'Mtwara',
         role: 'researcher',
@@ -42,6 +46,7 @@ export class UserService {
       },
 
       {
+        id: 'xF1BC120mEs',
         username: 'Mirabelle',
         region: 'Mbeya',
         role: 'tester',
@@ -50,6 +55,7 @@ export class UserService {
       },
 
       {
+        id: 'aF1dCL2amEE',
         username: 'Eric',
         region: 'Songea',
         role: 'tester',
@@ -58,6 +64,7 @@ export class UserService {
       },
 
       {
+        id: 'xF1BCL2amzE',
         username: 'Lisa',
         region: 'Zanzibar',
         role: 'admin',
@@ -66,6 +73,7 @@ export class UserService {
       },
 
       {
+        id: '0zxmrOlRwY7',
         username: 'Elsa',
         region: 'Morogoro',
         role: 'admin',
