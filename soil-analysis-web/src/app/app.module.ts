@@ -12,6 +12,7 @@ import { components } from './components';
 import { MaterialModule } from './core/material/material.module';
 import { LogoutComponent } from './components/logout/logout.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, ...components],
@@ -19,6 +20,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MaterialModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
