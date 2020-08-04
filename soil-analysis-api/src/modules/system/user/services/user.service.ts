@@ -31,7 +31,7 @@ export class UserService extends BaseService<User, UserDTO> {
       );
     }
 
-    const user = await this.userRepository.save({
+    const user = await this.userRepository.create({
       password: data.password,
       username: data.username,
       region: data.region,
@@ -41,6 +41,8 @@ export class UserService extends BaseService<User, UserDTO> {
         where: idMapper(data.roles),
       }),
     });
+
+    user.save();
     return _.omit(user, 'password');
   }
 
