@@ -1,18 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { BaseService } from '../../../shared/services/base.service';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-// export class UserService extends BaseService<User> {
-//   constructor(
-//     private readonly httpService: HttpClient,
-//     public endnpoint = 'users'
-//   ) {
-//     super(httpService, endnpoint);
-//   }
 export class UserService {
   getDummyUsers(): User[] {
     return [

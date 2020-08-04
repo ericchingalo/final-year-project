@@ -7,27 +7,31 @@ import { Observable } from 'rxjs';
 })
 export class BaseService<T> {
   url: string;
-  constructor(private readonly http: HttpClient, private endpoint: string) {
-    this.url = `localhost:3000/api/${endpoint}`;
+  constructor(private readonly http: HttpClient) {
+    this.url = `localhost:3000/api/`;
   }
 
-  findAll(): Observable<any> {
-    return this.http.get(this.url);
+  findAll(endpoint: string): Observable<any> {
+    return this.http.get(`${this.url}/${endpoint}`);
   }
 
-  findOneById(id: string): Observable<any> {
-    return this.http.get(`${this.url}/${id}`);
+  findOneById(endpoint: string, id: string): Observable<any> {
+    return this.http.get(`${this.url}/${endpoint}/${id}`);
   }
 
-  create(data: T): Observable<any> {
-    return this.http.post(this.url, data);
+  create(endpoint: string, data: T): Observable<any> {
+    return this.http.post(`${this.url}/${endpoint}`, data);
   }
 
-  update(id: string, updatedData: Partial<T>): Observable<any> {
-    return this.http.put(`${this.url}/${id}`, updatedData);
+  update(
+    endpoint: string,
+    id: string,
+    updatedData: Partial<T>
+  ): Observable<any> {
+    return this.http.put(`${this.url}/${endpoint}/${id}`, updatedData);
   }
 
-  delete(id: string): Observable<any> {
-    return this.http.delete(`${this.url}/${id}`);
+  delete(endpoint: string, id: string): Observable<any> {
+    return this.http.delete(`${this.url}//${endpoint}/${id}`);
   }
 }
