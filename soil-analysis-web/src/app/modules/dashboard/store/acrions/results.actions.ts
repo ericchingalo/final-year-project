@@ -8,7 +8,7 @@ export const loadResultsSuccess = createAction(
   props<{ results: Result[] }>()
 );
 
-export const loadRresultsFail = createAction(
+export const loadResultsFail = createAction(
   '[RESULTS] Load Results Fail',
   props<{ error: string }>()
 );
