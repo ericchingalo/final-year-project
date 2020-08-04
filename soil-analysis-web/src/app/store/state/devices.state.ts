@@ -8,16 +8,16 @@ export function selectDeviceId(user: Device): string {
   return user.id;
 }
 
-export const adapter = createEntityAdapter<Device>({
+export const deviceAdapter = createEntityAdapter<Device>({
   sortComparer: false,
   selectId: selectDeviceId,
 });
 
-export const initialDevicesState = adapter.getInitialState({
+export const initialDevicesState = deviceAdapter.getInitialState({
   ...initialBaseState,
 });
 
 export const {
   selectAll: selectAllDevices,
   selectIds: selectDeviceIds,
-} = adapter.getSelectors();
+} = deviceAdapter.getSelectors();

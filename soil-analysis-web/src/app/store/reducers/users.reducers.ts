@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { initialUsersState, adapter, UsersState } from '../state';
+import { initialUsersState, userAdapter, UsersState } from '../state';
 import { loadUsers, loadUsersFail, loadUsersSuccess } from '../actions';
 import { editUserSuccess, editUserFail } from '../actions/users.actions';
 import { Update } from '@ngrx/entity';
@@ -37,11 +37,11 @@ export const reducer = createReducer(
     error,
   })),
   on(loadUsersSuccess, (state, { users }) =>
-    adapter.addMany(users, { ...state, ...loadedBaseState })
+    userAdapter.addMany(users, { ...state, ...loadedBaseState })
   ),
   on(addUser, (state) => ({ ...state, addingBaseState })),
   on(addUserSuccess, (state, { user }) =>
-    adapter.addOne(user, { ...state, ...addedBaseState })
+    userAdapter.addOne(user, { ...state, ...addedBaseState })
   ),
   on(addUserFail, (state, { error }) => ({
     ...state,
@@ -50,7 +50,7 @@ export const reducer = createReducer(
   })),
   on(deleteUser, (state) => ({ ...state, deletingBaseState })),
   on(deleteUserSuccess, (state, { id }) =>
-    adapter.removeOne(id, { ...state, ...deletedBaseState })
+    userAdapter.removeOne(id, { ...state, ...deletedBaseState })
   ),
   on(deleteUserFail, (state, { error }) => ({
     ...state,
@@ -59,7 +59,7 @@ export const reducer = createReducer(
   })),
   on(editUser, (state) => ({ ...state, ...updatingBaseState })),
   on(editUserSuccess, (state, { user }) =>
-    adapter.updateOne(user, { ...state, ...updatedBaseState })
+    userAdapter.updateOne(user, { ...state, ...updatedBaseState })
   ),
   on(editUserFail, (state, { error }) => ({
     ...state,

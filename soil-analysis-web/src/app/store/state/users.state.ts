@@ -8,16 +8,16 @@ export function selectUserId(user: User): string {
   return user.id;
 }
 
-export const adapter = createEntityAdapter<User>({
+export const userAdapter = createEntityAdapter<User>({
   sortComparer: false,
   selectId: selectUserId,
 });
 
-export const initialUsersState = adapter.getInitialState({
+export const initialUsersState = userAdapter.getInitialState({
   ...initialBaseState,
 });
 
 export const {
   selectAll: selectAllUsers,
   selectIds: selectUserIds,
-} = adapter.getSelectors();
+} = userAdapter.getSelectors();
