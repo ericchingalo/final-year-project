@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { pages } from './pages';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../core/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [...pages],
@@ -12,6 +13,7 @@ import { MaterialModule } from '../core/material/material.module';
     CommonModule,
     AuthenticationRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
   ],
 })
