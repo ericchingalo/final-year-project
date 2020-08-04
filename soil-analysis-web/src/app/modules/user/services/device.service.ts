@@ -1,11 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Device } from '../models/device.model';
+import { BaseService } from '../../../shared/services/base.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DeviceService {
-  constructor() {}
+  endpoint = 'devices';
+  constructor(private readonly http: BaseService<Device>) {}
+
+  findAll(): Observable<any> {
+    return this.http.findAll(this.endpoint);
+  }
+
+  create(device: Device): Observable<any> {
+    return this.http.create(this.endpoint, device);
+  }
+
+  update(id: string, updatedDevice: Partial<Device>): Observable<any> {
+    return this.http.update(this.endpoint, id, updatedDevice);
+  }
+
+  delete(id: string): Observable<any> {
+    return this.http.delete(this.endpoint, id);
+  }
 
   getDummyDevices(): Device[] {
     return [
