@@ -1,13 +1,25 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class Roles1596546675247 implements MigrationInterface {
+import * as bcrypt from 'bcryptjs';
+import { generateBasicAuthanticationString } from 'src/modules/system/user/helpers/basic-auth-token.helper';
+
+export class databaseDefaults1596551316090 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    const q1 = await queryRunner.query(
+    await queryRunner.query(
       `INSERT INTO user_role(role_name) VALUES ('admin'), ('tester'), ('guest');`,
     );
-    const q2 = await queryRunner.query(
+    await queryRunner.query(
       `INSERT INTO user_permission(permission) VALUES ('manage users'), ('add soil data'), ('view soil results');`,
     );
+    await queryRunner.query(`
+    INSERT INTO users (username, password, email, token) VALUES ('Admin', '${await bcrypt.hash(
+      'chingalo',
+      10,
+    )}', 'echingalo@gmail.com', '${generateBasicAuthanticationString(
+      'admin',
+      'chingalo',
+    )}')
+    `);
 
     const adminRole = await queryRunner.query(
       `SELECT id FROM user_role WHERE role_name = 'admin'`,
@@ -28,8 +40,17 @@ export class Roles1596546675247 implements MigrationInterface {
     const permission3 = await queryRunner.query(
       `SELECT id FROM user_permission WHERE permission = 'view soil results'`,
     );
+
+    const adminUser = await queryRunner.query(
+      `SELECT id FROM users WHERE username = 'Admin'`,
+    );
+
     await queryRunner.query(
       `INSERT INTO role_permission VALUES ('${adminRole[0].id}','${permission1[0].id}'), ('${adminRole[0].id}','${permission3[0].id}'), ('${guestRole[0].id}','${permission3[0].id}'), ('${testerRole[0].id}','${permission3[0].id}'), ('${testerRole[0].id}','${permission2[0].id}')`,
+    );
+
+    await queryRunner.query(
+      `INSERT INTO roles VALUES ('${adminUser[0].id}', '${adminRole[0].id}')`,
     );
   }
 
