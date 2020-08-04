@@ -6,7 +6,7 @@ export const loadDevices = createAction('[DEVICES] Load Devices');
 
 export const loadDevicesSuccess = createAction(
   '[DEVICES] Load Devices Success',
-  props<{ users: Device[] }>()
+  props<{ devices: Device[] }>()
 );
 
 export const loadDevicesFail = createAction(
@@ -16,12 +16,12 @@ export const loadDevicesFail = createAction(
 
 export const addDevice = createAction(
   '[DEVICES] Add Device',
-  props<{ user: Device }>()
+  props<{ device: Device }>()
 );
 
 export const addDeviceSuccess = createAction(
   '[DEVICES] Add Device Success',
-  props<{ user: Device }>()
+  props<{ device: Device }>()
 );
 
 export const addDeviceFail = createAction(
@@ -31,12 +31,12 @@ export const addDeviceFail = createAction(
 
 export const editDevice = createAction(
   '[DEVICES] Edit Device',
-  props<{ user: Device }>()
+  props<{ device: Device }>()
 );
 
 export const editDeviceSuccess = createAction(
   '[DEVICES] Edit Device Success',
-  props<{ user: Update<Device> }>()
+  props<{ device: Update<Device> }>()
 );
 
 export const editDeviceFail = createAction(
