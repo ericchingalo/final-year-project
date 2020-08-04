@@ -8,6 +8,8 @@ import { pages } from './pages';
 import { components } from './components';
 import { pipes } from './pipes';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './store/reducers/results.reducers';
 
 @NgModule({
   declarations: [...pages, ...components, ...pipes],
@@ -17,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MaterialModule,
     HighchartsChartModule,
+    StoreModule.forFeature('results', reducer),
   ],
 })
 export class DashboardModule {}
