@@ -10,7 +10,7 @@ export class AuthService {
   url: string;
   endpoint: string;
   constructor(private readonly http: HttpClient) {
-    (this.endpoint = 'users/login'), (this.url = 'localhost:3000/api/');
+    (this.endpoint = 'users/login'), (this.url = 'localhost:3000/api');
   }
 
   login(userCreadentials: UserCredentials): Observable<any> {

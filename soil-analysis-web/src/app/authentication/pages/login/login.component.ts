@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+
 import { generateForm } from 'src/app/core/helpers/form-generator.helper';
+import { AuthService } from '../../services/auth.service';
+import { SnackbarService } from '../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +15,12 @@ import { generateForm } from 'src/app/core/helpers/form-generator.helper';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginFormData: any;
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private snackBarService: SnackbarService
+  ) {}
 
   ngOnInit() {
     this.loginFormData = this.getFormData();
@@ -32,7 +41,13 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit(userInfo) {
-    console.log(userInfo);
+    this.authService
+      .login(userInfo)
+      .pipe(take(1))
+      .subscribe(
+        () => this.router.navigate(['/']),
+        (error) => this.snackBarService.openSnackBar('Failed to Login', 'RETRY')
+      );
     this.router.navigate(['/']);
   }
 }
