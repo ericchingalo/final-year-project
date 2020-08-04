@@ -4,8 +4,8 @@ import { Device } from '../../modules/user/models/device.model';
 
 export interface DevicesState extends BaseState, EntityState<Device> {}
 
-export function selectDeviceId(user: Device): string {
-  return user.id;
+export function selectDeviceId(device: Device): string {
+  return device.id;
 }
 
 export const deviceAdapter = createEntityAdapter<Device>({
