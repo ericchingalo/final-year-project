@@ -48,6 +48,5 @@ export class LoginComponent implements OnInit {
         () => this.router.navigate(['/']),
         (error) => this.snackBarService.openSnackBar('Failed to Login', 'RETRY')
       );
-    this.router.navigate(['/']);
   }
 }

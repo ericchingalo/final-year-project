@@ -11,12 +11,11 @@ export class AuthService {
   endpoint: string;
   constructor(private readonly http: HttpClient) {
     this.endpoint = 'users/login';
-    this.url = 'https://chingalo.site/soil-analysis/api';
+    this.url = 'api';
   }
 
   login(userCreadentials: UserCredentials): Observable<any> {
     const path = `${this.url}/${this.endpoint}`;
-    console.log(path);
     return this.http.post(path, userCreadentials);
   }
 
