@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
-  CanActivateChild,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
@@ -26,7 +25,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const authCookie = this.cookieService.get('soil-analysis-api');
+    const authCookie = this.cookieService.check('soil-user');
     console.log(authCookie);
     if (authCookie) {
       return true;

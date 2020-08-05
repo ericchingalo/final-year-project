@@ -6,6 +6,7 @@ import { take } from 'rxjs/operators';
 import { generateForm } from 'src/app/core/helpers/form-generator.helper';
 import { AuthService } from '../../services/auth.service';
 import { SnackbarService } from '../../../shared/services/snackbar.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -19,10 +20,12 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private snackBarService: SnackbarService
+    private snackBarService: SnackbarService,
+    private cookieSeervice: CookieService
   ) {}
 
   ngOnInit() {
+    this.cookieSeervice.delete('soil-user');
     this.loginFormData = this.getFormData();
     this.loginForm = generateForm(
       this.loginForm,
@@ -45,8 +48,19 @@ export class LoginComponent implements OnInit {
       .login(userInfo)
       .pipe(take(1))
       .subscribe(
-        () => this.router.navigate(['/']),
-        (error) => this.snackBarService.openSnackBar('Failed to Login', 'RETRY')
+        (user: any) => this.saveUserOnCookie(user.id),
+        (response: any) => {
+          console.log(response.error);
+          this.snackBarService.openSnackBar(
+            response.error ? response.error.message : 'Failed to Login',
+            'RETRY'
+          );
+        }
       );
+  }
+
+  saveUserOnCookie(id: string) {
+    const cookie = this.cookieSeervice.set('soil-user', id);
+    this.router.navigate(['/']);
   }
 }
