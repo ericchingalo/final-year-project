@@ -33,7 +33,7 @@ export class UserEffects {
       ofType(loadUsers),
       switchMap(() =>
         this.usersService.findAll().pipe(
-          map((users) => loadUsersSuccess(users)),
+          map((users) => loadUsersSuccess({ users })),
           catchError((res) =>
             of(loadUsersFail({ error: getErrorMessage(res) }))
           )
@@ -48,7 +48,7 @@ export class UserEffects {
       mergeMap((action) =>
         this.usersService.create(action.user).pipe(
           map(
-            () => addUserSuccess({ user: action.user }),
+            (user) => addUserSuccess({ user }),
             catchError((res) =>
               of(addUserFail({ error: getErrorMessage(res) }))
             )
@@ -77,7 +77,9 @@ export class UserEffects {
       ofType(editUser),
       mergeMap((action) =>
         this.usersService.update(action.user.id, action.user).pipe(
-          map((user) => editUserSuccess(user)),
+          map((user) =>
+            editUserSuccess({ user: { id: user.id, changes: user } })
+          ),
           catchError((res) => of(editUserFail({ error: getErrorMessage(res) })))
         )
       )
