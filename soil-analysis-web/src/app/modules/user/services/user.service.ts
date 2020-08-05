@@ -7,10 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  endpoint: 'users';
-  constructor(private http: BaseService<User>) {}
+  endpoint: string;
+  constructor(private http: BaseService<User>) {
+    this.endpoint = 'users';
+  }
 
   findAll(): Observable<any> {
+    console.log(this.endpoint);
     return this.http.findAll(this.endpoint);
   }
 
