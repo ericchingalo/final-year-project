@@ -10,6 +10,7 @@ import {
   loadResultsFail,
 } from '../actions/results.actions';
 import { getErrorMessage } from '../../../../shared/helpers/error-message.helper';
+import { resultsSaniziter } from '../../helpers/results-sanitizer.helper';
 
 @Injectable()
 export class ResultsEffects {
@@ -23,7 +24,8 @@ export class ResultsEffects {
       switchMap(() =>
         this.resultsService.findAll().pipe(
           map(
-            (results) => loadResultsSuccess({ results }),
+            (results: any[]) =>
+              loadResultsSuccess({ results: resultsSaniziter(results) }),
             catchError((res) =>
               of(loadResultsFail({ error: getErrorMessage(res) }))
             )
