@@ -16,6 +16,7 @@ import { components } from './components';
 import { MaterialModule } from './core/material/material.module';
 import { LogoutComponent } from './components/logout/logout.component';
 import { environment } from 'src/environments/environment';
+import { effects } from './store/effects/index';
 
 @NgModule({
   declarations: [AppComponent, ...components],
@@ -32,7 +33,7 @@ import { environment } from 'src/environments/environment';
         strictActionImmutability: true,
       },
     }),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot(effects),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
