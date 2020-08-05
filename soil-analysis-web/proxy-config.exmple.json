@@ -1,0 +1,14 @@
+{
+  "/api": {
+    "target": "localhost:3000/soil-analysis/api",
+    "secure": "false",
+    "auth": "user:password",
+    "changeOrigin": "true"
+  },
+  "/": {
+    "target": "localhost:3000/soil-analysis/api",
+    "secure": "false",
+    "auth": "user:password",
+    "changeOrigin": "true"
+  }
+}
