@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import * as _ from 'lodash';
 
 import { UserService } from '../../modules/user/services/user.service';
 import {
@@ -23,6 +24,7 @@ import {
   editUserFail,
 } from '../actions/users.actions';
 import { getErrorMessage } from '../../shared/helpers/error-message.helper';
+import { userSanitizer } from '../../modules/user/helpers/user-sanitizer.helper';
 
 @Injectable()
 export class UserEffects {
@@ -33,7 +35,7 @@ export class UserEffects {
       ofType(loadUsers),
       switchMap(() =>
         this.usersService.findAll().pipe(
-          map((users) => loadUsersSuccess({ users })),
+          map((users) => loadUsersSuccess({ users: userSanitizer(users) })),
           catchError((res) =>
             of(loadUsersFail({ error: getErrorMessage(res) }))
           )
@@ -78,7 +80,15 @@ export class UserEffects {
       mergeMap((action) =>
         this.usersService.update(action.user.id, action.user).pipe(
           map((user) =>
-            editUserSuccess({ user: { id: user.id, changes: user } })
+            editUserSuccess({
+              user: {
+                id: user.id,
+                changes: {
+                  ...user,
+                  roles: _.map(user.roles, (role) => role.name),
+                },
+              },
+            })
           ),
           catchError((res) => of(editUserFail({ error: getErrorMessage(res) })))
         )
