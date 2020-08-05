@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (user: any) => this.saveUserOnCookie(user.id),
         (response: any) => {
-          console.log(response.error);
           this.snackBarService.openSnackBar(
             response.error ? response.error.message : 'Failed to Login',
             'RETRY'

@@ -108,8 +108,6 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Created User');
-        console.log(result);
       }
     });
   }
@@ -125,7 +123,6 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
       }
     });
   }

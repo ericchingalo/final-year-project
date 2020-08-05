@@ -75,8 +75,6 @@ export class DeviceListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Device registered');
-        console.log(result);
       }
     });
   }
@@ -92,7 +90,6 @@ export class DeviceListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
       }
     });
   }
