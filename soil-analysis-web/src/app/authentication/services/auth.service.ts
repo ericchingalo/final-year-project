@@ -10,11 +10,14 @@ export class AuthService {
   url: string;
   endpoint: string;
   constructor(private readonly http: HttpClient) {
-    (this.endpoint = 'users/login'), (this.url = 'localhost:3000/api');
+    this.endpoint = 'users/login';
+    this.url = 'https://chingalo.site/soil-analysis/api';
   }
 
   login(userCreadentials: UserCredentials): Observable<any> {
-    return this.http.post(`${this.url}/${this.endpoint}`, userCreadentials);
+    const path = `${this.url}/${this.endpoint}`;
+    console.log(path);
+    return this.http.post(path, userCreadentials);
   }
 
   logout() {}
