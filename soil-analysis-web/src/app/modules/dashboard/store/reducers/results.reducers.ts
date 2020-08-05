@@ -8,7 +8,7 @@ import {
   loadResults,
   loadResultsFail,
   loadResultsSuccess,
-} from '../acrions/results.actions';
+} from '../actions/results.actions';
 import {
   loadingBaseState,
   loadedBaseState,

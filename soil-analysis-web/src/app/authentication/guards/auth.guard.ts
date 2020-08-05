@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const authCookie = this.cookieService.check('soil-user');
-    console.log(authCookie);
     if (authCookie) {
       return true;
     } else {

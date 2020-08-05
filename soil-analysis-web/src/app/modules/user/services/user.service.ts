@@ -13,7 +13,6 @@ export class UserService {
   }
 
   findAll(): Observable<any> {
-    console.log(this.endpoint);
     return this.http.findAll(this.endpoint);
   }
 
