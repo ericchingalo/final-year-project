@@ -17,6 +17,7 @@ import {
 } from '../actions/devices.actions';
 import { addUserFail } from '../actions/users.actions';
 import { editDevice, editDeviceSuccess } from '../actions/devices.actions';
+import { deviceSanitizer } from '../../modules/user/helpers/device-sanitizer.helper';
 import {
   deleteDeviceSuccess,
   deleteDeviceFail,
@@ -34,7 +35,9 @@ export class DevicesEffects {
       ofType(loadDevices),
       switchMap(() =>
         this.deviceService.findAll().pipe(
-          map((devices) => loadDevicesSuccess({ devices })),
+          map((devices) =>
+            loadDevicesSuccess({ devices: deviceSanitizer(devices) })
+          ),
           catchError((res) =>
             of(loadDevicesFail({ error: getErrorMessage(res) }))
           )
@@ -75,15 +78,16 @@ export class DevicesEffects {
     this.actions$.pipe(
       ofType(editDevice),
       mergeMap((action) =>
-        this.deviceService
-          .update(action.device.id, action.device)
-          .pipe(
-            map((device) =>
-              editDeviceSuccess({
-                device: { id: action.device.id, changes: device },
-              })
-            )
+        this.deviceService.update(action.device.id, action.device).pipe(
+          map((device) =>
+            editDeviceSuccess({
+              device: {
+                id: action.device.id,
+                changes: { ...device, user: device.user.username },
+              },
+            })
           )
+        )
       )
     )
   );
