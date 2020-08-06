@@ -4,6 +4,5 @@ export interface Result {
   id: string;
   region: string;
   created: string;
-  lastupdated: string;
   results: ParameterResult[];
 }

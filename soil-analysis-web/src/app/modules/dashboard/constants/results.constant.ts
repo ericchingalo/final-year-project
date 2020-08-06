@@ -6,7 +6,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-07-27T13:55:45.716Z',
-    lastupdated: '2020-07-27T13:55:45.716Z',
     results: [
       {
         value: 6.8,
@@ -26,7 +25,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-07-25T13:55:45.716Z',
-    lastupdated: '2020-07-25T13:55:45.716Z',
     results: [
       {
         value: 4.5,
@@ -46,7 +44,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-07-12T13:55:45.716Z',
-    lastupdated: '',
     results: [
       {
         value: 4.3,
@@ -66,7 +63,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-06-28T13:55:45.716Z',
-    lastupdated: '2020-06-28T13:55:45.716Z',
     results: [
       {
         value: 4.76,
@@ -86,7 +82,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-06-16T13:55:45.716Z',
-    lastupdated: '2020-06-16T13:55:45.716Z',
     results: [
       {
         value: 6.83,
@@ -106,7 +101,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-06-03T13:55:45.716Z',
-    lastupdated: '2020-06-03T13:55:45.716Z',
     results: [
       {
         value: 4.79,
@@ -126,7 +120,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-05-22T13:55:45.716Z',
-    lastupdated: '2020-05-22T13:55:45.716Z',
     results: [
       {
         value: 5.17,
@@ -146,7 +139,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-05-20T13:55:45.716Z',
-    lastupdated: '2020-05-20T13:55:45.716Z',
     results: [
       {
         value: 4.97,
@@ -166,7 +158,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Arusha',
     created: '2020-05-15T13:55:45.716Z',
-    lastupdated: '2020-05-15T13:55:45.716Z',
     results: [
       {
         value: 4.59,
@@ -186,7 +177,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Arusha',
     created: '2020-05-12T13:55:45.716Z',
-    lastupdated: '2020-05-12T13:55:45.716Z',
     results: [
       {
         value: 7.59,
@@ -206,7 +196,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Arusha',
     created: '2020-05-07T13:55:45.716Z',
-    lastupdated: '2020-05-07bT13:55:45.716Z',
     results: [
       {
         value: 5.79,
@@ -226,7 +215,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-05-02T13:55:45.716Z',
-    lastupdated: '2020-05-02T13:55:45.716Z',
     results: [
       {
         value: 3.99,
@@ -246,7 +234,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-05-01T13:55:45.716Z',
-    lastupdated: '2020-05-01T13:55:45.716Z',
     results: [
       {
         value: 7.99,
@@ -266,7 +253,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-04-30T13:55:45.716Z',
-    lastupdated: '2020-04-30T13:55:45.716Z',
     results: [
       {
         value: 4.56,
@@ -286,7 +272,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mtwara',
     created: '2020-04-30T13:55:45.716Z',
-    lastupdated: '2020-04-30T13:55:45.716Z',
     results: [
       {
         value: 5.12,
@@ -306,7 +291,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mtwara',
     created: '2020-04-27T13:55:45.716Z',
-    lastupdated: '2020-04-27T13:55:45.716Z',
     results: [
       {
         value: 5.41,
@@ -326,7 +310,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mtwara',
     created: '2020-04-23T13:55:45.716Z',
-    lastupdated: '2020-04-23T13:55:45.716Z',
     results: [
       {
         value: 7.25,
@@ -346,7 +329,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mtwara',
     created: '2020-04-20T13:55:45.716Z',
-    lastupdated: '2020-04-20T13:55:45.716Z',
     results: [
       {
         value: 4.31,
@@ -366,7 +348,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mtwara',
     created: '2020-04-16T13:55:45.716Z',
-    lastupdated: '2020-04-16T13:55:45.716Z',
     results: [
       {
         value: 4.31,
@@ -386,7 +367,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mtwara',
     created: '2020-04-13T13:55:45.716Z',
-    lastupdated: '2020-04-13T13:55:45.716Z',
     results: [
       {
         value: 5.01,
@@ -406,7 +386,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-03-31T13:55:45.716Z',
-    lastupdated: '2020-03-31T13:55:45.716Z',
     results: [
       {
         value: 4.52,
@@ -426,7 +405,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-03-29T13:55:45.716Z',
-    lastupdated: '2020-03-29T13:55:45.716Z',
     results: [
       {
         value: 4.52,
@@ -446,7 +424,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mbeya',
     created: '2020-03-20T13:55:45.716Z',
-    lastupdated: '2020-03-20T13:55:45.716Z',
     results: [
       {
         value: 4.93,
@@ -466,7 +443,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mbeya',
     created: '2020-03-11T13:55:45.716Z',
-    lastupdated: '2020-03-31T13:55:45.716Z',
     results: [
       {
         value: 7.6,
@@ -486,7 +462,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mbeya',
     created: '2020-03-07T13:55:45.716Z',
-    lastupdated: '2020-03-07T13:55:45.716Z',
     results: [
       {
         value: 4.51,
@@ -506,7 +481,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-03-06T13:55:45.716Z',
-    lastupdated: '2020-03-06T13:55:45.716Z',
     results: [
       {
         value: 5.01,
@@ -526,7 +500,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-03-05T13:55:45.716Z',
-    lastupdated: '2020-03-05T13:55:45.716Z',
     results: [
       {
         value: 4.98,
@@ -546,7 +519,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-02-29T13:55:45.716Z',
-    lastupdated: '',
     results: [
       {
         value: 5.93,
@@ -566,7 +538,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-02-20T13:55:45.716Z',
-    lastupdated: '2020-02-20T13:55:45.716Z',
     results: [
       {
         value: 4.97,
@@ -586,7 +557,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mara',
     created: '2020-02-18T13:55:45.716Z',
-    lastupdated: '2020-02-18T13:55:45.716Z',
     results: [
       {
         value: 6.01,
@@ -606,7 +576,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mara',
     created: '2020-02-15T10:55:45.716Z',
-    lastupdated: '2020-02-15T10:55:45.716Z',
     results: [
       {
         value: 3.4,
@@ -626,7 +595,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mara',
     created: '2020-02-12T13:55:45.716Z',
-    lastupdated: '2020-02-12T13:55:45.716Z',
     results: [
       {
         value: 5.7,
@@ -646,7 +614,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mara',
     created: '2020-02-09T13:55:45.716Z',
-    lastupdated: '2020-02-09T13:55:45.716Z',
     results: [
       {
         value: 6.7,
@@ -666,7 +633,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mara',
     created: '2020-02-07T13:55:45.716Z',
-    lastupdated: '2020-02-07T13:55:45.716Z',
     results: [
       {
         value: 7.4,
@@ -686,7 +652,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-02-02T13:55:45.716Z',
-    lastupdated: '2020-02-02T13:55:45.716Z',
     results: [
       {
         value: 7.83,
@@ -706,7 +671,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-01-29T13:55:45.716Z',
-    lastupdated: '2020-01-29T13:55:45.716Z',
     results: [
       {
         value: 4.59,
@@ -726,7 +690,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-01-27T13:55:45.716Z',
-    lastupdated: '2020-01-27T13:55:45.716Z',
     results: [
       {
         value: 6.49,
@@ -746,7 +709,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-01-25T13:55:45.716Z',
-    lastupdated: '2020-01-25T13:55:45.716Z',
     results: [
       {
         value: 5.03,
@@ -766,7 +728,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2020-01-20T13:55:45.716Z',
-    lastupdated: '2020-01-20T13:55:45.716Z',
     results: [
       {
         value: 4.58,
@@ -786,7 +747,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-01-13T13:55:45.716Z',
-    lastupdated: '2020-01-13T13:55:45.716Z',
     results: [
       {
         value: 5.6,
@@ -806,7 +766,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-01-10T13:55:45.716Z',
-    lastupdated: '2020-01-10T13:55:45.716Z',
     results: [
       {
         value: 4.59,
@@ -826,7 +785,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2020-01-09T13:55:45.716Z',
-    lastupdated: '2020-01-09T13:55:45.716Z',
     results: [
       {
         value: 5.69,
@@ -846,7 +804,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Dar-es-salaam',
     created: '2020-01-03T13:55:45.716Z',
-    lastupdated: '2020-01-03T13:55:45.716Z',
     results: [
       {
         value: 5.74,
@@ -866,7 +823,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Dar-es-salaam',
     created: '2020-01-01T13:55:45.716Z',
-    lastupdated: '2020-01-01T13:55:45.716Z',
     results: [
       {
         value: 4.59,
@@ -886,7 +842,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mara',
     created: '2019-12-31T13:55:45.716Z',
-    lastupdated: '',
     results: [
       {
         value: 5.05,
@@ -906,7 +861,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mara',
     created: '2019-12-28T13:55:45.716Z',
-    lastupdated: '2019-12-28T13:55:45.716Z',
     results: [
       {
         value: 4.27,
@@ -926,7 +880,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mbeya',
     created: '2019-12-20T13:55:45.716Z',
-    lastupdated: '',
     results: [
       {
         value: 5.87,
@@ -946,7 +899,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mbeya',
     created: '2019-12-17T13:55:45.716Z',
-    lastupdated: '2019-12-17T13:55:45.716Z',
     results: [
       {
         value: 5.67,
@@ -966,7 +918,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mbeya',
     created: '2019-12-15T13:55:45.716Z',
-    lastupdated: '2019-12-15T13:55:45.716Z',
     results: [
       {
         value: 5.94,
@@ -986,7 +937,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2019-12-14T13:55:45.716Z',
-    lastupdated: '2019-12-14T13:55:45.716Z',
     results: [
       {
         value: 6.37,
@@ -1007,7 +957,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2019-12-13T13:55:45.716Z',
-    lastupdated: '2019-12-13T13:55:45.716Z',
     results: [
       {
         value: 7.01,
@@ -1027,7 +976,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2019-12-12T13:55:45.716Z',
-    lastupdated: '2019-12-12T13:55:45.716Z',
     results: [
       {
         value: 5.9,
@@ -1047,7 +995,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2019-12-11T13:55:45.716Z',
-    lastupdated: '2019-12-11T13:55:45.716Z',
     results: [
       {
         value: 4.59,
@@ -1067,7 +1014,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Lindi',
     created: '2019-12-10T13:55:45.716Z',
-    lastupdated: '2019-12-10T13:55:45.716Z',
     results: [
       {
         value: 5.6,
@@ -1087,7 +1033,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2019-12-09T13:55:45.716Z',
-    lastupdated: '2019-12-09T13:55:45.716Z',
     results: [
       {
         value: 7.83,
@@ -1107,7 +1052,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Kagera',
     created: '2019-12-05T13:55:45.716Z',
-    lastupdated: '2019-12-05T13:55:45.716Z',
     results: [
       {
         value: 6.21,
@@ -1127,7 +1071,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Lindi',
     created: '2019-12-04T13:55:45.716Z',
-    lastupdated: '2019-12-04T13:55:45.716Z',
     results: [
       {
         value: 4.53,
@@ -1147,7 +1090,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Lindi',
     created: '2019-12-04T13:55:45.716Z',
-    lastupdated: '2019-12-04T13:55:45.716Z',
     results: [
       {
         value: 5.9,
@@ -1167,7 +1109,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Arusha',
     created: '2019-12-03T13:55:45.716Z',
-    lastupdated: '2019-12-03T13:55:45.716Z',
     results: [
       {
         value: 6.57,
@@ -1187,7 +1128,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Mbeya',
     created: '2019-12-02T13:55:45.716Z',
-    lastupdated: '2019-12-02T13:55:45.716Z',
     results: [
       {
         value: 5.69,
@@ -1207,7 +1147,6 @@ export const results: Result[] = [
     id: generateRandomID(),
     region: 'Songea',
     created: '2019-12-01T13:55:45.716Z',
-    lastupdated: '2019-12-01T13:55:45.716Z',
     results: [
       {
         value: 5.69,
