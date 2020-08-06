@@ -18,7 +18,7 @@ export function sortResultsByDate(result1: Result, result2: Result): number {
 }
 
 export const resultsAdapter = createEntityAdapter<Result>({
-  sortComparer: null,
+  sortComparer: sortResultsByDate,
   selectId: selectResultsID,
 });
 
@@ -34,4 +34,4 @@ export const {
 /**
  * feature selector
  */
-export const getServicesState = createFeatureSelector<any>('results');
+export const getResultsState = createFeatureSelector<any>('results');
