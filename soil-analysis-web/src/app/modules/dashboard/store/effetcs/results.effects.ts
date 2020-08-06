@@ -11,6 +11,7 @@ import {
 } from '../actions/results.actions';
 import { getErrorMessage } from '../../../../shared/helpers/error-message.helper';
 import { resultsSaniziter } from '../../helpers/results-sanitizer.helper';
+import { aggregrateDailyRegionData } from '../../helpers/daily-region-data-aggregator.helper';
 
 @Injectable()
 export class ResultsEffects {
@@ -25,7 +26,9 @@ export class ResultsEffects {
         this.resultsService.findAll().pipe(
           map(
             (results: any[]) =>
-              loadResultsSuccess({ results: resultsSaniziter(results) }),
+              loadResultsSuccess({
+                results: aggregrateDailyRegionData(resultsSaniziter(results)),
+              }),
             catchError((res) =>
               of(loadResultsFail({ error: getErrorMessage(res) }))
             )
