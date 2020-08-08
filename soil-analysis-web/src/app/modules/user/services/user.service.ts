@@ -16,6 +16,10 @@ export class UserService {
     return this.http.findAll(this.endpoint);
   }
 
+  findOneById(id: string): Observable<any> {
+    return this.http.findOneById(this.endpoint, id);
+  }
+
   create(user: User): Observable<any> {
     return this.http.create(this.endpoint, user);
   }
