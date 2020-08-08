@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
 import { Device } from '../../models/device.model';
 import {
   MatSort,
@@ -16,7 +16,7 @@ import { DeleteComponent } from '../delete/delete.component';
   templateUrl: './device-list.component.html',
   styleUrls: ['./device-list.component.scss'],
 })
-export class DeviceListComponent implements OnInit {
+export class DeviceListComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -37,10 +37,12 @@ export class DeviceListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const data: Device[] = this.deviceService.getDummyDevices();
+    this.deviceFormData = this.getDeviceFormData();
+  }
+
+  ngOnChanges() {
     const data: Device[] = this.devices;
     this.initializeMatTable(data);
-    this.deviceFormData = this.getDeviceFormData();
   }
 
   initializeMatTable(data: Device[]): void {

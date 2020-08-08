@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
 import { User } from '../../models/user.model';
 import {
   MatTableDataSource,
@@ -16,7 +16,7 @@ import { DeleteComponent } from '../delete/delete.component';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -38,10 +38,12 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const data = this.userService.getDummyUsers();
+    this.userFormData = this.getUserFormData();
+  }
+
+  ngOnChanges() {
     const data = this.users;
     this.initializeMatTable(data);
-    this.userFormData = this.getUserFormData();
   }
 
   initializeMatTable(data: User[]): void {

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
-import { loadDevices } from '../../../../store/actions/devices.actions';
-import { loadUsers } from '../../../../store/actions/users.actions';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Device } from '../../models/device.model';
