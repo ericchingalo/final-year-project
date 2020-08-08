@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Device } from '../../models/device.model';
 import {
   MatSort,
@@ -20,13 +20,15 @@ export class DeviceListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
+  @Input() devices: Device[];
+
   deviceFormData: CustomFormData;
   dataSource: MatTableDataSource<Device>;
   displayedColumns: string[] = [
     'id',
     'user',
     'created',
-    'lastupdated',
+    'lastUpdated',
     'actions',
   ];
   constructor(
@@ -35,7 +37,8 @@ export class DeviceListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const data: Device[] = this.deviceService.getDummyDevices();
+    // const data: Device[] = this.deviceService.getDummyDevices();
+    const data: Device[] = this.devices;
     this.initializeMatTable(data);
     this.deviceFormData = this.getDeviceFormData();
   }

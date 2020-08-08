@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { User } from '../../models/user.model';
 import {
   MatTableDataSource,
@@ -20,6 +20,8 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
+  @Input() users: User[];
+
   dataSource: MatTableDataSource<User>;
   userFormData: CustomFormData;
   displayedColumns: string[] = [
@@ -36,7 +38,8 @@ export class UserListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const data = this.userService.getDummyUsers();
+    // const data = this.userService.getDummyUsers();
+    const data = this.users;
     this.initializeMatTable(data);
     this.userFormData = this.getUserFormData();
   }
