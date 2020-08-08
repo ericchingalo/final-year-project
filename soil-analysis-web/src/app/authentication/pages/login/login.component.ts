@@ -59,7 +59,8 @@ export class LoginComponent implements OnInit {
   }
 
   saveUserOnCookie(id: string) {
-    const cookie = this.cookieSeervice.set('soil-user', id);
+    const expires = 60 * 60 * 7 * 1000;
+    const cookie = this.cookieSeervice.set('soil-user', id, expires);
     this.router.navigate(['/']);
   }
 }
