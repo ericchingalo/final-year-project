@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { DeleteComponent } from './components/delete/delete.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [...pages, ...components],
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     UserRoutingModule,
     MaterialModule,
     HttpClientModule,
+    SharedModule,
     ReactiveFormsModule,
   ],
   entryComponents: [FormComponent, DeleteComponent],
