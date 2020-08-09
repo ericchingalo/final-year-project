@@ -37,7 +37,5 @@ export function aggregrateDailyRegionData(data: any) {
       return getRegionData(dataGroup);
     })
   );
-
-  console.log(aggregatedData);
   return aggregatedData;
 }

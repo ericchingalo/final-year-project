@@ -17,6 +17,7 @@ import { MaterialModule } from './core/material/material.module';
 import { LogoutComponent } from './components/logout/logout.component';
 import { environment } from 'src/environments/environment';
 import { effects } from './store/effects/index';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, ...components],
@@ -26,6 +27,7 @@ import { effects } from './store/effects/index';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    SharedModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {

@@ -5,6 +5,9 @@ import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
 import { loadDevices } from 'src/app/store/actions/devices.actions';
 import { loadUsers } from 'src/app/store/actions';
+import { Observable } from 'rxjs';
+import { User } from '../../modules/user/models/user.model';
+import { getCurrentUser } from '../../store/selectors/current-user.selector';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +19,7 @@ export class HomeComponent implements OnInit {
     username: string;
     role: string;
   };
+  currentUser$: Observable<User>;
   constructor(public dialog: MatDialog, private store: Store<State>) {}
 
   ngOnInit() {
@@ -26,6 +30,7 @@ export class HomeComponent implements OnInit {
 
     this.store.dispatch(loadDevices());
     this.store.dispatch(loadUsers());
+    this.currentUser$ = this.store.select(getCurrentUser);
   }
 
   onLogout(e) {

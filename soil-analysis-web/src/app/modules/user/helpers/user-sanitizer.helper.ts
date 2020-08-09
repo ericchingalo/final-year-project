@@ -7,3 +7,10 @@ export function userSanitizer(users: any[]): User[] {
     roles: _.map(user.roles, (role) => role.name),
   }));
 }
+
+export function sanitizeCurrentUser(user: any): User {
+  return {
+    ...user,
+    roles: _.map(user.roles, (role) => role.name),
+  };
+}

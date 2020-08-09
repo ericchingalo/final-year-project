@@ -10,6 +10,7 @@ import { UserService } from '../../modules/user/services/user.service';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { loadCurrentUserFail } from '../actions/app.actions';
 import { getErrorMessage } from '../../shared/helpers/error-message.helper';
+import { sanitizeCurrentUser } from '../../modules/user/helpers/user-sanitizer.helper';
 
 @Injectable()
 export class AppEffects {
@@ -28,7 +29,8 @@ export class AppEffects {
       mergeMap((action) =>
         this.userService.findOneById(action.id).pipe(
           map(
-            (user) => loadCurrentUserSuccess({ user }),
+            (user) =>
+              loadCurrentUserSuccess({ user: sanitizeCurrentUser(user) }),
             catchError((error) =>
               of(loadCurrentUserFail({ error: getErrorMessage(error) }))
             )

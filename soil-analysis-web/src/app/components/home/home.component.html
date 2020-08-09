@@ -10,8 +10,8 @@
   <mat-sidenav #drawer opened mode="side" class="side-menu">
     <div class="user-container">
       <img class="user-icon" src="assets/icons/icon-user.svg" />
-      <div>{{ user.username }}</div>
-      <small>{{ user.role }}</small>
+      <div>{{ (currentUser$ | async).username }}</div>
+      <small>{{ (currentUser$ | async).roles | arrayToString }}</small>
       <hr />
     </div>
 
