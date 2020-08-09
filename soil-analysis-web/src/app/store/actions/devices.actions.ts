@@ -16,7 +16,7 @@ export const loadDevicesFail = createAction(
 
 export const addDevice = createAction(
   '[DEVICES] Add Device',
-  props<{ device: Device }>()
+  props<{ device: { user: string } }>()
 );
 
 export const addDeviceSuccess = createAction(

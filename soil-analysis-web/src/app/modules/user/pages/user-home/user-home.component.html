@@ -4,7 +4,10 @@
       <app-user-list [users]="users$ | async"></app-user-list>
     </mat-tab>
     <mat-tab label="Devices">
-      <app-device-list [devices]="devices$ | async"></app-device-list>
+      <app-device-list
+        [devices]="devices$ | async"
+        [users]="users$ | async"
+      ></app-device-list>
     </mat-tab>
   </mat-tab-group>
 </div>

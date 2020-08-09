@@ -23,8 +23,19 @@
 
       <mat-select
         [formControlName]="input.formControlName"
-        *ngIf="input.type === 'select'"
+        *ngIf="input.type === 'select' && input.multiple"
         multiple
+      >
+        <mat-option
+          *ngFor="let option of input.options"
+          value="{{ option.value }}"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
+
+      <mat-select
+        [formControlName]="input.formControlName"
+        *ngIf="input.type === 'select' && !input.multiple"
       >
         <mat-option
           *ngFor="let option of input.options"

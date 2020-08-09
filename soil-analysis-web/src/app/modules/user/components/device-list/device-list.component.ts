@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as _ from 'lodash';
 import { Device } from '../../models/device.model';
 import {
   MatSort,
@@ -10,9 +12,12 @@ import { DeviceService } from '../../services/device.service';
 import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { FormComponent } from '../form/form.component';
 import { DeleteComponent } from '../delete/delete.component';
-import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
-import { deleteDevice } from '../../../../store/actions/devices.actions';
+import {
+  deleteDevice,
+  addDevice,
+} from '../../../../store/actions/devices.actions';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-device-list',
@@ -24,6 +29,7 @@ export class DeviceListComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   @Input() devices: Device[];
+  @Input() users: User[];
 
   deviceFormData: CustomFormData;
   dataSource: MatTableDataSource<Device>;
@@ -40,13 +46,12 @@ export class DeviceListComponent implements OnInit, OnChanges {
     private store: Store<State>
   ) {}
 
-  ngOnInit() {
-    this.deviceFormData = this.getDeviceFormData();
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
     const data: Device[] = this.devices;
     this.initializeMatTable(data);
+    this.deviceFormData = this.getDeviceFormData();
   }
 
   initializeMatTable(data: Device[]): void {
@@ -61,8 +66,10 @@ export class DeviceListComponent implements OnInit, OnChanges {
         {
           label: 'Assigned User',
           formControlName: 'user',
-          type: 'text',
+          type: 'select',
+          multiple: false,
           required: true,
+          options: this.getUserOptions(),
         },
       ],
     };
@@ -84,6 +91,8 @@ export class DeviceListComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        const device = result;
+        this.store.dispatch(addDevice({ device }));
       }
     });
   }
@@ -110,5 +119,14 @@ export class DeviceListComponent implements OnInit, OnChanges {
     }
 
     // open edit dialog
+  }
+
+  getUserOptions(): { label: string; value: string } {
+    const options = _.map(this.users, (user: User) => ({
+      label: user.username,
+      value: user.id,
+    }));
+
+    return options;
   }
 }
