@@ -13,6 +13,8 @@ import { DeleteComponent } from '../delete/delete.component';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
 import { deleteUser } from '../../../../store/actions/users.actions';
+import { CookieService } from 'ngx-cookie-service';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-user-list',
@@ -38,7 +40,9 @@ export class UserListComponent implements OnInit, OnChanges {
   constructor(
     private readonly userService: UserService,
     public dialog: MatDialog,
-    private store: Store<State>
+    private store: Store<State>,
+    private readonly cookieService: CookieService,
+    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit() {
@@ -132,7 +136,12 @@ export class UserListComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.store.dispatch(deleteUser({ id }));
+        const user = this.cookieService.get('soil-user');
+        if (user === id) {
+          this.snackbarService.openSnackBar(`Can't delete current User`, 'OK');
+        } else {
+          this.store.dispatch(deleteUser({ id }));
+        }
       }
     });
   }
