@@ -10,6 +10,9 @@ import { DeviceService } from '../../services/device.service';
 import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { FormComponent } from '../form/form.component';
 import { DeleteComponent } from '../delete/delete.component';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/store/reducers';
+import { deleteDevice } from '../../../../store/actions/devices.actions';
 
 @Component({
   selector: 'app-device-list',
@@ -33,7 +36,8 @@ export class DeviceListComponent implements OnInit, OnChanges {
   ];
   constructor(
     private readonly deviceService: DeviceService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<State>
   ) {}
 
   ngOnInit() {
@@ -84,7 +88,7 @@ export class DeviceListComponent implements OnInit, OnChanges {
     });
   }
 
-  onDelete(e) {
+  onDelete(e, id) {
     if (e) {
       e.stopPropagation();
     }
@@ -95,6 +99,7 @@ export class DeviceListComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.store.dispatch(deleteDevice({ id }));
       }
     });
   }

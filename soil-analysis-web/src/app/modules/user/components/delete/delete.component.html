@@ -3,8 +3,8 @@
   <div class="dialog-buttons" mat-dialog-actions>
     <button mat-raised-button (click)="onCancel($event)">Cancel</button>
     <button
-      [mat-dialog-close]="data"
       mat-raised-button
+      [mat-dialog-close]="data"
       color="warn"
       (click)="onDelete($event)"
     >

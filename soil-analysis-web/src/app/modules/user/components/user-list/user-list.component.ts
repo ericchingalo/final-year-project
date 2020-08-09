@@ -10,6 +10,9 @@ import { UserService } from '../../services/user.service';
 import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { FormComponent } from '../form/form.component';
 import { DeleteComponent } from '../delete/delete.component';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/store/reducers';
+import { deleteUser } from '../../../../store/actions/users.actions';
 
 @Component({
   selector: 'app-user-list',
@@ -34,7 +37,8 @@ export class UserListComponent implements OnInit, OnChanges {
   ];
   constructor(
     private readonly userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<State>
   ) {}
 
   ngOnInit() {
@@ -117,7 +121,7 @@ export class UserListComponent implements OnInit, OnChanges {
     });
   }
 
-  onDelete(e) {
+  onDelete(e, id) {
     if (e) {
       e.stopPropagation();
     }
@@ -128,6 +132,7 @@ export class UserListComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.store.dispatch(deleteUser({ id }));
       }
     });
   }

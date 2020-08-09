@@ -18,6 +18,7 @@ import {
 import { addUserFail } from '../actions/users.actions';
 import { editDevice, editDeviceSuccess } from '../actions/devices.actions';
 import { deviceSanitizer } from '../../modules/user/helpers/device-sanitizer.helper';
+import { SnackbarService } from '../../shared/services/snackbar.service';
 import {
   deleteDeviceSuccess,
   deleteDeviceFail,
@@ -27,7 +28,8 @@ import {
 export class DevicesEffects {
   constructor(
     private actions$: Actions,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private snackBarService: SnackbarService
   ) {}
 
   loadDevices$ = createEffect(() =>
@@ -64,7 +66,10 @@ export class DevicesEffects {
       mergeMap((action) =>
         this.deviceService.delete(action.id).pipe(
           map(
-            () => deleteDeviceSuccess({ id: action.id }),
+            () => {
+              this.snackBarService.openSnackBar('Deleted Device', 'OK');
+              return deleteDeviceSuccess({ id: action.id });
+            },
             catchError((res) =>
               of(deleteDeviceFail({ error: getErrorMessage(res) }))
             )

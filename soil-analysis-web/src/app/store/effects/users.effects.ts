@@ -25,10 +25,15 @@ import {
 } from '../actions/users.actions';
 import { getErrorMessage } from '../../shared/helpers/error-message.helper';
 import { userSanitizer } from '../../modules/user/helpers/user-sanitizer.helper';
+import { SnackbarService } from '../../shared/services/snackbar.service';
 
 @Injectable()
 export class UserEffects {
-  constructor(private actions$: Actions, private usersService: UserService) {}
+  constructor(
+    private actions$: Actions,
+    private usersService: UserService,
+    private readonly snackbarService: SnackbarService
+  ) {}
 
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
@@ -65,7 +70,10 @@ export class UserEffects {
       ofType(deleteUser),
       mergeMap((action) =>
         this.usersService.delete(action.id).pipe(
-          map(() => deleteUserSuccess({ id: action.id })),
+          map(() => {
+            this.snackbarService.openSnackBar('Deleted User', 'OK');
+            return deleteUserSuccess({ id: action.id });
+          }),
           catchError((res) =>
             of(deleteUserFail({ error: getErrorMessage(res) }))
           )
