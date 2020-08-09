@@ -22,7 +22,17 @@ export class FormComponent implements OnInit {
     this.formGroup = generateForm(this.formGroup, this.data.formData, this.fb);
   }
 
-  onDismissForm(): void {
+  onDismissForm(e): void {
+    if (e) {
+      e.stopPropagation();
+    }
     this.dialogRef.close();
+  }
+
+  onSubmitForm(e) {
+    if (e) {
+      e.stopPropagation();
+    }
+    this.dialogRef.close(this.formGroup.value);
   }
 }

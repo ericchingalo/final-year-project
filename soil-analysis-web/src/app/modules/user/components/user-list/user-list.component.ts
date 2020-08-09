@@ -12,7 +12,7 @@ import { FormComponent } from '../form/form.component';
 import { DeleteComponent } from '../delete/delete.component';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
-import { deleteUser } from '../../../../store/actions/users.actions';
+import { deleteUser, addUser } from '../../../../store/actions/users.actions';
 import { CookieService } from 'ngx-cookie-service';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
@@ -91,8 +91,8 @@ export class UserListComponent implements OnInit, OnChanges {
               value: 'admin',
             },
             {
-              label: 'Tester',
-              value: 'tester',
+              label: 'Soil Tester',
+              value: 'soil tester',
             },
             {
               label: 'Guest',
@@ -121,6 +121,8 @@ export class UserListComponent implements OnInit, OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        const user: User = { ...result, password: 'soiluser' };
+        this.store.dispatch(addUser({ user }));
       }
     });
   }

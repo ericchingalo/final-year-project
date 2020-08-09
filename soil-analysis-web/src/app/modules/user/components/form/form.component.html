@@ -35,14 +35,14 @@
     </mat-form-field>
 
     <div mat-dialog-actions>
-      <button mat-raised-button color="warn" (click)="onDismissForm()">
+      <button mat-raised-button color="warn" (click)="onDismissForm($event)">
         Cancel
       </button>
       <button
         mat-raised-button
         color="primary"
         [disabled]="!formGroup.valid"
-        [mat-dialog-close]="formGroup.value"
+        (click)="onSubmitForm($event)"
         cdkFocusInitial
       >
         Create

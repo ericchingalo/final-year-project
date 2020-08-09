@@ -5,4 +5,5 @@ export interface User {
   region: string;
   created: string;
   lastupdated: string;
+  password?: string;
 }
