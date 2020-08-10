@@ -7,7 +7,11 @@ import { loadDevices } from 'src/app/store/actions/devices.actions';
 import { loadUsers } from 'src/app/store/actions';
 import { Observable } from 'rxjs';
 import { User } from '../../modules/user/models/user.model';
-import { getCurrentUser } from '../../store/selectors/current-user.selector';
+import {
+  getCurrentUser,
+  getCurrentUserLoaded,
+  getCurrentUserLoading,
+} from '../../store/selectors/current-user.selector';
 
 @Component({
   selector: 'app-home',
@@ -15,22 +19,17 @@ import { getCurrentUser } from '../../store/selectors/current-user.selector';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  user: {
-    username: string;
-    role: string;
-  };
   currentUser$: Observable<User>;
+  currentUserLoading$: Observable<boolean>;
+  currentUserLoaded$: Observable<boolean>;
   constructor(public dialog: MatDialog, private store: Store<State>) {}
 
   ngOnInit() {
-    this.user = {
-      username: 'Chingalo',
-      role: 'Admin',
-    };
-
     this.store.dispatch(loadDevices());
     this.store.dispatch(loadUsers());
     this.currentUser$ = this.store.select(getCurrentUser);
+    this.currentUserLoaded$ = this.store.select(getCurrentUserLoaded);
+    this.currentUserLoading$ = this.store.select(getCurrentUserLoading);
   }
 
   onLogout(e) {

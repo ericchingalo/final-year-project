@@ -10,8 +10,15 @@
   <mat-sidenav #drawer opened mode="side" class="side-menu">
     <div class="user-container">
       <img class="user-icon" src="assets/icons/icon-user.svg" />
-      <div>{{ (currentUser$ | async).username }}</div>
-      <small>{{ (currentUser$ | async).roles }}</small>
+      <div *ngIf="currentUserLoaded$ | async">
+        <div>{{ (currentUser$ | async).username }}</div>
+        <small>{{ (currentUser$ | async).roles }}</small>
+      </div>
+
+      <div *ngIf="currentUserLoading$ | async">
+        <div>Username loading ...</div>
+        <small>User role loading ...</small>
+      </div>
       <hr />
     </div>
 
