@@ -7,3 +7,10 @@ export function deviceSanitizer(data: any[]): Device[] {
     user: device.user.username,
   }));
 }
+
+export function sanitizeSingleDevice(device: any) {
+  return {
+    ...device,
+    user: device.user.username,
+  };
+}

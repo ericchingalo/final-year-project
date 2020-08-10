@@ -11,6 +11,6 @@ export function userSanitizer(users: any[]): User[] {
 export function sanitizeCurrentUser(user: any): User {
   return {
     ...user,
-    roles: _.map(user.roles, (role) => role.name),
+    roles: user.roles ? _.map(user.roles, (role) => role.name) : [],
   };
 }

@@ -19,7 +19,7 @@ export class BaseService<T> {
     return this.http.get(`${this.url}/${endpoint}/${id}`);
   }
 
-  create(endpoint: string, data: T): Observable<any> {
+  create(endpoint: string, data: T | any): Observable<any> {
     return this.http.post(`${this.url}/${endpoint}`, data);
   }
 

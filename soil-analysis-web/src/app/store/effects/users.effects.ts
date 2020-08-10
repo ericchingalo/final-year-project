@@ -24,7 +24,10 @@ import {
   editUserFail,
 } from '../actions/users.actions';
 import { getErrorMessage } from '../../shared/helpers/error-message.helper';
-import { userSanitizer } from '../../modules/user/helpers/user-sanitizer.helper';
+import {
+  userSanitizer,
+  sanitizeCurrentUser,
+} from '../../modules/user/helpers/user-sanitizer.helper';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 
 @Injectable()
@@ -55,7 +58,7 @@ export class UserEffects {
       mergeMap((action) =>
         this.usersService.create(action.user).pipe(
           map(
-            (user) => addUserSuccess({ user }),
+            (user) => addUserSuccess({ user: sanitizeCurrentUser(user) }),
             catchError((res) =>
               of(addUserFail({ error: getErrorMessage(res) }))
             )

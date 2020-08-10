@@ -14,7 +14,7 @@ export class DeviceService {
     return this.http.findAll(this.endpoint);
   }
 
-  create(device: Device): Observable<any> {
+  create(device: { user: string }): Observable<any> {
     return this.http.create(this.endpoint, device);
   }
 

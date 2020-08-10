@@ -17,7 +17,10 @@ import {
 } from '../actions/devices.actions';
 import { addUserFail } from '../actions/users.actions';
 import { editDevice, editDeviceSuccess } from '../actions/devices.actions';
-import { deviceSanitizer } from '../../modules/user/helpers/device-sanitizer.helper';
+import {
+  deviceSanitizer,
+  sanitizeSingleDevice,
+} from '../../modules/user/helpers/device-sanitizer.helper';
 import { SnackbarService } from '../../shared/services/snackbar.service';
 import {
   deleteDeviceSuccess,
@@ -53,7 +56,9 @@ export class DevicesEffects {
       ofType(addDevice),
       mergeMap((action) =>
         this.deviceService.create(action.device).pipe(
-          map((device) => addDeviceSuccess({ device })),
+          map((device) =>
+            addDeviceSuccess({ device: sanitizeSingleDevice(device) })
+          ),
           catchError((res) => of(addUserFail({ error: getErrorMessage(res) })))
         )
       )
