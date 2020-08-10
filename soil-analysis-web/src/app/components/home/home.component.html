@@ -11,7 +11,7 @@
     <div class="user-container">
       <img class="user-icon" src="assets/icons/icon-user.svg" />
       <div>{{ (currentUser$ | async).username }}</div>
-      <small>{{ (currentUser$ | async).roles | arrayToString }}</small>
+      <small>{{ (currentUser$ | async).roles }}</small>
       <hr />
     </div>
 

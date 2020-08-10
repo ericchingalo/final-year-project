@@ -32,6 +32,6 @@ export class BaseService<T> {
   }
 
   delete(endpoint: string, id: string): Observable<any> {
-    return this.http.delete(`${this.url}//${endpoint}/${id}`);
+    return this.http.delete(`${this.url}/${endpoint}/${id}`);
   }
 }

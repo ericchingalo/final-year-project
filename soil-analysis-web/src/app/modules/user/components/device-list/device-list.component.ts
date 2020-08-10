@@ -16,6 +16,7 @@ import { State } from 'src/app/store/reducers';
 import {
   deleteDevice,
   addDevice,
+  editDevice,
 } from '../../../../store/actions/devices.actions';
 import { User } from '../../models/user.model';
 
@@ -113,12 +114,27 @@ export class DeviceListComponent implements OnInit, OnChanges {
     });
   }
 
-  onEdit(e) {
+  onEdit(e, id: string) {
     if (e) {
       e.stopPropagation();
     }
 
-    // open edit dialog
+    const dialogRef = this.dialog.open(FormComponent, {
+      width: '400px',
+      height: '200px',
+      data: {
+        formData: this.deviceFormData,
+        title: 'Edit Device',
+        editing: true,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const device = { ...result, id };
+        this.store.dispatch(editDevice({ device }));
+      }
+    });
   }
 
   getUserOptions(): { label: string; value: string } {

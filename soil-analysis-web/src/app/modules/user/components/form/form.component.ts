@@ -14,12 +14,22 @@ export class FormComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<FormComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { formData: CustomFormData; title: string },
+    public data: {
+      formData: CustomFormData;
+      title: string;
+      editing: boolean;
+      formValues: any;
+    },
     private readonly fb: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.formGroup = generateForm(this.formGroup, this.data.formData, this.fb);
+    this.formGroup = generateForm(
+      this.formGroup,
+      this.data.formData,
+      this.fb,
+      this.data.formValues
+    );
   }
 
   onDismissForm(e): void {

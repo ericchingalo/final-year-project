@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as _ from 'lodash';
+
 import { User } from '../../models/user.model';
 import {
   MatTableDataSource,
@@ -10,9 +13,12 @@ import { UserService } from '../../services/user.service';
 import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { FormComponent } from '../form/form.component';
 import { DeleteComponent } from '../delete/delete.component';
-import { Store } from '@ngrx/store';
 import { State } from 'src/app/store/reducers';
-import { deleteUser, addUser } from '../../../../store/actions/users.actions';
+import {
+  deleteUser,
+  addUser,
+  editUser,
+} from '../../../../store/actions/users.actions';
 import { CookieService } from 'ngx-cookie-service';
 import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
@@ -149,11 +155,26 @@ export class UserListComponent implements OnInit, OnChanges {
     });
   }
 
-  onEdit(e) {
+  onEdit(e, id) {
     if (e) {
       e.stopPropagation();
     }
+    const dialogRef = this.dialog.open(FormComponent, {
+      width: '400px',
+      height: '410px',
+      data: {
+        formData: this.userFormData,
+        title: 'Edit User',
+        editing: true,
+        formValues: _.find(this.users, (user: User) => user.id === id),
+      },
+    });
 
-    // open edit dialog
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const user: User = { ...result, id };
+        this.store.dispatch(editUser({ user }));
+      }
+    });
   }
 }

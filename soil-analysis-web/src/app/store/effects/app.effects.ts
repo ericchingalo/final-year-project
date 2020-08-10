@@ -40,5 +40,7 @@ export class AppEffects {
     )
   );
 
-  init$ = createEffect(() => defer(() => of(loadCurrentUser({ id: this.id }))));
+  init$ = createEffect(() =>
+    defer(() => (this.id ? of(loadCurrentUser({ id: this.id })) : null))
+  );
 }

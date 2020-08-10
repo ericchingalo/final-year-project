@@ -100,7 +100,7 @@ export class UserEffects {
                 id: user.id,
                 changes: {
                   ...user,
-                  roles: _.map(user.roles, (role) => role.name),
+                  roles: user.roles.name,
                 },
               },
             })
