@@ -7,11 +7,14 @@ import { loadDevices } from 'src/app/store/actions/devices.actions';
 import { loadUsers } from 'src/app/store/actions';
 import { Observable } from 'rxjs';
 import { User } from '../../modules/user/models/user.model';
+import { getUsersLoading } from '../../store/selectors/users.selectors';
 import {
   getCurrentUser,
   getCurrentUserLoaded,
   getCurrentUserLoading,
 } from '../../store/selectors/current-user.selector';
+import { getDevicesLoadingState } from '../../store/selectors/devices.selectors';
+import { getResultsLoadingState } from 'src/app/modules/dashboard/store/selectors';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +25,9 @@ export class HomeComponent implements OnInit {
   currentUser$: Observable<User>;
   currentUserLoading$: Observable<boolean>;
   currentUserLoaded$: Observable<boolean>;
+  userLoading$: Observable<boolean>;
+  deviceLoading$: Observable<boolean>;
+  resultsLoading$: Observable<boolean>;
   constructor(public dialog: MatDialog, private store: Store<State>) {}
 
   ngOnInit() {
@@ -30,6 +36,9 @@ export class HomeComponent implements OnInit {
     this.currentUser$ = this.store.select(getCurrentUser);
     this.currentUserLoaded$ = this.store.select(getCurrentUserLoaded);
     this.currentUserLoading$ = this.store.select(getCurrentUserLoading);
+    this.userLoading$ = this.store.select(getUsersLoading);
+    this.deviceLoading$ = this.store.select(getDevicesLoadingState);
+    this.resultsLoading$ = this.store.select(getResultsLoadingState);
   }
 
   onLogout(e) {

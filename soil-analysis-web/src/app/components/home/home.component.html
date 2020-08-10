@@ -52,6 +52,23 @@
 
   <!-- main content -->
   <div class="home-container">
-    <router-outlet></router-outlet>
+    <router-outlet
+      *ngIf="
+        !(
+          (userLoading$ | async) ||
+          (deviceLoading$ | async) ||
+          (resultsLoading$ | async)
+        )
+      "
+    ></router-outlet>
+    <mat-progress-spinner
+      *ngIf="
+        (userLoading$ | async) ||
+        (deviceLoading$ | async) ||
+        (resultsLoading$ | async)
+      "
+      style="margin: 30vh auto;"
+      mode="indeterminate"
+    ></mat-progress-spinner>
   </div>
 </mat-sidenav-container>

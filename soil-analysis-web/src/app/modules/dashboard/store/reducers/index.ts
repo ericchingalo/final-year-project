@@ -3,7 +3,7 @@ import * as fromResults from '../states/results.state';
 import { ActionReducerMap } from '@ngrx/store';
 import { ResultsReducer } from './results.reducers';
 
-export interface ResultsState {
+export interface ResultsFeatureState {
   results: fromResults.ResultsState;
 }
 
@@ -11,9 +11,9 @@ export interface ResultsState {
  * create feature state
  */
 export interface State extends fromRoot.State {
-  results: ResultsState;
+  results: ResultsFeatureState;
 }
 
-export const reducers: ActionReducerMap<ResultsState> = {
+export const reducers: ActionReducerMap<ResultsFeatureState> = {
   results: ResultsReducer,
 };
