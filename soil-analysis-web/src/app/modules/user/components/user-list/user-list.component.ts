@@ -91,7 +91,7 @@ export class UserListComponent implements OnInit, OnChanges {
           label: 'Roles',
           formControlName: 'roles',
           type: 'select',
-          multiple: true,
+          multiple: false,
           options: [
             {
               label: 'Admin',

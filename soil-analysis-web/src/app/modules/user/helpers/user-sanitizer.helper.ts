@@ -4,7 +4,7 @@ import { User } from '../models/user.model';
 export function userSanitizer(users: any[]): User[] {
   return _.map(users, (user) => ({
     ...user,
-    roles: user.roles.name,
+    roles: user.roles ? user.roles.name : '',
   }));
 }
 
