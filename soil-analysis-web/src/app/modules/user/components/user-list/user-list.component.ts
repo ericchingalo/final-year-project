@@ -98,8 +98,8 @@ export class UserListComponent implements OnInit, OnChanges {
               value: 'admin',
             },
             {
-              label: 'Soil Tester',
-              value: 'soil tester',
+              label: 'Tester',
+              value: 'tester',
             },
             {
               label: 'Guest',
