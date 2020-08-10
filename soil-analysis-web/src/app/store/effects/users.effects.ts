@@ -59,9 +59,11 @@ export class UserEffects {
         this.usersService.create(action.user).pipe(
           map(
             (user) => addUserSuccess({ user: sanitizeCurrentUser(user) }),
-            catchError((res) =>
-              of(addUserFail({ error: getErrorMessage(res) }))
-            )
+            catchError((res) => {
+              const err: string = getErrorMessage(res);
+              this.snackbarService.openSnackBar(err, 'OK');
+              return of(addUserFail({ error: err }));
+            })
           )
         )
       )
@@ -77,9 +79,11 @@ export class UserEffects {
             this.snackbarService.openSnackBar('Deleted User', 'OK');
             return deleteUserSuccess({ id: action.id });
           }),
-          catchError((res) =>
-            of(deleteUserFail({ error: getErrorMessage(res) }))
-          )
+          catchError((res) => {
+            const err: string = getErrorMessage(res);
+            this.snackbarService.openSnackBar(err, 'OK');
+            return of(deleteUserFail({ error: err }));
+          })
         )
       )
     )
@@ -101,7 +105,11 @@ export class UserEffects {
               },
             })
           ),
-          catchError((res) => of(editUserFail({ error: getErrorMessage(res) })))
+          catchError((res) => {
+            const err: string = getErrorMessage(res);
+            this.snackbarService.openSnackBar(err, 'OK');
+            return of(editUserFail({ error: err }));
+          })
         )
       )
     )

@@ -15,8 +15,12 @@ import {
   loadDevicesSuccess,
   loadDevicesFail,
 } from '../actions/devices.actions';
-import { addUserFail } from '../actions/users.actions';
-import { editDevice, editDeviceSuccess } from '../actions/devices.actions';
+import {
+  editDevice,
+  editDeviceSuccess,
+  editDeviceFail,
+  addDeviceFail,
+} from '../actions/devices.actions';
 import {
   deviceSanitizer,
   sanitizeSingleDevice,
@@ -59,7 +63,11 @@ export class DevicesEffects {
           map((device) =>
             addDeviceSuccess({ device: sanitizeSingleDevice(device) })
           ),
-          catchError((res) => of(addUserFail({ error: getErrorMessage(res) })))
+          catchError((res) => {
+            const err: string = getErrorMessage(res);
+            this.snackBarService.openSnackBar(err, 'OK');
+            return of(addDeviceFail({ error: err }));
+          })
         )
       )
     )
@@ -75,9 +83,11 @@ export class DevicesEffects {
               this.snackBarService.openSnackBar('Deleted Device', 'OK');
               return deleteDeviceSuccess({ id: action.id });
             },
-            catchError((res) =>
-              of(deleteDeviceFail({ error: getErrorMessage(res) }))
-            )
+            catchError((res) => {
+              const err: string = getErrorMessage(res);
+              this.snackBarService.openSnackBar(err, 'OK');
+              return of(deleteDeviceFail({ error: err }));
+            })
           )
         )
       )
@@ -89,12 +99,18 @@ export class DevicesEffects {
       ofType(editDevice),
       mergeMap((action) =>
         this.deviceService.update(action.device.id, action.device).pipe(
-          map((device) =>
-            editDeviceSuccess({
-              device: {
-                id: action.device.id,
-                changes: { ...device, user: device.user.username },
-              },
+          map(
+            (device) =>
+              editDeviceSuccess({
+                device: {
+                  id: action.device.id,
+                  changes: { ...device, user: device.user.username },
+                },
+              }),
+            catchError((res) => {
+              const err: string = getErrorMessage(res);
+              this.snackBarService.openSnackBar(err, 'OK');
+              return of(editDeviceFail({ error: err }));
             })
           )
         )
