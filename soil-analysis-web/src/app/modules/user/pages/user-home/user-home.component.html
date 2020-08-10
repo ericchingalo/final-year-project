@@ -1,5 +1,12 @@
 <div class="user-container">
-  <mat-tab-group mat-align-tabs="center">
+  <mat-progress-bar
+    mode="indeterminate"
+    *ngIf="(userLoading$ | async) && (deviceLoading$ | async)"
+  ></mat-progress-bar>
+  <mat-tab-group
+    mat-align-tabs="center"
+    *ngIf="(userLoaded$ | async) && (deviceLoaded$ | async)"
+  >
     <mat-tab label="Users">
       <app-user-list [users]="users$ | async"></app-user-list>
     </mat-tab>

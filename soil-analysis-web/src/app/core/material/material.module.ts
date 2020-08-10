@@ -20,6 +20,7 @@ import {
   MatDialogModule,
   MatTabsModule,
   MatTooltipModule,
+  MatProgressBarModule,
 } from '@angular/material';
 
 @NgModule({
@@ -44,6 +45,7 @@ import {
     MatDialogModule,
     MatTabsModule,
     MatTooltipModule,
+    MatProgressBarModule,
   ],
 })
 export class MaterialModule {}
