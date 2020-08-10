@@ -12,7 +12,7 @@ export interface BaseState {
 }
 
 export const initialBaseState: BaseState = {
-  loading: true,
+  loading: false,
   loaded: false,
   updated: false,
   updating: false,

@@ -120,7 +120,10 @@ export class DevicesEffects {
               editDeviceSuccess({
                 device: {
                   id: action.device.id,
-                  changes: { ...device, user: device.user.username },
+                  changes: {
+                    ...device,
+                    user: device.user ? device.user.username : '',
+                  },
                 },
               }),
             catchError((res) => {
