@@ -5,7 +5,10 @@
 </mat-toolbar>
 
 <!-- contents -->
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container
+  class="sidenav-container"
+  *ngIf="currentUserLoaded$ | async"
+>
   <!-- left sidenav -->
   <mat-sidenav #drawer opened mode="side" class="side-menu">
     <div class="user-container">

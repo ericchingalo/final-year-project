@@ -10,7 +10,7 @@ export const getAllResults = createSelector(getResultsState, selectAllResults);
 
 export const getOriginalResultState = createSelector(
   getResultsState,
-  (state: ResultsFeatureState) => state.results
+  (state: ResultsFeatureState) => (state ? state.results : null)
 );
 
 export const getResultsLoadingState = createSelector(

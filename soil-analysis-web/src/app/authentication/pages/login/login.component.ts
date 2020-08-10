@@ -54,8 +54,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (user: any) => {
           this.saveUserOnCookie(user.id);
-          this.store.dispatch(loadCurrentUser({ id: user.id }));
           this.router.navigate(['/']);
+          this.store.dispatch(loadCurrentUser({ id: user.id }));
         },
         (response: any) => {
           this.snackBarService.openSnackBar(

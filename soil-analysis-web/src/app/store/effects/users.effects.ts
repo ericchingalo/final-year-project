@@ -29,13 +29,17 @@ import {
   sanitizeCurrentUser,
 } from '../../modules/user/helpers/user-sanitizer.helper';
 import { SnackbarService } from '../../shared/services/snackbar.service';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class UserEffects {
   constructor(
     private actions$: Actions,
     private usersService: UserService,
-    private readonly snackbarService: SnackbarService
+    private readonly snackbarService: SnackbarService,
+    private router: Router,
+    private cookieService: CookieService
   ) {}
 
   loadUsers$ = createEffect(() =>
@@ -44,9 +48,13 @@ export class UserEffects {
       switchMap(() =>
         this.usersService.findAll().pipe(
           map((users) => loadUsersSuccess({ users: userSanitizer(users) })),
-          catchError((res) =>
-            of(loadUsersFail({ error: getErrorMessage(res) }))
-          )
+          catchError((res) => {
+            if (res.status === 401) {
+              this.cookieService.delete('soil-user', '/');
+              this.router.navigate(['/']);
+            }
+            return of(loadUsersFail({ error: getErrorMessage(res) }));
+          })
         )
       )
     )
@@ -60,6 +68,10 @@ export class UserEffects {
           map(
             (user) => addUserSuccess({ user: sanitizeCurrentUser(user) }),
             catchError((res) => {
+              if (res.status === 401) {
+                this.cookieService.delete('soil-user', '/');
+                this.router.navigate(['/']);
+              }
               const err: string = getErrorMessage(res);
               this.snackbarService.openSnackBar(err, 'OK');
               return of(addUserFail({ error: err }));
@@ -80,6 +92,10 @@ export class UserEffects {
             return deleteUserSuccess({ id: action.id });
           }),
           catchError((res) => {
+            if (res.status === 401) {
+              this.cookieService.delete('soil-user', '/');
+              this.router.navigate(['/']);
+            }
             const err: string = getErrorMessage(res);
             this.snackbarService.openSnackBar(err, 'OK');
             return of(deleteUserFail({ error: err }));
@@ -106,6 +122,10 @@ export class UserEffects {
             })
           ),
           catchError((res) => {
+            if (res.status === 401) {
+              this.cookieService.delete('soil-user', '/');
+              this.router.navigate(['/']);
+            }
             const err: string = getErrorMessage(res);
             this.snackbarService.openSnackBar(err, 'OK');
             return of(editUserFail({ error: err }));

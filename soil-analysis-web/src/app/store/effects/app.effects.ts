@@ -11,6 +11,7 @@ import { mergeMap, map, catchError } from 'rxjs/operators';
 import { loadCurrentUserFail } from '../actions/app.actions';
 import { getErrorMessage } from '../../shared/helpers/error-message.helper';
 import { sanitizeCurrentUser } from '../../modules/user/helpers/user-sanitizer.helper';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AppEffects {
@@ -18,7 +19,8 @@ export class AppEffects {
   constructor(
     private actions$: Actions,
     private cookieService: CookieService,
-    private userService: UserService
+    private userService: UserService,
+    private readonly router: Router
   ) {
     this.id = this.cookieService.get('soil-user');
   }
@@ -31,9 +33,16 @@ export class AppEffects {
           map(
             (user) =>
               loadCurrentUserSuccess({ user: sanitizeCurrentUser(user) }),
-            catchError((error) =>
-              of(loadCurrentUserFail({ error: getErrorMessage(error) }))
-            )
+            catchError((res) => {
+              if (res.status === 401) {
+                this.cookieService.delete('soil-user', '/');
+                this.router.navigate(['/']);
+              }
+
+              return of(
+                loadCurrentUserFail({ error: getErrorMessage(res.error) })
+              );
+            })
           )
         )
       )
