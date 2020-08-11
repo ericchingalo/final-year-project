@@ -23,6 +23,7 @@ export class RegionPieChartComponent implements OnInit {
 
   ngOnInit() {
     this.regionDataCount = getRegionCount(this.results);
+    console.log(this.regionDataCount);
     this.chartOptions = this.getChartOptions();
     HC_exporting(Highcharts);
   }
@@ -63,7 +64,7 @@ export class RegionPieChartComponent implements OnInit {
           name: 'Data collected',
           colorByPoint: true,
           type: undefined,
-          data: sanitizeRegionCountDataSeries(this.regionDataCount),
+          data: sanitizeRegionCountDataSeries(this.regionDataCount) || [],
         },
       ],
     };

@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './store/reducers/results.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effetcs';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [...pages, ...components, ...pipes],
@@ -20,6 +21,7 @@ import { effects } from './store/effetcs';
     DashboardRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
+    SharedModule,
     HighchartsChartModule,
     StoreModule.forFeature('results', reducer),
     EffectsModule.forFeature(effects),
