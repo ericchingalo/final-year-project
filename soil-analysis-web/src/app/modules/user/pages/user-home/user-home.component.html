@@ -5,7 +5,7 @@
   ></mat-progress-bar>
   <mat-tab-group
     mat-align-tabs="center"
-    *ngIf="(userLoaded$ | async) && (deviceLoaded$ | async)"
+    *ngIf="!((userLoading$ | async) && (deviceLoading$ | async))"
   >
     <mat-tab label="Users">
       <app-user-list [users]="users$ | async"></app-user-list>
