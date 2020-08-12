@@ -4,7 +4,7 @@ import * as _ from 'lodash';
   name: 'access',
 })
 export class AccessPipe implements PipeTransform {
-  transform(value: string): boolean {
+  transform(value: string | string[]): boolean {
     const unauthorized = ['tester', 'guest'];
     return !_.includes(unauthorized, value);
   }
