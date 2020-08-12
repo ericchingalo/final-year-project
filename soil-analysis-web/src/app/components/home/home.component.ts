@@ -15,6 +15,7 @@ import {
 } from '../../store/selectors/current-user.selector';
 import { getDevicesLoadingState } from '../../store/selectors/devices.selectors';
 import { getResultsLoadingState } from 'src/app/modules/dashboard/store/selectors';
+import { loadResults } from '../../modules/dashboard/store/actions/results.actions';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(loadDevices());
     this.store.dispatch(loadUsers());
+    this.store.dispatch(loadResults());
     this.currentUser$ = this.store.select(getCurrentUser);
     this.currentUserLoaded$ = this.store.select(getCurrentUserLoaded);
     this.currentUserLoading$ = this.store.select(getCurrentUserLoading);

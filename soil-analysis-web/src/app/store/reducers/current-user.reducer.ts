@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import {
   loadCurrentUser,
   loadCurrentUserSuccess,
@@ -27,6 +27,9 @@ export const reducer = createReducer(
   }))
 );
 
-export function CurrentUserReducer(state, action): CurrentUserState {
+export function CurrentUserReducer(
+  state: CurrentUserState | undefined,
+  action: Action
+): CurrentUserState {
   return reducer(state, action);
 }

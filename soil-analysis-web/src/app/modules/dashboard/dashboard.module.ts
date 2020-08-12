@@ -9,10 +9,10 @@ import { components } from './components';
 import { pipes } from './pipes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { reducer } from './store/reducers/results.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effetcs';
 import { SharedModule } from '../../shared/shared.module';
+import { reducers } from './store/reducers/index';
 
 @NgModule({
   declarations: [...pages, ...components, ...pipes],
@@ -23,7 +23,7 @@ import { SharedModule } from '../../shared/shared.module';
     MaterialModule,
     SharedModule,
     HighchartsChartModule,
-    StoreModule.forFeature('results', reducer),
+    StoreModule.forFeature('results', reducers),
     EffectsModule.forFeature(effects),
   ],
 })

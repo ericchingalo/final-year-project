@@ -30,7 +30,6 @@ export class DashboardHomeComponent implements OnInit, OnChanges {
     this.results = this.resultsService.getResults();
     this.resizeWindow();
     this.showCustomGraph = false;
-    this.store.dispatch(loadResults());
   }
 
   ngOnChanges() {

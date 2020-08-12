@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import {
   deleteDevice,
   deleteDeviceSuccess,
@@ -76,6 +76,9 @@ export const reducer = createReducer(
   }))
 );
 
-export function DevicesReducer(state, action): DevicesState {
+export function DevicesReducer(
+  state: DevicesState | undefined,
+  action: Action
+): DevicesState {
   return reducer(state, action);
 }

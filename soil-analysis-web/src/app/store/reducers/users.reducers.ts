@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import { initialUsersState, userAdapter, UsersState } from '../state';
 import { loadUsers, loadUsersFail, loadUsersSuccess } from '../actions';
 import { editUserSuccess, editUserFail } from '../actions/users.actions';
@@ -68,6 +68,9 @@ export const reducer = createReducer(
   }))
 );
 
-export function UsersReducer(state, action): UsersState {
+export function UsersReducer(
+  state: UsersState | undefined,
+  action: Action
+): UsersState {
   return reducer(state, action);
 }

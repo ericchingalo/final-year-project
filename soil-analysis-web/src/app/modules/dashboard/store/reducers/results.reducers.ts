@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, on, Action } from '@ngrx/store';
 import {
   initialResultsState,
   ResultsState,
@@ -15,7 +15,7 @@ import {
 } from 'src/app/store/state/base.state';
 import { errorBaseState } from '../../../../store/state/base.state';
 
-export const reducer = createReducer(
+const reducer = createReducer(
   initialResultsState,
   on(loadResults, (state) => ({ ...state, ...loadingBaseState })),
   on(loadResultsSuccess, (state, { results }) =>
@@ -28,6 +28,9 @@ export const reducer = createReducer(
   }))
 );
 
-export function ResultsReducer(state, action): ResultsState {
+export function ResultsReducer(
+  state: ResultsState | undefined,
+  action: Action
+): ResultsState {
   return reducer(state, action);
 }

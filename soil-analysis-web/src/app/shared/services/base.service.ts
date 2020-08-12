@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class BaseService<T> {
   url: string;
   constructor(private readonly http: HttpClient) {
-    this.url = `api`;
+    this.url = `https://chingalo.site/soil-analysis/api`;
   }
 
   findAll(endpoint: string): Observable<any> {
