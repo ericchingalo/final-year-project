@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { environment } from 'src/environments/environment';
 import { effects } from './store/effects/index';
 import { SharedModule } from './shared/shared.module';
+import { BasicAuthInterceptor } from './authentication/services/basic-authentication-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, ...components],
@@ -41,8 +42,10 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     CookieService,
   ],
+
   bootstrap: [AppComponent],
   entryComponents: [LogoutComponent],
 })

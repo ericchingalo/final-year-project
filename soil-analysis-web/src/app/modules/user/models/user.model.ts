@@ -6,4 +6,5 @@ export interface User {
   created: string;
   lastupdated: string;
   password?: string;
+  authdata?: string;
 }

@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { SnackbarService } from '../../shared/services/snackbar.service';
+import { AuthService } from '../../authentication/services/auth.service';
 
 @Component({
   selector: 'app-logout',
@@ -14,7 +15,8 @@ export class LogoutComponent implements OnInit {
     public dialogRef: MatDialogRef<LogoutComponent>,
     private readonly router: Router,
     private coockieService: CookieService,
-    private snackBarService: SnackbarService
+    private snackBarService: SnackbarService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {}
@@ -35,8 +37,9 @@ export class LogoutComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  logoutUser() {
+  async logoutUser() {
     this.coockieService.delete('soil-user', '/');
+    await this.authService.logout();
     this.router.navigate(['/login']);
     this.snackBarService.openSnackBar('Logged Out', '');
   }
