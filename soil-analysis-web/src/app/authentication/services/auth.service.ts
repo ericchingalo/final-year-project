@@ -12,6 +12,7 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {
     this.endpoint = 'users/login';
     this.url = 'https://chingalo.site/soil-analysis/api';
+    // this.url = 'api';
   }
 
   login(userCreadentials: UserCredentials): Observable<any> {
