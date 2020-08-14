@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as _ from 'lodash';
+
 import { User } from '../../models/user.model';
 import {
   MatTableDataSource,
@@ -10,15 +13,25 @@ import { UserService } from '../../services/user.service';
 import { CustomFormData } from '../../../../shared/models/form-data.model';
 import { FormComponent } from '../form/form.component';
 import { DeleteComponent } from '../delete/delete.component';
+import { State } from 'src/app/store/reducers';
+import {
+  deleteUser,
+  addUser,
+  editUser,
+} from '../../../../store/actions/users.actions';
+import { CookieService } from 'ngx-cookie-service';
+import { SnackbarService } from '../../../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss'],
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  @Input() users: User[];
 
   dataSource: MatTableDataSource<User>;
   userFormData: CustomFormData;
@@ -32,13 +45,19 @@ export class UserListComponent implements OnInit {
   ];
   constructor(
     private readonly userService: UserService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<State>,
+    private readonly cookieService: CookieService,
+    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit() {
-    const data = this.userService.getDummyUsers();
-    this.initializeMatTable(data);
     this.userFormData = this.getUserFormData();
+  }
+
+  ngOnChanges() {
+    const data = this.users;
+    this.initializeMatTable(data);
   }
 
   initializeMatTable(data: User[]): void {
@@ -72,6 +91,7 @@ export class UserListComponent implements OnInit {
           label: 'Roles',
           formControlName: 'roles',
           type: 'select',
+          multiple: false,
           options: [
             {
               label: 'Admin',
@@ -108,13 +128,13 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Created User');
-        console.log(result);
+        const user: User = { ...result, password: 'soiluser' };
+        this.store.dispatch(addUser({ user }));
       }
     });
   }
 
-  onDelete(e) {
+  onDelete(e, id) {
     if (e) {
       e.stopPropagation();
     }
@@ -125,16 +145,36 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
+        const user = this.cookieService.get('soil-user');
+        if (user === id) {
+          this.snackbarService.openSnackBar(`Can't delete current User`, 'OK');
+        } else {
+          this.store.dispatch(deleteUser({ id }));
+        }
       }
     });
   }
 
-  onEdit(e) {
+  onEdit(e, id) {
     if (e) {
       e.stopPropagation();
     }
+    const dialogRef = this.dialog.open(FormComponent, {
+      width: '400px',
+      height: '410px',
+      data: {
+        formData: this.userFormData,
+        title: 'Edit User',
+        editing: true,
+        formValues: _.find(this.users, (user: User) => user.id === id),
+      },
+    });
 
-    // open edit dialog
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        const user: User = { ...result, id };
+        this.store.dispatch(editUser({ user }));
+      }
+    });
   }
 }

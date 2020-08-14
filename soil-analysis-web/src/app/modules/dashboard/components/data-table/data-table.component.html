@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8" *ngIf="(dataSource || []).length > 0">
   <table
     mat-table
     [dataSource]="tableDataSource"
@@ -42,3 +42,9 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20, 25, 50, 100]"></mat-paginator>
 </div>
+
+<mat-card style="height: 35vh;" *ngIf="(dataSource || []).length === 0">
+  <mat-card-content>
+    <app-no-data-found></app-no-data-found>
+  </mat-card-content>
+</mat-card>

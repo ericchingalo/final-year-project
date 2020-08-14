@@ -8,15 +8,13 @@ import { SnackbarService } from '../../../../shared/services/snackbar.service';
   styleUrls: ['./delete.component.scss'],
 })
 export class DeleteComponent implements OnInit {
-  public data: boolean;
+  public data = true;
   constructor(
     public dialogRef: MatDialogRef<DeleteComponent>,
     private snackBarService: SnackbarService
   ) {}
 
-  ngOnInit() {
-    this.data = true;
-  }
+  ngOnInit() {}
 
   onCancel(e) {
     if (e) {
@@ -30,7 +28,7 @@ export class DeleteComponent implements OnInit {
       e.stopPropagation();
     }
 
-    this.dialogRef.close();
+    this.dialogRef.close(this.data);
     this.snackBarService.openSnackBar('Deleting', 'OK');
   }
 }
