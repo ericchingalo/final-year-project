@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { AuthService } from '../../../launch/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-account',
@@ -12,6 +14,8 @@ export class AccountPage implements OnInit {
     private router: Router,
     private navCtrl: NavController,
     private alertController: AlertController,
+    private readonly authService: AuthService,
+    private readonly cookieService: CookieService,
   ) {}
 
   ngOnInit() {}
@@ -36,7 +40,9 @@ export class AccountPage implements OnInit {
         },
         {
           text: 'Logout',
-          handler: () => {
+          handler: async () => {
+            this.cookieService.delete('soil-user', '/');
+            await this.authService.logout();
             this.navCtrl.navigateRoot('/launch/auth');
           },
         },

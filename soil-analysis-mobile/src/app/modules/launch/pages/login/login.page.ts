@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { generateForm } from '../../../../shared/helpers/form-generator';
 import { LoadingController, NavController } from '@ionic/angular';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../../services/auth.service';
+import { UserCredential } from '../../../account/models/user-credential.model';
+import { take } from 'rxjs/operators';
+import { ToastService } from '../../../../shared/services/toast-service.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +24,9 @@ export class LoginPage implements OnInit {
     private readonly navCtrl: NavController,
     private readonly formBuilder: FormBuilder,
     private loadingController: LoadingController,
+    private readonly cookieService: CookieService,
+    private readonly authService: AuthService,
+    private readonly toastService: ToastService,
   ) {}
 
   ngOnInit() {
@@ -33,11 +41,30 @@ export class LoginPage implements OnInit {
 
   onLogin() {
     this.presentLoading();
-    setTimeout(() => {
-      this.navCtrl.navigateRoot('tabs/history');
-      this.loginForm.reset();
-      this.loginLoader.dismiss();
-    }, 3000);
+    const userCredentials: UserCredential = this.loginForm.value;
+    this.authService
+      .login(userCredentials)
+      .pipe(take(1))
+      .subscribe(
+        (user) => {
+          this.saveUserOnCookie(user.id);
+          this.navCtrl.navigateRoot('tabs/history');
+          this.loginForm.reset();
+          this.loginLoader.dismiss();
+        },
+        (response) => {
+          this.loginLoader.dismiss();
+          this.toastService.presentToast(
+            response.error ? response.error.message : 'Failed to Login',
+          );
+        },
+      );
+
+    // setTimeout(() => {
+    // this.navCtrl.navigateRoot('tabs/history');
+    // this.loginForm.reset();
+    // this.loginLoader.dismiss();
+    // }, 3000);
   }
 
   async presentLoading() {
@@ -45,6 +72,11 @@ export class LoginPage implements OnInit {
       message: 'Logging in...',
     });
     this.loginLoader.present();
+  }
+
+  saveUserOnCookie(id: string) {
+    const expires = 60 * 60 * 7 * 1000;
+    const cookie = this.cookieService.set('soil-user', id, expires);
   }
 
   getLoginFormData() {
@@ -55,12 +87,6 @@ export class LoginPage implements OnInit {
           label: 'User Name',
           type: 'text',
           required: true,
-        },
-        {
-          formControlName: 'deviceId',
-          required: true,
-          type: 'number',
-          label: 'Device ID',
         },
         {
           formControlName: 'password',
