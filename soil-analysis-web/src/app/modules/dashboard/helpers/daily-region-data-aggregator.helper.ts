@@ -16,7 +16,7 @@ function getRegionData(regionData) {
       const results = _.flattenDeep(
         _.map(_.keys(resultsByParameter), (parameter) => {
           const value = _.meanBy(resultsByParameter[parameter] || [], 'value');
-          return { parameter, value: value.toFixed(2) };
+          return { parameter, value: Number(value.toFixed(2)) };
         })
       );
       return {
