@@ -9,9 +9,14 @@ import {
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { UserService } from '../../modules/account/services/user.service';
 import { of, defer } from 'rxjs';
-import { loadCurrentUserFail } from '../actions/current-user.actions';
+import {
+  loadCurrentUserFail,
+  editUser,
+  editUserSuccess,
+} from '../actions/current-user.actions';
 import { getSanitizedErrorMessage } from '../../shared/helpers/error-message-sanitizer.helper';
 import { userSanitizer } from '../../modules/account/helpers/user-sanitizer.helper';
+import { editUserFail } from '../actions/current-user.actions';
 
 @Injectable()
 export class CurrentUserEffects {
@@ -36,6 +41,25 @@ export class CurrentUserEffects {
               }),
             catchError((res: any) =>
               of(loadCurrentUserFail({ error: getSanitizedErrorMessage(res) })),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  editUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(editUser),
+      switchMap((action) =>
+        this.userService.update(this.currentUser.id, action.user).pipe(
+          map(
+            (user) =>
+              editUserSuccess({
+                user: { ...this.currentUser, ...userSanitizer(user) },
+              }),
+            catchError((res) =>
+              of(editUserFail({ error: getSanitizedErrorMessage(res) })),
             ),
           ),
         ),
