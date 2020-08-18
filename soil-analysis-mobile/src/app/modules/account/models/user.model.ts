@@ -5,6 +5,7 @@ export interface User {
   region: string;
   created: string;
   lastupdated: string;
+  device: string;
   password?: string;
   authdata?: string;
 }

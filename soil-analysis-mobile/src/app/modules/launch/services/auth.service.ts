@@ -15,7 +15,7 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   constructor(private readonly http: HttpClient) {
-    this.endpoint = 'users/login';
+    this.endpoint = 'devices/login';
     this.url = 'https://chingalo.site/soil-analysis/api';
     // this.url = 'api';
     this.currentUserSubject = new BehaviorSubject<User>(
