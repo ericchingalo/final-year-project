@@ -6,6 +6,7 @@ import { Result } from '../../models/results.model';
 import { FilterMetadata } from '../../models/filter-metadata.model';
 import { CustomGraphParameters } from '../../models/custom-graph-parameter.model';
 import { getGraphCustomParameters } from '../../helpers/custom-chart.helpers';
+import { aggregrateDailyRegionData } from '../../helpers/daily-region-data-aggregator.helper';
 
 @Component({
   selector: 'app-custom-chart',
@@ -30,9 +31,10 @@ export class CustomChartComponent implements OnInit, OnChanges {
   }
 
   setGraphCustomParameters() {
+    const data = aggregrateDailyRegionData(this.results);
     this.customGraphParameters = getGraphCustomParameters(
       this.chartConfig,
-      this.results
+      data
     );
   }
 
