@@ -16,6 +16,8 @@ import { AppComponent } from './app.component';
 import { BasicAuthInterceptor } from './modules/launch/services/basic-auth-interceptor.service';
 import { reducers, metaReducers } from './store/reducers/index';
 import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { effects } from './store/effects/index';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +35,7 @@ import { environment } from 'src/environments/environment';
         strictActionImmutability: true,
       },
     }),
+    EffectsModule.forRoot(effects),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
