@@ -4,13 +4,22 @@ import * as _ from 'lodash';
 import { Result } from '../../modules/history/models/results.model';
 import { results } from '../constants/soil-test-data.constant';
 import { sanitizeDates } from '../helpers/sanitize-dates.helper';
+import { BaseService } from './base.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HistoryService {
   private soilTestResult: Result[] = results;
-  constructor() {}
+  endpoint: string;
+  constructor(private http: BaseService<Result>) {
+    this.endpoint = 'devices';
+  }
+
+  getAllResults(deviceId: string): Observable<any> {
+    return this.http.findAll(`${this.endpoint}/${deviceId}/results`);
+  }
 
   getSoilResult(): Result[] {
     const sorted = _.sortBy(this.soilTestResult, (result: Result) => result.id);

@@ -1,7 +1,7 @@
 export interface Result {
-  id: number;
+  id: string;
   created: string;
-  device: number;
+  device: number | string;
   user: string;
   results: Array<{
     parameter: string;
