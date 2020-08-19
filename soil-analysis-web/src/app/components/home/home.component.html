@@ -45,7 +45,23 @@
             User | Device</a
           >
         </li>
-        <li class="nav-item" (click)="onLogout($event)">
+        <li class="nav-item">
+          <a class="nav-link" (click)="showDropdown = !showDropdown">
+            Settings</a
+          >
+        </li>
+        <li
+          class="nav-item dropdownCustomized"
+          (click)="onLogout($event)"
+          *ngIf="showDropdown"
+        >
+          <a class="nav-link">Change Password</a>
+        </li>
+        <li
+          class="nav-item dropdownCustomized"
+          (click)="onLogout($event)"
+          *ngIf="showDropdown"
+        >
           <a class="nav-link">Logout</a>
         </li>
       </ul>

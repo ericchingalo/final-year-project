@@ -29,9 +29,12 @@ export class HomeComponent implements OnInit {
   userLoading$: Observable<boolean>;
   deviceLoading$: Observable<boolean>;
   resultsLoading$: Observable<boolean>;
+
+  showDropdown: boolean;
   constructor(public dialog: MatDialog, private store: Store<State>) {}
 
   ngOnInit() {
+    this.showDropdown = false;
     this.store.dispatch(loadDevices());
     this.store.dispatch(loadUsers());
     this.store.dispatch(loadResults());
