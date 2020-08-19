@@ -1,24 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
 import { generateForm } from '../../../../shared/helpers/form-generator';
 import { AnalysisGraphService } from '../../services/analysis-graph.service';
 import { HistoryService } from '../../../../shared/services/history.service';
+import { Result } from '../../../history/models/results.model';
+import { State } from '../../../../store/reducers/index';
+import { getAllResults } from '../../../../store/selectors/results.selectors';
+import { take } from 'rxjs/operators';
+import { getGraphParameters } from '../../helpers/chart-plot.helper';
+import { dataAggregator } from '../../helpers/data-aggregator.helper';
 
 @Component({
   selector: 'app-analysis',
   templateUrl: 'analysis.page.html',
   styleUrls: ['analysis.page.scss'],
 })
-export class AnalysisPage implements OnInit {
+export class AnalysisPage implements OnInit, OnChanges {
+  results: Result[];
   analysisFormData: any;
   analysisForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private readonly analysisGraphService: AnalysisGraphService,
     private readonly historyService: HistoryService,
+    private store: Store<State>,
   ) {}
 
   ngOnInit() {
@@ -28,6 +37,18 @@ export class AnalysisPage implements OnInit {
       this.analysisFormData,
       this.formBuilder,
     );
+    this.getResults();
+  }
+
+  ngOnChanges() {
+    this.getResults();
+  }
+
+  getResults() {
+    this.store
+      .select(getAllResults)
+      .pipe(take(4))
+      .subscribe((results: Result[]) => (this.results = results));
   }
 
   getFormData() {
@@ -64,8 +85,9 @@ export class AnalysisPage implements OnInit {
   }
 
   onAnalysisFormSubmit(formValues: any) {
-    const graphData = this.historyService.getGraphParameters(
+    const graphData = getGraphParameters(
       _.omit(formValues, 'charts'),
+      dataAggregator(this.results),
     );
 
     const sanitizedGraphData = {
