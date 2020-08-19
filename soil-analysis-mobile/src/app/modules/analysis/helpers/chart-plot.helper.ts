@@ -65,11 +65,13 @@ export function compareDates(
 }
 
 export function filterSeriesByDates(data, results: Result[]) {
-  return _.filter(results, (result: Result) => {
+  const sanitizedResults = _.filter(results, (result: Result) => {
     const sanitizedCreated = sanitizeDates(result.created);
     return (
       compareDates(data.startDate, sanitizedCreated, true) &&
       compareDates(data.endDate, sanitizedCreated)
     );
   });
+
+  return _.reverse(sanitizedResults);
 }
