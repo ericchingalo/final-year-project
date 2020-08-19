@@ -18,6 +18,7 @@ export class CustomChartComponent implements OnInit, OnChanges {
   @Input() chartConfig: FilterMetadata;
 
   HighCharts: typeof Highcharts = Highcharts;
+  updateChart = true;
   chartOptions: Highcharts.Options;
   customGraphParameters: CustomGraphParameters;
   constructor() {}
@@ -26,7 +27,7 @@ export class CustomChartComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.setGraphCustomParameters();
-    this.chartOptions = this.plotChart();
+    this.setChartOptions();
     HC_exporting(Highcharts);
   }
 
@@ -36,6 +37,12 @@ export class CustomChartComponent implements OnInit, OnChanges {
       this.chartConfig,
       data
     );
+
+    console.log(this.customGraphParameters);
+  }
+
+  setChartOptions() {
+    this.chartOptions = this.plotChart();
   }
 
   plotChart(): Highcharts.Options {
