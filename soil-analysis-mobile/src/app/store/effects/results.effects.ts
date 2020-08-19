@@ -28,8 +28,9 @@ export class ResultsEffects {
   loadResults = createEffect(() =>
     this.actions$.pipe(
       ofType(loadResults),
-      mergeMap((action) =>
-        this.resultsService.getAllResults(this.currentUser.device).pipe(
+      mergeMap((action) => {
+        this.currentUser = this.authService.currentUserValue;
+        return this.resultsService.getAllResults(this.currentUser.device).pipe(
           map((results) => {
             const sanitizedResults = resultsSanitizer(
               results,
@@ -40,8 +41,8 @@ export class ResultsEffects {
           catchError((res) =>
             of(loadResultsFail({ error: getSanitizedErrorMessage(res) })),
           ),
-        ),
-      ),
+        );
+      }),
     ),
   );
 

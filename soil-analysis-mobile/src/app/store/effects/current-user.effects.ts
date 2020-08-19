@@ -26,14 +26,15 @@ export class CurrentUserEffects {
     private authService: AuthService,
     private userService: UserService,
   ) {
-    this.currentUser = authService.currentUserValue;
+    this.currentUser = this.authService.currentUserValue;
   }
 
   loadCurrentUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadCurrentUser),
-      switchMap((action) =>
-        this.userService.findOneById(this.currentUser.id).pipe(
+      switchMap((action) => {
+        this.currentUser = this.authService.currentUserValue;
+        return this.userService.findOneById(this.currentUser.id).pipe(
           map(
             (user) =>
               loadCurrentUserSuccess({
@@ -43,8 +44,8 @@ export class CurrentUserEffects {
               of(loadCurrentUserFail({ error: getSanitizedErrorMessage(res) })),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     ),
   );
 
