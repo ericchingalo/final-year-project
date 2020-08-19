@@ -18,7 +18,7 @@ export const loadCurrentUserFail = createAction(
 
 export const editUser = createAction(
   '[USER] Edit User',
-  props<{ user: User }>(),
+  props<{ user: Partial<User> }>(),
 );
 
 export const editUserSuccess = createAction(
