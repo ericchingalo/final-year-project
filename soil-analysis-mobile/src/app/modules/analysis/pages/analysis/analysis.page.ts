@@ -6,7 +6,6 @@ import * as moment from 'moment';
 
 import { generateForm } from '../../../../shared/helpers/form-generator';
 import { AnalysisGraphService } from '../../services/analysis-graph.service';
-import { HistoryService } from '../../../../shared/services/history.service';
 import { Result } from '../../../history/models/results.model';
 import { State } from '../../../../store/reducers/index';
 import { getAllResults } from '../../../../store/selectors/results.selectors';
@@ -26,7 +25,6 @@ export class AnalysisPage implements OnInit, OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private readonly analysisGraphService: AnalysisGraphService,
-    private readonly historyService: HistoryService,
     private store: Store<State>,
   ) {}
 
@@ -54,13 +52,6 @@ export class AnalysisPage implements OnInit, OnChanges {
   getFormData() {
     return {
       inputs: [
-        {
-          type: 'select',
-          formControlName: 'charts',
-          label: 'Chart type',
-          required: true,
-          options: ['bar', 'line'],
-        },
         {
           type: 'select',
           formControlName: 'parameters',
@@ -107,11 +98,11 @@ export class AnalysisPage implements OnInit, OnChanges {
         'YYYY-MM-DD',
       )} to ${moment(formValues.endDate).format('YYYY-MM-DD')}`,
     };
-    this.plotChart(formValues.charts, sanitizedGraphData);
+    this.plotChart(formValues.parameters, sanitizedGraphData);
   }
 
   plotChart(chart: string, graphData: any) {
-    if (chart === 'bar') {
+    if (chart !== 'temperature') {
       this.analysisGraphService.plotBarChart('chart', graphData);
     } else {
       this.analysisGraphService.plotLineChart('chart', graphData);
