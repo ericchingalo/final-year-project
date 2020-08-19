@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, MenuController } from '@ionic/angular';
 import { AuthService } from '../../../launch/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Store } from '@ngrx/store';
@@ -16,10 +16,12 @@ import { getCurrentUser } from '../../../../store/selectors/current-user.selecto
 })
 export class AccountPage implements OnInit {
   currentUser$: Observable<User>;
+  openSettings: boolean;
   constructor(
     private router: Router,
     private navCtrl: NavController,
     private alertController: AlertController,
+    private menu: MenuController,
     private store: Store<State>,
     private readonly authService: AuthService,
     private readonly cookieService: CookieService,
@@ -33,17 +35,29 @@ export class AccountPage implements OnInit {
     if (e) {
       e.stopPropagation();
     }
+    this.menu.close();
     this.router.navigate(['/tabs/account/edit']);
+  }
+
+  onOpenSettings() {
+    if (this.openSettings) {
+      this.menu.close();
+    } else {
+      this.menu.open();
+    }
+    this.openSettings = !this.openSettings;
   }
 
   onChangePassword(e) {
     if (e) {
       e.stopPropagation();
     }
+    this.menu.close();
     this.router.navigate(['/tabs/account/password']);
   }
 
   async presentAlertConfirm() {
+    this.menu.close();
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm!',

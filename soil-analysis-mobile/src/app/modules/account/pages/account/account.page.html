@@ -3,6 +3,12 @@
     <ion-title>
       Account
     </ion-title>
+
+    <ion-buttons [slot]="'end'">
+      <ion-buttons (click)="onOpenSettings()" size="large"
+        ><ion-icon name="settings-outline" size="large"></ion-icon>
+      </ion-buttons>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -39,27 +45,29 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-buttons padding>
-    <ion-button
-      size="small"
-      fill="solid"
-      color="medium"
-      (click)="onEditAccount($event)"
-      >Edit <ion-icon name="create-outline"></ion-icon
-    ></ion-button>
-    <ion-button
-      size="small"
-      fill="solid"
-      color="medium"
-      (click)="onChangePassword($event)"
-      >Password <ion-icon name="lock-closed-outline"></ion-icon
-    ></ion-button>
-    <ion-button
-      size="small"
-      fill="solid"
-      color="danger"
-      (click)="presentAlertConfirm()"
-      >Logout<ion-icon name="power-outline"></ion-icon
-    ></ion-button>
-  </ion-buttons>
+  <ion-menu side="end" type="push" contentId="main">
+    <ion-header>
+      <ion-toolbar color="danger">
+        <ion-title>End Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item (click)="onEditAccount($event)"
+          ><ion-icon name="create-outline"></ion-icon>&nbsp;&nbsp;Edit
+          User</ion-item
+        >
+        <ion-item (click)="onChangePassword($event)"
+          ><ion-icon name="lock-closed-outline"></ion-icon>&nbsp;&nbsp;Change
+          Password</ion-item
+        >
+        <ion-item (click)="presentAlertConfirm()"
+          ><ion-icon name="power-outline"></ion-icon
+          >&nbsp;&nbsp;Logout</ion-item
+        >
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-content>
