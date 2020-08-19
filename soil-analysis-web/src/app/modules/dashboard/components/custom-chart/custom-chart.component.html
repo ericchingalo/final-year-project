@@ -1,8 +1,18 @@
-<highcharts-chart
-  *ngIf="(results || []).length > 0"
-  [Highcharts]="HighCharts"
-  [options]="chartOptions"
-  style="max-width: 100%; height: 60vh; display: block;"
-></highcharts-chart>
+<div *ngIf="(results || []).length > 0">
+  <highcharts-chart
+    *ngIf="!updatingChart"
+    [Highcharts]="HighCharts"
+    [options]="chartOptions"
+    style="max-width: 100%; height: 60vh; display: block;"
+  ></highcharts-chart>
+
+  <div *ngIf="updatingChart">
+    <!-- <mat-spinner></mat-spinner> -->
+    <mat-progress-spinner
+      style="margin: 30vh auto;"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+  </div>
+</div>
 
 <app-no-data-found *ngIf="(results || []).length === 0"></app-no-data-found>

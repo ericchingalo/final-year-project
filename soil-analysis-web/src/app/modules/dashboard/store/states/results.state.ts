@@ -30,8 +30,3 @@ export const {
   selectAll: selectAllResults,
   selectIds: selectResultsIds,
 } = resultsAdapter.getSelectors();
-
-/**
- * feature selector
- */
-export const getResultsState = createFeatureSelector<any>('results');

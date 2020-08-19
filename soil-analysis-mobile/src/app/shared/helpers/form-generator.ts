@@ -40,14 +40,7 @@ export function generateForm(
     } else if (input.type === 'date' && input.required) {
       form.addControl(
         input.formControlName,
-        new FormControl(
-          values
-            ? values[input.formControlName]
-              ? values[input.formControlName]
-              : new Date()
-            : new Date(),
-          Validators.required,
-        ),
+        new FormControl('', Validators.required),
       );
     } else if (input.required) {
       form.addControl(

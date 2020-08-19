@@ -8,11 +8,9 @@ import { pages } from './pages';
 import { components } from './components';
 import { pipes } from './pipes';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effetcs';
 import { SharedModule } from '../../shared/shared.module';
-import { reducers } from './store/reducers/index';
 
 @NgModule({
   declarations: [...pages, ...components, ...pipes],
@@ -23,7 +21,6 @@ import { reducers } from './store/reducers/index';
     MaterialModule,
     SharedModule,
     HighchartsChartModule,
-    StoreModule.forFeature('results', reducers),
     EffectsModule.forFeature(effects),
   ],
 })

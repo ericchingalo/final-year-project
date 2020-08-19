@@ -51,7 +51,9 @@ export function getPeriods(sanitizedSeries: Result[]) {
   const periods: string[] = [];
 
   _.forEach(sanitizedSeries, (series) => {
-    periods.push(sanitizeDates(series.created));
+    if (!_.find(periods, (date) => date === series.created)) {
+      periods.push(sanitizeDates(series.created));
+    }
   });
 
   return periods;
@@ -86,11 +88,11 @@ export function getRegionSeriesData(
           (result: ParameterResult) => result.parameter === parameter
         )
       : null;
-
     data.push(regionDataSeriesValue ? parameterValue.value : null);
   });
 
   sanitizedRegionData = { ...sanitizedRegionData, data };
+
   return sanitizedRegionData;
 }
 

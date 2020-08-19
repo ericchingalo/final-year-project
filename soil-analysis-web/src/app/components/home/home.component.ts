@@ -16,6 +16,7 @@ import {
 import { getDevicesLoadingState } from '../../store/selectors/devices.selectors';
 import { getResultsLoadingState } from 'src/app/modules/dashboard/store/selectors';
 import { loadResults } from '../../modules/dashboard/store/actions/results.actions';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 
 @Component({
   selector: 'app-home',
@@ -29,9 +30,12 @@ export class HomeComponent implements OnInit {
   userLoading$: Observable<boolean>;
   deviceLoading$: Observable<boolean>;
   resultsLoading$: Observable<boolean>;
+
+  showDropdown: boolean;
   constructor(public dialog: MatDialog, private store: Store<State>) {}
 
   ngOnInit() {
+    this.showDropdown = false;
     this.store.dispatch(loadDevices());
     this.store.dispatch(loadUsers());
     this.store.dispatch(loadResults());
@@ -51,6 +55,17 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(LogoutComponent, {
       width: '400px',
       height: '200px',
+    });
+  }
+
+  onChangePassword(e) {
+    if (e) {
+      e.stopPropagation();
+    }
+
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: '400px',
+      height: '410px',
     });
   }
 }

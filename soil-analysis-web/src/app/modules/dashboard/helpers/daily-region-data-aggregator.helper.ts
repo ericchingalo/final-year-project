@@ -1,4 +1,5 @@
 import * as _ from 'lodash';
+import * as moment from 'moment';
 import { generateRandomID } from '../../../core/helpers/random-id-generator.helper';
 
 function getRegionData(regionData) {
@@ -16,7 +17,7 @@ function getRegionData(regionData) {
       const results = _.flattenDeep(
         _.map(_.keys(resultsByParameter), (parameter) => {
           const value = _.meanBy(resultsByParameter[parameter] || [], 'value');
-          return { parameter, value: value.toFixed(2) };
+          return { parameter, value: Number(value.toFixed(2)) };
         })
       );
       return {
@@ -31,7 +32,11 @@ function getRegionData(regionData) {
 }
 
 export function aggregrateDailyRegionData(data: any) {
-  const dataByDate = _.values(_.groupBy(data, 'created'));
+  const sanitizedData = _.map(data, (res) => ({
+    ...res,
+    created: moment(res.created).format('YYYY-MM-DD'),
+  }));
+  const dataByDate = _.values(_.groupBy(sanitizedData, 'created'));
   const aggregatedData = _.flattenDeep(
     _.map(dataByDate, (dataGroup) => {
       return getRegionData(dataGroup);

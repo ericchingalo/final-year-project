@@ -31,7 +31,7 @@ export class ResultsEffects {
           map(
             (results: any[]) =>
               loadResultsSuccess({
-                results: aggregrateDailyRegionData(resultsSaniziter(results)),
+                results: resultsSaniziter(results),
               }),
             catchError((res) => {
               if (res.status === 401) {

@@ -1,19 +1,15 @@
 import { createSelector } from '@ngrx/store';
-import {
-  getResultsState,
-  selectAllResults,
-  ResultsState,
-} from '../states/results.state';
-import { ResultsFeatureState } from '../reducers/index';
+import { selectAllResults, ResultsState } from '../states/results.state';
+import { getRootState, State } from 'src/app/store/reducers';
+
+export const getResultsState = createSelector(
+  getRootState,
+  (state: State) => state.results
+);
 
 export const getAllResults = createSelector(getResultsState, selectAllResults);
 
-export const getOriginalResultState = createSelector(
-  getResultsState,
-  (state: ResultsFeatureState) => (state ? state.results : null)
-);
-
 export const getResultsLoadingState = createSelector(
-  getOriginalResultState,
+  getResultsState,
   (state: ResultsState) => (state ? state.loading : false)
 );

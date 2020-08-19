@@ -19,6 +19,8 @@ import { environment } from 'src/environments/environment';
 import { effects } from './store/effects/index';
 import { SharedModule } from './shared/shared.module';
 import { BasicAuthInterceptor } from './authentication/services/basic-authentication-interceptor.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, ...components],
@@ -28,6 +30,7 @@ import { BasicAuthInterceptor } from './authentication/services/basic-authentica
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    ReactiveFormsModule,
     SharedModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -47,6 +50,6 @@ import { BasicAuthInterceptor } from './authentication/services/basic-authentica
   ],
 
   bootstrap: [AppComponent],
-  entryComponents: [LogoutComponent],
+  entryComponents: [LogoutComponent, ChangePasswordComponent],
 })
 export class AppModule {}
