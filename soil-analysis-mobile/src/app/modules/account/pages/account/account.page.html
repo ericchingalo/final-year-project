@@ -18,9 +18,23 @@
         <img class="account-svg" src="assets/user.svg" />
       </ion-avatar>
       <ion-list>
-        <ion-item><ion-text>Name: Eric</ion-text></ion-item>
-        <ion-item><ion-text>Role: Tester</ion-text></ion-item>
-        <ion-item><ion-text>DeviceID: 12</ion-text></ion-item>
+        <ion-item
+          ><ion-text
+            >Name: {{ (currentUser$ | async).username }}</ion-text
+          ></ion-item
+        >
+        <ion-item
+          ><ion-text
+            >Role: {{ (currentUser$ | async).roles }}</ion-text
+          ></ion-item
+        >
+        <ion-item
+          ><ion-text
+            >DeviceID: <br /><small
+              >{{ (currentUser$ | async).device }}</small
+            ></ion-text
+          ></ion-item
+        >
       </ion-list>
     </ion-card-content>
   </ion-card>

@@ -3,6 +3,11 @@ import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../../../launch/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { Store } from '@ngrx/store';
+import { State } from '../../../../store/reducers/index';
+import { Observable } from 'rxjs';
+import { User } from '../../models/user.model';
+import { getCurrentUser } from '../../../../store/selectors/current-user.selectors';
 
 @Component({
   selector: 'app-account',
@@ -10,15 +15,19 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['account.page.scss'],
 })
 export class AccountPage implements OnInit {
+  currentUser$: Observable<User>;
   constructor(
     private router: Router,
     private navCtrl: NavController,
     private alertController: AlertController,
+    private store: Store<State>,
     private readonly authService: AuthService,
     private readonly cookieService: CookieService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUser$ = this.store.select(getCurrentUser);
+  }
 
   onEditAccount(e) {
     if (e) {
