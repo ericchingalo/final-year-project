@@ -6,7 +6,7 @@ import { Result } from '../../models/results.model';
 import { FilterMetadata } from '../../models/filter-metadata.model';
 import { CustomGraphParameters } from '../../models/custom-graph-parameter.model';
 import { getGraphCustomParameters } from '../../helpers/custom-chart.helpers';
-import { results } from '../../constants/results.constant';
+import { aggregrateDailyRegionData } from '../../helpers/daily-region-data-aggregator.helper';
 
 @Component({
   selector: 'app-custom-chart',
@@ -18,6 +18,7 @@ export class CustomChartComponent implements OnInit, OnChanges {
   @Input() chartConfig: FilterMetadata;
 
   HighCharts: typeof Highcharts = Highcharts;
+  updatingChart = true;
   chartOptions: Highcharts.Options;
   customGraphParameters: CustomGraphParameters;
   constructor() {}
@@ -26,15 +27,25 @@ export class CustomChartComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.setGraphCustomParameters();
-    this.chartOptions = this.plotChart();
+    this.setChartOptions();
     HC_exporting(Highcharts);
   }
 
   setGraphCustomParameters() {
+    this.updatingChart = true;
+    const data = aggregrateDailyRegionData(this.results);
     this.customGraphParameters = getGraphCustomParameters(
       this.chartConfig,
-      results
+      data
     );
+
+    setTimeout(() => {
+      this.updatingChart = false;
+    }, 50);
+  }
+
+  setChartOptions() {
+    this.chartOptions = this.plotChart();
   }
 
   plotChart(): Highcharts.Options {

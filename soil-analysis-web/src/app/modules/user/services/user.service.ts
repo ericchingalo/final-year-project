@@ -1,77 +1,34 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import { BaseService } from '../../../shared/services/base.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor() {}
+  endpoint: string;
+  constructor(private http: BaseService<User>) {
+    this.endpoint = 'users';
+  }
 
-  getDummyUsers(): User[] {
-    return [
-      {
-        username: 'Chingalo',
-        region: 'Songea',
-        role: 'admin',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
+  findAll(): Observable<any> {
+    return this.http.findAll(this.endpoint);
+  }
 
-      {
-        username: 'Megamind',
-        region: 'Dar',
-        role: 'tester',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
+  findOneById(id: string): Observable<any> {
+    return this.http.findOneById(this.endpoint, id);
+  }
 
-      {
-        username: 'Tibz',
-        region: 'Bukoba',
-        role: 'tester',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
+  create(user: User): Observable<any> {
+    return this.http.create(this.endpoint, user);
+  }
 
-      {
-        username: 'Miguel',
-        region: 'Mtwara',
-        role: 'researcher',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
+  update(id: string, updatedUser: Partial<User>): Observable<any> {
+    return this.http.update(this.endpoint, id, updatedUser);
+  }
 
-      {
-        username: 'Mirabelle',
-        region: 'Mbeya',
-        role: 'tester',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
-
-      {
-        username: 'Eric',
-        region: 'Songea',
-        role: 'tester',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
-
-      {
-        username: 'Lisa',
-        region: 'Zanzibar',
-        role: 'admin',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
-
-      {
-        username: 'Elsa',
-        region: 'Morogoro',
-        role: 'admin',
-        created: '2020-07-23T23:42:02.002Z',
-        lastupdated: '2020-07-23T23:42:02.002Z',
-      },
-    ];
+  delete(id: string): Observable<any> {
+    return this.http.delete(this.endpoint, id);
   }
 }

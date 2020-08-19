@@ -15,12 +15,6 @@
       ></ion-input>
 
       <ion-input
-        *ngIf="input.type === 'number'"
-        [formControlName]="input.formControlName"
-        type="number"
-      ></ion-input>
-
-      <ion-input
         *ngIf="input.type === 'password'"
         [formControlName]="input.formControlName"
         type="password"

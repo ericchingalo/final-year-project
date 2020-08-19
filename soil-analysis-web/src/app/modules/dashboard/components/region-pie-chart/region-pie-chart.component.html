@@ -1,9 +1,12 @@
 <mat-card>
   <mat-card-content>
     <highcharts-chart
+      *ngIf="(results || []).length > 0"
       [Highcharts]="HighCharts"
       [options]="chartOptions"
       style="width: 100%; height: 60vh; display: block;"
     ></highcharts-chart>
+
+    <app-no-data-found *ngIf="(results || []).length === 0"></app-no-data-found>
   </mat-card-content>
 </mat-card>

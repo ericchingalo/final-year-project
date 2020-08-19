@@ -14,7 +14,7 @@
   </ion-header>
 
   <app-result-card
-    *ngFor="let result of results"
+    *ngFor="let result of results$ | async"
     [result]="result"
   ></app-result-card>
 

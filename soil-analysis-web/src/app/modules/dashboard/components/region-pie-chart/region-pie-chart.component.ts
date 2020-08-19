@@ -63,7 +63,7 @@ export class RegionPieChartComponent implements OnInit {
           name: 'Data collected',
           colorByPoint: true,
           type: undefined,
-          data: sanitizeRegionCountDataSeries(this.regionDataCount),
+          data: sanitizeRegionCountDataSeries(this.regionDataCount) || [],
         },
       ],
     };

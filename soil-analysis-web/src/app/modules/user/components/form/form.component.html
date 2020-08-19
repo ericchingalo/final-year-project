@@ -23,8 +23,19 @@
 
       <mat-select
         [formControlName]="input.formControlName"
-        *ngIf="input.type === 'select'"
+        *ngIf="input.type === 'select' && input.multiple"
         multiple
+      >
+        <mat-option
+          *ngFor="let option of input.options"
+          value="{{ option.value }}"
+          >{{ option.label }}</mat-option
+        >
+      </mat-select>
+
+      <mat-select
+        [formControlName]="input.formControlName"
+        *ngIf="input.type === 'select' && !input.multiple"
       >
         <mat-option
           *ngFor="let option of input.options"
@@ -35,17 +46,21 @@
     </mat-form-field>
 
     <div mat-dialog-actions>
-      <button mat-raised-button color="warn" (click)="onDismissForm()">
+      <button
+        mat-raised-button
+        color="warn"
+        cdkFocusInitial
+        (click)="onDismissForm($event)"
+      >
         Cancel
       </button>
       <button
         mat-raised-button
         color="primary"
         [disabled]="!formGroup.valid"
-        [mat-dialog-close]="formGroup.value"
-        cdkFocusInitial
+        (click)="onSubmitForm($event)"
       >
-        Create
+        {{ data.editing ? 'Edit' : 'Create' }}
       </button>
     </div>
   </form>

@@ -8,6 +8,9 @@ import { pages } from './pages';
 import { components } from './components';
 import { pipes } from './pipes';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { effects } from './store/effetcs';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [...pages, ...components, ...pipes],
@@ -16,7 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
+    SharedModule,
     HighchartsChartModule,
+    EffectsModule.forFeature(effects),
   ],
 })
 export class DashboardModule {}

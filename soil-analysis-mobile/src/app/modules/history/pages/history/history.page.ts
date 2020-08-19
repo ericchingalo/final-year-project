@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoryService } from '../../../../shared/services/history.service';
 import { Result } from '../../models/results.model';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from '../../../../store/reducers/index';
+import { getAllResults } from '../../../../store/selectors/results.selectors';
+import { loadResults } from '../../../../store/actions/results.actions';
 
 @Component({
   selector: 'app-history',
@@ -8,12 +12,14 @@ import { Result } from '../../models/results.model';
   styleUrls: ['history.page.scss'],
 })
 export class HistoryPage implements OnInit {
-  results: Result[] = [];
-  constructor(private readonly historyService: HistoryService) {}
+  results$: Observable<Result[]>;
+  constructor(private store: Store<State>) {}
 
   ngOnInit() {
-    this.results = this.historyService.getSoilResult();
+    this.results$ = this.store.select(getAllResults);
   }
 
-  refreshHistory() {}
+  refreshHistory() {
+    this.store.dispatch(loadResults());
+  }
 }
