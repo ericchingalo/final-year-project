@@ -6,6 +6,9 @@ import { User } from '../../account/models/user.model';
 import { UserCredential } from '../../account/models/user-credential.model';
 import { ToastService } from '../../../shared/services/toast-service.service';
 import { getSanitizedErrorMessage } from '../../../shared/helpers/error-message-sanitizer.helper';
+import { State } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
+import { loadCurrentUser } from '../../../store/actions/current-user.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +22,7 @@ export class AuthService {
   constructor(
     private readonly http: HttpClient,
     private toastService: ToastService,
+    private store: Store<State>,
   ) {
     this.endpoint = 'devices/login';
     this.url = 'https://chingalo.site/soil-analysis/api';
@@ -42,6 +46,7 @@ export class AuthService {
         );
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
+        this.store.dispatch(loadCurrentUser({ id: user.id }));
         return user;
       }),
     );

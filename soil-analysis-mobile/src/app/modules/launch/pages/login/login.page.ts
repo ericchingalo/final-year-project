@@ -59,12 +59,6 @@ export class LoginPage implements OnInit {
           );
         },
       );
-
-    // setTimeout(() => {
-    // this.navCtrl.navigateRoot('tabs/history');
-    // this.loginForm.reset();
-    // this.loginLoader.dismiss();
-    // }, 3000);
   }
 
   async presentLoading() {
