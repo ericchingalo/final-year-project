@@ -1,4 +1,13 @@
-<ion-tabs>
+<div
+  *ngIf="userLoading$ | async"
+  style="text-align: center; margin: 40vh auto;"
+>
+  <div>
+    <ion-spinner name="bubbles"></ion-spinner>
+  </div>
+  <div>Loading current user...</div>
+</div>
+<ion-tabs *ngIf="!(userLoading$ | async)">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="history">
       <ion-icon name="newspaper-outline"></ion-icon>
