@@ -18,7 +18,7 @@ export class CustomChartComponent implements OnInit, OnChanges {
   @Input() chartConfig: FilterMetadata;
 
   HighCharts: typeof Highcharts = Highcharts;
-  updateChart = true;
+  updatingChart = true;
   chartOptions: Highcharts.Options;
   customGraphParameters: CustomGraphParameters;
   constructor() {}
@@ -32,13 +32,16 @@ export class CustomChartComponent implements OnInit, OnChanges {
   }
 
   setGraphCustomParameters() {
+    this.updatingChart = true;
     const data = aggregrateDailyRegionData(this.results);
     this.customGraphParameters = getGraphCustomParameters(
       this.chartConfig,
       data
     );
 
-    console.log(this.customGraphParameters);
+    setTimeout(() => {
+      this.updatingChart = false;
+    }, 50);
   }
 
   setChartOptions() {
