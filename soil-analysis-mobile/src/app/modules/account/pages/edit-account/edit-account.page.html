@@ -7,4 +7,24 @@
   </ion-toolbar>
 </ion-header>
 
+<form [formGroup]="editFormGroup" (ngSubmit)="onUpdateUser()">
+  <ion-item *ngFor="let input of editFormData.inputs">
+    <ion-label position="floating">{{ input.label }}</ion-label>
+    <ion-input
+      *ngIf="input.type === 'text'"
+      [formControlName]="input.formControlName"
+      type="text"
+    ></ion-input>
+  </ion-item>
+  <ion-button
+    type="submit"
+    size="small"
+    expand="full"
+    fill="solid"
+    color="primary"
+    [disabled]="!editFormGroup.valid"
+  >
+    Edit
+  </ion-button>
+</form>
 <ion-content> </ion-content>
