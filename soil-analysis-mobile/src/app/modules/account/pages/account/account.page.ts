@@ -36,6 +36,13 @@ export class AccountPage implements OnInit {
     this.router.navigate(['/tabs/account/edit']);
   }
 
+  onChangePassword(e) {
+    if (e) {
+      e.stopPropagation();
+    }
+    this.router.navigate(['/tabs/account/password']);
+  }
+
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',

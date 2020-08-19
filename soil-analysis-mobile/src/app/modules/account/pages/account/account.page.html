@@ -45,14 +45,21 @@
       fill="solid"
       color="medium"
       (click)="onEditAccount($event)"
-      >Edit</ion-button
-    >
+      >Edit <ion-icon name="create-outline"></ion-icon
+    ></ion-button>
+    <ion-button
+      size="small"
+      fill="solid"
+      color="medium"
+      (click)="onChangePassword($event)"
+      >Password <ion-icon name="lock-closed-outline"></ion-icon
+    ></ion-button>
     <ion-button
       size="small"
       fill="solid"
       color="danger"
       (click)="presentAlertConfirm()"
-      >Logout</ion-button
-    >
+      >Logout<ion-icon name="power-outline"></ion-icon
+    ></ion-button>
   </ion-buttons>
 </ion-content>
